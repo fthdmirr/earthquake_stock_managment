@@ -1,5 +1,7 @@
 import 'package:hive_flutter/hive_flutter.dart';
 
+part 'receive_model.g.dart';
+
 @HiveType(typeId: 0)
 class ReceiveModel {
   ReceiveModel(this.vehicle, this.carPlate, this.itemType);
