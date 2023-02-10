@@ -1,4 +1,4 @@
-import 'package:earhquake_stock_managment/view/home/view/home_page.dart';
+import 'package:earhquake_stock_managment/view/receive/screen/receiving_view.dart';
 import 'package:flutter/material.dart';
 
 import 'core/init/navigation/navigation_route.dart';
@@ -11,12 +11,12 @@ class App extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Deprem Depolama Servisi',
+      title: 'Deprem Depo Yönetimi Uygulamasi',
       theme: myTheme,
       onGenerateRoute: NavigationRoute.instance.generateRoute,
       navigatorKey: NavigationService.instance.navigatorKey,
       debugShowCheckedModeBanner: false,
-      home: const HomePage(),
+      home: const ReceivingView(),
     );
   }
 }

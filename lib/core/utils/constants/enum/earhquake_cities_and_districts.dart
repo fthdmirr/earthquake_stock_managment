@@ -1,4 +1,4 @@
-enum CitiesAndDistricts {
+enum EarthquakeCitiesAndDistricts {
   kahramanmaras([
     "Afşin",
     "Andirin",
@@ -114,6 +114,6 @@ enum CitiesAndDistricts {
     "Saimbe",
   ]);
 
-  const CitiesAndDistricts(this.districts);
+  const EarthquakeCitiesAndDistricts(this.districts);
   final List<String> districts;
 }
