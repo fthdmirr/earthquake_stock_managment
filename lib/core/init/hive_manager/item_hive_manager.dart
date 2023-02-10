@@ -2,21 +2,21 @@ import 'package:earhquake_stock_managment/core/common/models/receive_model.dart'
 import 'package:earhquake_stock_managment/core/init/hive_manager/i_cache_managar.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 
-class ItemTypeCacheManager extends ICacheManager<ItemType> {
-  ItemTypeCacheManager(String key) : super(key);
+class ItemCacheManager extends ICacheManager<Item> {
+  ItemCacheManager(String key) : super(key);
 
   @override
-  Future<void> addItems(List<ItemType> values) async {
+  Future<void> addItems(List<Item> values) async {
     await box?.addAll(values);
   }
 
   @override
-  ItemType? getItem(String key) {
+  Item? getItem(String key) {
     return box?.get(key);
   }
 
   @override
-  Future<void> putValue(ItemType value) async {
+  Future<void> putValue(Item value) async {
     await box?.put(key, value);
   }
 
@@ -26,16 +26,16 @@ class ItemTypeCacheManager extends ICacheManager<ItemType> {
   }
 
   @override
-  List<ItemType>? getValues() {
+  List<Item>? getValues() {
     return box?.values.toList();
   }
 
   @override
   void registerAdapters() {
     if (!Hive.isAdapterRegistered(0)) {
-      Hive.registerAdapter(ItemTypeAdapter());
       Hive.registerAdapter(ItemAdapter());
-      Hive.registerAdapter(ItemTypeAdapter());
+      Hive.registerAdapter(ItemAdapter());
+      Hive.registerAdapter(ItemAdapter());
       Hive.registerAdapter(VehicleAdapter());
     }
   }

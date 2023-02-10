@@ -26,7 +26,7 @@ abstract class ICacheManager<T> {
 
   List<T>? getValues();
 
-  Future<void> putItem(String key, T value);
+  Future<void> putValue(T value);
 
   Future<void> removeItem(String key);
 }

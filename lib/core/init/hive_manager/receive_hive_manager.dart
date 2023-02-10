@@ -16,7 +16,7 @@ class ReceiveCacheManager extends ICacheManager<ReceiveModel> {
   }
 
   @override
-  Future<void> putItem(String key, ReceiveModel value) async {
+  Future<void> putValue(ReceiveModel value) async {
     await box?.put(key, value);
   }
 
