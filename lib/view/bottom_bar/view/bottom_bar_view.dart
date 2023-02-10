@@ -1,3 +1,4 @@
+import 'package:earhquake_stock_managment/view/receive/screen/receiving_view.dart';
 import 'package:flutter/material.dart';
 
 import '../../../core/common/provider/view_model_provider.dart';
@@ -26,7 +27,7 @@ class BottomBarView extends StatelessWidget {
   }
 
   final List<Widget> _screens = [
-    const HomePage(),
+    const ReceivingView(),
     const HomePage(),
     const HomePage(),
   ];
