@@ -12,7 +12,7 @@ class App extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Deprem Depolama Servisi',
+      title: 'Deprem Depo Yönetimi Uygulamasi',
       theme: myTheme,
       onGenerateRoute: NavigationRoute.instance.generateRoute,
       navigatorKey: NavigationService.instance.navigatorKey,
