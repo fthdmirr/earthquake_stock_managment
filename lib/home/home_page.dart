@@ -1,5 +1,5 @@
-import 'package:earhquake_stock_managment/core/components/dropdown_input.dart';
-import 'package:earhquake_stock_managment/core/constants/cities_and_districts.dart';
+import 'package:earhquake_stock_managment/core/components/dropdown/dropdown_input.dart';
+import 'package:earhquake_stock_managment/core/utils/constants/cities_and_districts.dart';
 import 'package:flutter/material.dart';
 
 class HomePage extends StatelessWidget {

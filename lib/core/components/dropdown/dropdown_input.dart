@@ -1,3 +1,4 @@
+import 'package:earhquake_stock_managment/core/utils/constants/color/app_color.dart';
 import 'package:flutter/material.dart';
 
 class DropdownInput<T> extends StatelessWidget {
@@ -15,7 +16,7 @@ class DropdownInput<T> extends StatelessWidget {
         style: const TextStyle(color: Colors.black),
         underline: Container(
           height: 2,
-          color: Colors.black,
+          color: AppColors.blueGem,
         ),
         onChanged: (T? value) {
           setState(() {
