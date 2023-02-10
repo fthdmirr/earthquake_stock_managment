@@ -1,3 +1,4 @@
+import 'package:earhquake_stock_managment/view/bottom_bar/view/bottom_bar_view.dart';
 import 'package:earhquake_stock_managment/view/home/view/home_page.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -11,6 +12,8 @@ class NavigationRoute {
 
   Route<dynamic> generateRoute(RouteSettings args) {
     switch (args.name) {
+      case BottomBarView.routeName:
+        return FadeTransitionPageRoute(BottomBarView(), settings: args);
       case HomePage.routeName:
         return FadeTransitionPageRoute(const HomePage(), settings: args);
 

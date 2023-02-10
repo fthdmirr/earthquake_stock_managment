@@ -1,4 +1,3 @@
-// ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:flutter/material.dart';
 
 abstract class BaseViewModel extends ChangeNotifier {
@@ -11,5 +10,20 @@ abstract class BaseViewModel extends ChangeNotifier {
   changeIsLoading() {
     isLoading = !isLoading;
     notifyListeners();
+  }
+
+  bool isDisposing = false;
+
+  Future<void> initViewModel() async {
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      if (isDisposing) return;
+    });
+    return Future.value();
+  }
+
+  @override
+  void dispose() {
+    isDisposing = true;
+    super.dispose();
   }
 }

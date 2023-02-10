@@ -16,4 +16,5 @@ abstract class AppColors {
   static const purple = Color(0xFF0080FF);
   static const magenta = Color(0xFFFF00FF);
   static const blueGem = Color(0xFF3215A3);
+  static const whiteGrey = Color(0xff9EA7BE);
 }

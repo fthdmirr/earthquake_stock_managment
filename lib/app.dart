@@ -1,9 +1,10 @@
-import 'package:earhquake_stock_managment/view/receive/screen/receiving_view.dart';
 import 'package:flutter/material.dart';
 
 import 'core/init/navigation/navigation_route.dart';
 import 'core/init/navigation/navigation_service.dart';
+import 'core/utils/app_builder.dart';
 import 'core/utils/theme/theme.dart';
+import 'view/splash/view/splash_view.dart';
 
 class App extends StatelessWidget {
   const App({super.key});
@@ -16,7 +17,8 @@ class App extends StatelessWidget {
       onGenerateRoute: NavigationRoute.instance.generateRoute,
       navigatorKey: NavigationService.instance.navigatorKey,
       debugShowCheckedModeBanner: false,
-      home: const ReceivingView(),
+      builder: AppBuilder.build,
+      home: const SplashView(),
     );
   }
 }

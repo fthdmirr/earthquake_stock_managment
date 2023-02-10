@@ -1,13 +1,12 @@
 import 'package:flutter/material.dart';
 
-import '../constants/color/app_color.dart';
+import '../constants/app_color.dart';
 
 final ThemeData myTheme = ThemeData(
   scaffoldBackgroundColor: AppColors.white,
   appBarTheme: const AppBarTheme(
     backgroundColor: AppColors.blueGem,
     centerTitle: true,
-    elevation: 0,
   ),
   textTheme: const TextTheme(
     displayLarge: TextStyle(
