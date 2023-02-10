@@ -1,28 +1,18 @@
+// ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:flutter/material.dart';
 
 abstract class BaseViewModel extends ChangeNotifier {
-  late BuildContext context;
-  bool isDisposing = false;
+  BaseViewModel({
+    required this.context,
+    required this.isLoading,
+  });
 
-  BaseViewModel({required this.context}) {
-    initViewModel();
-  }
+  BuildContext context;
 
   bool isLoading = false;
 
   changeIsLoading() {
     isLoading = !isLoading;
     notifyListeners();
-  }
-
-  Future initViewModel() async {
-    if (isDisposing) return;
-    return Future.value();
-  }
-
-  @override
-  void dispose() {
-    isDisposing = true;
-    super.dispose();
   }
 }
