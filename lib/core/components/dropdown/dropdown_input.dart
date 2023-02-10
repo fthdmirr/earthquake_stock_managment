@@ -2,17 +2,19 @@ import 'package:earhquake_stock_managment/core/utils/constants/color/app_color.d
 import 'package:flutter/material.dart';
 
 class DropdownInput<T> extends StatelessWidget {
-  const DropdownInput({super.key, required this.dropdownValues});
+  const DropdownInput({super.key, required this.dropdownValues, this.firstValue});
 
   final List<T> dropdownValues;
+  final T? firstValue;
 
   @override
   Widget build(BuildContext context) {
-    T dropDownValue = dropdownValues.first;
+    T dropDownValue = firstValue ?? dropdownValues.first;
     return StatefulBuilder(
       builder: (context, setState) => DropdownButton<T>(
         value: dropDownValue,
         elevation: 16,
+        isExpanded: true,
         style: const TextStyle(color: Colors.black),
         underline: Container(
           height: 2,
@@ -26,7 +28,7 @@ class DropdownInput<T> extends StatelessWidget {
         items: dropdownValues.map<DropdownMenuItem<T>>((T value) {
           return DropdownMenuItem<T>(
             value: value,
-            child: Text(value as String),
+            child: Text('$value'),
           );
         }).toList(),
       ),
