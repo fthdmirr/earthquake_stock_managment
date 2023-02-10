@@ -12,5 +12,6 @@ class BaseAppBar extends AppBar {
             text: title,
             color: AppColors.white,
           ),
+          
         );
 }

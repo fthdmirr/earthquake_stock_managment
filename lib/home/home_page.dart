@@ -15,7 +15,8 @@ class HomePage extends StatelessWidget {
         children: [
           const SizedBox(height: 40),
           DropdownInput<String>(
-            dropdownValues: CitiesAndDistricts.values.map((e) => e.name).toList(),
+            dropdownValues:
+                CitiesAndDistricts.values.map((e) => e.name).toList(),
           )
         ],
       ),

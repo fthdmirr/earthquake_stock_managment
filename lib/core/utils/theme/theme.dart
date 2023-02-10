@@ -7,7 +7,6 @@ final ThemeData myTheme = ThemeData(
   appBarTheme: const AppBarTheme(
     backgroundColor: AppColors.blueGem,
     centerTitle: true,
-    elevation: 0,
   ),
   textTheme: const TextTheme(
     displayLarge: TextStyle(
