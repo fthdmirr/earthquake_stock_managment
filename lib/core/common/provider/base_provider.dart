@@ -2,10 +2,7 @@
 import 'package:flutter/material.dart';
 
 abstract class BaseViewModel extends ChangeNotifier {
-  BaseViewModel({
-    required this.context,
-    required this.isLoading,
-  });
+  BaseViewModel({required this.context});
 
   BuildContext context;
 
