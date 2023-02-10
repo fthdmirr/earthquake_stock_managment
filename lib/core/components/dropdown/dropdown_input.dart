@@ -28,7 +28,7 @@ class DropdownInput<T> extends StatelessWidget {
         items: dropdownValues.map<DropdownMenuItem<T>>((T value) {
           return DropdownMenuItem<T>(
             value: value,
-            child: Text(value as String),
+            child: Text('$value'),
           );
         }).toList(),
       ),
