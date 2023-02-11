@@ -2,12 +2,10 @@ import 'package:earhquake_stock_managment/core/common/models/app_images/app_imag
 import 'package:earhquake_stock_managment/core/common/models/inventory_item.model.dart';
 
 import '../../../core/common/provider/view_model_provider.dart';
-import '../../../core/components/input/base_input.dart';
 import '../../../core/init/navigation/navigation_service.dart';
 import 'package:earhquake_stock_managment/view/receive/view_model/receiving_view_model.dart';
 
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 
 import '../../../core/components/text/headline/headline5_text.dart';
 import '../../../core/utils/constants/app_color.dart';

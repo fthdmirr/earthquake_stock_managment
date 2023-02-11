@@ -2,6 +2,7 @@ import 'dart:developer';
 
 import 'package:earhquake_stock_managment/core/common/models/app_images/app_images.dart';
 import 'package:earhquake_stock_managment/core/common/models/inventory_item.model.dart';
+import 'package:earhquake_stock_managment/core/init/hive_manager/inventory_item_cache_manager.dart';
 
 import '../../../core/common/provider/base_provider.dart';
 
@@ -10,15 +11,22 @@ class ReceivingViewModel extends BaseViewModel {
     required super.context,
   });
 
-  // final ReceiveCacheManager receiveCacheManager;
-  // final ItemCacheManager itemCacheManager;
-  // final ItemTypeCacheManager itemTypeCacheManager;
+  final InventoryItemCacheManager itemCacheManager =
+      InventoryItemCacheManager('inventoryItem');
+  List<InventoryItem> tempInventoryItems = [];
 
-  // TextEditingController get itemTypeNameController => _itemTypeNameController;
-  // TextEditingController get quantityController => _quantityController;
+  @override
+  initViewModel() async {
+    setInventoryItem();
+    super.initViewModel();
+  }
 
   setInventoryItem() {
-    //hiveden gelen quantity değerleri ile inventoryItems quantity değerleri eşitlenir.
+    tempInventoryItems = itemCacheManager.getValues() as List<InventoryItem>;
+
+    for (var i = 0; i < inventoryItems.length; i++) {
+      inventoryItems[i].quantity = tempInventoryItems[i].quantity;
+    }
   }
 
   List<InventoryItem> inventoryItems = [

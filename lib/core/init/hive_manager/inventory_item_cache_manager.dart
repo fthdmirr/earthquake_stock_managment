@@ -1,7 +1,6 @@
 import 'package:earhquake_stock_managment/core/common/models/inventory_item/inventory_item_model.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 
-
 class InventoryItemCacheManager {
   InventoryItemCacheManager(this.key) {
     init();
@@ -39,8 +38,8 @@ class InventoryItemCacheManager {
     await box?.delete(key);
   }
 
-  List<InventoryItem>? getValues() {
-    return box?.values.toList();
+  List<InventoryItem> getValues() {
+    return box?.values.toList() ?? [];
   }
 
   void registerAdapters() {

@@ -1,4 +1,4 @@
-import 'package:earhquake_stock_managment/core/common/models/Vehicle/Vehicle_model.dart';
+import 'package:earhquake_stock_managment/core/common/models/vehicle/vehicle_model.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 
 class VehicleCacheManager {
