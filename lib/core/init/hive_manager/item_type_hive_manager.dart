@@ -2,7 +2,7 @@ import 'package:earhquake_stock_managment/core/common/models/receive_model.dart'
 import 'package:hive_flutter/hive_flutter.dart';
 
 class ItemTypeCacheManager {
-  ItemTypeCacheManager(this.key){
+  ItemTypeCacheManager(this.key) {
     init();
   }
 
@@ -26,9 +26,13 @@ class ItemTypeCacheManager {
     return box?.get(key);
   }
 
-  Future<void> putValue(ItemType value) async {
-    await box?.put(key, value);
+  Future<void> addValue(ItemType value) async {
+    await box?.add(value);
   }
+
+  // Future<void> putValue(ItemType value) async {
+  //   await box?.put(key, value);
+  // }
 
   Future<void> removeItem(String key) async {
     await box?.delete(key);
