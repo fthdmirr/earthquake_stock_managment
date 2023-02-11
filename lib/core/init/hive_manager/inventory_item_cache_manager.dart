@@ -1,6 +1,6 @@
 import 'package:earhquake_stock_managment/core/common/models/inventory_item/inventory_item_model.dart';
+import 'package:earhquake_stock_managment/core/utils/constants/hive/hive_constants.dart';
 import 'package:hive_flutter/hive_flutter.dart';
-
 
 class InventoryItemCacheManager {
   InventoryItemCacheManager(this.key) {
@@ -44,7 +44,7 @@ class InventoryItemCacheManager {
   }
 
   void registerAdapters() {
-    if (!Hive.isAdapterRegistered(1)) {
+    if (!Hive.isAdapterRegistered(HiveConstants.inventoryItemId)) {
       Hive.registerAdapter(InventoryItemAdapter());
     }
   }

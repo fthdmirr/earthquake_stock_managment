@@ -1,4 +1,5 @@
 import 'package:earhquake_stock_managment/core/common/models/report/report_model.dart';
+import 'package:earhquake_stock_managment/core/utils/constants/hive/hive_constants.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 
 class ReportCacheManager {
@@ -43,7 +44,7 @@ class ReportCacheManager {
   }
 
   void registerAdapters() {
-    if (!Hive.isAdapterRegistered(2)) {
+    if (!Hive.isAdapterRegistered(HiveConstants.reportId)) {
       Hive.registerAdapter(ReportAdapter());
     }
   }
