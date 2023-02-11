@@ -2,11 +2,15 @@ PODS:
   - device_info_plus (0.0.1):
     - Flutter
   - Flutter (1.0.0)
+  - lecle_downloads_path_provider (0.0.1):
+    - Flutter
   - package_info_plus (0.4.5):
     - Flutter
   - path_provider_foundation (0.0.1):
     - Flutter
     - FlutterMacOS
+  - permission_handler_apple (9.0.4):
+    - Flutter
   - share_plus (0.0.1):
     - Flutter
   - url_launcher_ios (0.0.1):
@@ -15,8 +19,10 @@ PODS:
 DEPENDENCIES:
   - device_info_plus (from `.symlinks/plugins/device_info_plus/ios`)
   - Flutter (from `Flutter`)
+  - lecle_downloads_path_provider (from `.symlinks/plugins/lecle_downloads_path_provider/ios`)
   - package_info_plus (from `.symlinks/plugins/package_info_plus/ios`)
   - path_provider_foundation (from `.symlinks/plugins/path_provider_foundation/ios`)
+  - permission_handler_apple (from `.symlinks/plugins/permission_handler_apple/ios`)
   - share_plus (from `.symlinks/plugins/share_plus/ios`)
   - url_launcher_ios (from `.symlinks/plugins/url_launcher_ios/ios`)
 
@@ -25,10 +31,14 @@ EXTERNAL SOURCES:
     :path: ".symlinks/plugins/device_info_plus/ios"
   Flutter:
     :path: Flutter
+  lecle_downloads_path_provider:
+    :path: ".symlinks/plugins/lecle_downloads_path_provider/ios"
   package_info_plus:
     :path: ".symlinks/plugins/package_info_plus/ios"
   path_provider_foundation:
     :path: ".symlinks/plugins/path_provider_foundation/ios"
+  permission_handler_apple:
+    :path: ".symlinks/plugins/permission_handler_apple/ios"
   share_plus:
     :path: ".symlinks/plugins/share_plus/ios"
   url_launcher_ios:
@@ -37,8 +47,10 @@ EXTERNAL SOURCES:
 SPEC CHECKSUMS:
   device_info_plus: e5c5da33f982a436e103237c0c85f9031142abed
   Flutter: f04841e97a9d0b0a8025694d0796dd46242b2854
+  lecle_downloads_path_provider: b24e71004ad61a26c7e4422373627acdb01d9251
   package_info_plus: 6c92f08e1f853dc01228d6f553146438dafcd14e
   path_provider_foundation: 37748e03f12783f9de2cb2c4eadfaa25fe6d4852
+  permission_handler_apple: 44366e37eaf29454a1e7b1b7d736c2cceaeb17ce
   share_plus: 056a1e8ac890df3e33cb503afffaf1e9b4fbae68
   url_launcher_ios: fb12c43172927bb5cf75aeebd073f883801f1993
 
