@@ -28,7 +28,9 @@ class _StepperViewViewState extends State<StepperView> {
   }
 
   void buttonPressed() {
-    if (currentIndex != widget.widgets.length - 1) changeCurrentIndex(currentIndex + 1);
+    if (currentIndex != widget.widgets.length - 1) {
+      changeCurrentIndex(currentIndex + 1);
+    }
     widget.onPressed();
   }
 
@@ -41,11 +43,14 @@ class _StepperViewViewState extends State<StepperView> {
     return Scaffold(
         body: Column(
           children: [
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              children: [
-                ...widget.steppers
-                    .map((step) => Row(
+            Padding(
+              padding: const EdgeInsets.all(18.0),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                children: [
+                  ...widget.steppers
+                      .map(
+                        (step) => Row(
                           children: [
                             Column(
                               children: [
@@ -59,11 +64,12 @@ class _StepperViewViewState extends State<StepperView> {
                               ],
                             ),
                           ],
-                        ))
-                    .toList(),
-              ],
+                        ),
+                      )
+                      .toList(),
+                ],
+              ),
             ),
-            const Spacer(flex: 1),
             Expanded(flex: 8, child: widget.widgets[currentIndex]),
           ],
         ),
@@ -73,16 +79,21 @@ class _StepperViewViewState extends State<StepperView> {
                 children: [
                   Expanded(
                       child: _SingleButton(
-                          title: 'Geri Dön', color: AppColors.greyapp, onPressed: backButton)),
+                          title: 'Geri Dön',
+                          color: AppColors.greyapp,
+                          onPressed: backButton)),
                   const SizedBox(width: 10),
-                  Expanded(child: _SingleButton(title: 'Devam Et', onPressed: buttonPressed))
+                  Expanded(
+                      child: _SingleButton(
+                          title: 'Devam Et', onPressed: buttonPressed))
                 ],
               ));
   }
 }
 
 class _SingleButton extends StatelessWidget {
-  const _SingleButton({required this.title, required this.onPressed, this.color});
+  const _SingleButton(
+      {required this.title, required this.onPressed, this.color});
   final String title;
   final Function() onPressed;
   final Color? color;
@@ -91,9 +102,10 @@ class _SingleButton extends StatelessWidget {
     return ElevatedButton(
       onPressed: onPressed,
       style: ButtonStyle(
-          backgroundColor: color != null ? MaterialStateProperty.all<Color>(color!) : null,
-          minimumSize:
-              MaterialStateProperty.all<Size>(Size(double.infinity, context.dynamicHeight(0.06)))),
+          backgroundColor:
+              color != null ? MaterialStateProperty.all<Color>(color!) : null,
+          minimumSize: MaterialStateProperty.all<Size>(
+              Size(double.infinity, context.dynamicHeight(0.06)))),
       child: Text(title),
     );
   }
