@@ -28,45 +28,7 @@ class ReceivingView extends StatelessWidget {
               widgets: [
                 _VehicleInfoPage(model),
                 _ItemInfoPage(model),
-                Column(
-                  children: [
-                    DropdownInput(
-                      dropdownValues: const ['Kamyon', 'Tır', 'Kamyonet'],
-                      firstValue: model.selectedVehicle,
-                    ),
-                    const SizedBox(height: 12),
-                    BaseInput(
-                      title: 'Araç Plakası',
-                      controller: model.vehiclePlate,
-                      isEnabled: false,
-                    ),
-                    const SizedBox(height: 12),
-                    DropdownInput(
-                      dropdownValues: CitiesOfTurkey.values.map((e) => e.name).toList(),
-                      firstValue: model.fromTheProvience,
-                    ),
-                    const SizedBox(height: 12),
-                    DropdownInput(
-                      dropdownValues: const ['Kadın Kıyafet', 'Kuru Gıda', 'Meyve'],
-                      firstValue: model.selectedItem,
-                    ),
-                    const SizedBox(height: 12),
-                    DropdownInput(
-                      dropdownValues: const ['Koli', 'Adet'],
-                      firstValue: model.selectedItemType,
-                    ),
-                    const SizedBox(height: 12),
-                    BaseInput(
-                      title: 'Araç Plakası',
-                      controller: model.quantity,
-                      isEnabled: false,
-                      inputFormatter: <TextInputFormatter>[
-                        FilteringTextInputFormatter.digitsOnly,
-                        LengthLimitingTextInputFormatter(10),
-                      ],
-                    ),
-                  ],
-                ),
+                _OverViewPage(model),
               ],
               onPressed: () {},
             ));
@@ -119,6 +81,54 @@ class _ItemInfoPage extends StatelessWidget {
         BaseInput(
           title: 'Adet',
           controller: model.quantity,
+          inputFormatter: <TextInputFormatter>[
+            FilteringTextInputFormatter.digitsOnly,
+            LengthLimitingTextInputFormatter(10),
+          ],
+        ),
+      ],
+    );
+  }
+}
+
+class _OverViewPage extends StatelessWidget {
+  const _OverViewPage(this.model);
+  final ReceiveViewModel model;
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      children: [
+        DropdownInput(
+          dropdownValues: const ['Kamyon', 'Tır', 'Kamyonet'],
+          firstValue: model.selectedVehicle,
+        ),
+        const SizedBox(height: 12),
+        BaseInput(
+          title: 'Araç Plakası',
+          controller: model.vehiclePlate,
+          isEnabled: false,
+        ),
+        const SizedBox(height: 12),
+        DropdownInput(
+          dropdownValues: CitiesOfTurkey.values.map((e) => e.name).toList(),
+          firstValue: model.fromTheProvience,
+        ),
+        const SizedBox(height: 12),
+        DropdownInput(
+          dropdownValues: const ['Kadın Kıyafet', 'Kuru Gıda', 'Meyve'],
+          firstValue: model.selectedItem,
+        ),
+        const SizedBox(height: 12),
+        DropdownInput(
+          dropdownValues: const ['Koli', 'Adet'],
+          firstValue: model.selectedItemType,
+        ),
+        const SizedBox(height: 12),
+        BaseInput(
+          title: 'Araç Plakası',
+          controller: model.quantity,
+          isEnabled: false,
           inputFormatter: <TextInputFormatter>[
             FilteringTextInputFormatter.digitsOnly,
             LengthLimitingTextInputFormatter(10),
