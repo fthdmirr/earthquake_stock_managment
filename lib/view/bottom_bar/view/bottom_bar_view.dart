@@ -31,7 +31,7 @@ class BottomBarView extends StatelessWidget {
   final List<Widget> _screens = [
     const ReceivingView(),
     const ProductsView(),
-    ReportsView(),
+    const ReportsView(),
   ];
 
   final List<String> _label = [
