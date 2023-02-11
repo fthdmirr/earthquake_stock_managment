@@ -3,8 +3,12 @@ import 'package:earhquake_stock_managment/core/init/hive_manager/i_cache_managar
 import 'package:hive_flutter/hive_flutter.dart';
 
 class ReceiveCacheManager extends ICacheManager<ReceiveModel> {
-  ReceiveCacheManager(String key) : super(key);
+  ReceiveCacheManager._init(super.key);
 
+  static ReceiveCacheManager? _instance;
+  static ReceiveCacheManager get instance {
+    return _instance ??= ReceiveCacheManager._init('receiveCache');
+  }
   @override
   Future<void> addItems(List<ReceiveModel> values) async {
     await box?.addAll(values);

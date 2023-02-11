@@ -34,6 +34,10 @@
 		1498D2321E8E86230040F4C2 /* GeneratedPluginRegistrant.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GeneratedPluginRegistrant.h; sourceTree = "<group>"; };
 		1498D2331E8E89220040F4C2 /* GeneratedPluginRegistrant.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GeneratedPluginRegistrant.m; sourceTree = "<group>"; };
 		34E1A78883EA6B9B988539E8 /* Pods-Runner.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Runner.release.xcconfig"; path = "Target Support Files/Pods-Runner/Pods-Runner.release.xcconfig"; sourceTree = "<group>"; };
+<<<<<<< HEAD
+=======
+
+>>>>>>> 263572e8e128adc449353ba0e86f4c557bda8f90
 		3B3967151E833CAA004F5970 /* AppFrameworkInfo.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = AppFrameworkInfo.plist; path = Flutter/AppFrameworkInfo.plist; sourceTree = "<group>"; };
 		6A0284B126FD4F74F26570A4 /* Pods-Runner.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Runner.debug.xcconfig"; path = "Target Support Files/Pods-Runner/Pods-Runner.debug.xcconfig"; sourceTree = "<group>"; };
 		74858FAD1ED2DC5600515810 /* Runner-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Runner-Bridging-Header.h"; sourceTree = "<group>"; };
@@ -55,8 +59,12 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+<<<<<<< HEAD
 				AAF0431361B89F156DA443E5 /* BuildFile in Frameworks */,
 				787BB08AC152B1398A576387 /* Pods_Runner.framework in Frameworks */,
+=======
+				AAF0431361B89F156DA443E5 /* Pods_Runner.framework in Frameworks */,
+>>>>>>> 263572e8e128adc449353ba0e86f4c557bda8f90
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -101,6 +109,10 @@
 				97C146EF1CF9000F007C117D /* Products */,
 				142AFBD42F3AADD122C8FF6E /* Pods */,
 				563D3FA362375B7A89C76CEE /* Frameworks */,
+<<<<<<< HEAD
+=======
+
+>>>>>>> 263572e8e128adc449353ba0e86f4c557bda8f90
 			);
 			sourceTree = "<group>";
 		};
@@ -135,13 +147,21 @@
 			buildConfigurationList = 97C147051CF9000F007C117D /* Build configuration list for PBXNativeTarget "Runner" */;
 			buildPhases = (
 				281E731F5C97EF241A1B5E0A /* [CP] Check Pods Manifest.lock */,
+<<<<<<< HEAD
+=======
+
+>>>>>>> 263572e8e128adc449353ba0e86f4c557bda8f90
 				9740EEB61CF901F6004384FC /* Run Script */,
 				97C146EA1CF9000F007C117D /* Sources */,
 				97C146EB1CF9000F007C117D /* Frameworks */,
 				97C146EC1CF9000F007C117D /* Resources */,
 				9705A1C41CF9048500538489 /* Embed Frameworks */,
 				3B06AD1E1E4923F5004D2608 /* Thin Binary */,
+<<<<<<< HEAD
 				91866792A164EB232A5E2B88 /* [CP] Embed Pods Frameworks */,
+=======
+				9046E6537FFFB3131C9DE9D0 /* [CP] Embed Pods Frameworks */,
+>>>>>>> 263572e8e128adc449353ba0e86f4c557bda8f90
 			);
 			buildRules = (
 			);
@@ -237,7 +257,33 @@
 			shellPath = /bin/sh;
 			shellScript = "/bin/sh \"$FLUTTER_ROOT/packages/flutter_tools/bin/xcode_backend.sh\" embed_and_thin";
 		};
+<<<<<<< HEAD
 		91866792A164EB232A5E2B88 /* [CP] Embed Pods Frameworks */ = {
+=======
+		812ADD8586736A2EAB904EC3 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-Runner-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		89F75776CC55B879C047CE9A /* [CP] Embed Pods Frameworks */ = {
+>>>>>>> 263572e8e128adc449353ba0e86f4c557bda8f90
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (

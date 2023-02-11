@@ -18,9 +18,9 @@ class ReceivingView extends StatelessWidget {
     return ViewModelProvider(
       model: ReceivingViewModel(
         context: context,
-        receiveCacheManager: ReceiveCacheManager('receiving'),
-        itemCacheManager: ItemCacheManager('item'),
-        itemTypeCacheManager: ItemTypeCacheManager('itemTypes'),
+        receiveCacheManager: ReceiveCacheManager.instance,
+        itemCacheManager: ItemCacheManager.instance,
+        itemTypeCacheManager: ItemTypeCacheManager.instance,
       ),
       builder: (ReceivingViewModel model) => Scaffold(
         body: SingleChildScrollView(
@@ -32,9 +32,10 @@ class ReceivingView extends StatelessWidget {
                 dropdownList: Vehicle.values.map((e) => e.name).toList(),
                 dropDownFirstValue: Vehicle.kamyon.name,
               ),
-              const BaseInput(
+              BaseInput(
                 title: 'Araç Plakasi',
                 hint: 'Lütfen araç plakasi giriniz',
+                controller: model.carPlate,
               ),
               const SizedBox(height: 16),
               DropdownAndTitleWidget(
@@ -52,10 +53,11 @@ class ReceivingView extends StatelessWidget {
                 dropdownList: model.itemTypes.map((e) => e.itemType).toList(),
                 dropDownFirstValue: model.itemTypes.first.itemType,
               ),
-              const BaseInput(
+              BaseInput(
                 title: 'Miktar',
                 hint: 'Lütfen gelen ürün miktarini giriniz',
                 inputType: TextInputType.number,
+                controller: model.quantityController,
               ),
               const SizedBox(height: 50),
               ElevatedButton.icon(

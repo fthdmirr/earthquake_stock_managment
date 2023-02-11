@@ -1,4 +1,5 @@
 import 'package:earhquake_stock_managment/view/home/view/home_page.dart';
+import 'package:earhquake_stock_managment/view/products/view/produts_view.dart';
 import 'package:earhquake_stock_managment/view/receive/screen/receiving_view.dart';
 import 'package:flutter/material.dart';
 
@@ -29,7 +30,7 @@ class BottomBarView extends StatelessWidget {
 
   final List<Widget> _screens = [
     const ReceivingView(),
-    const HomeView(),
+    const ProductsView(),
     const HomeView(),
   ];
 
