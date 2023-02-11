@@ -5,7 +5,6 @@ import 'package:flutter/material.dart';
 import '../../../core/common/provider/view_model_provider.dart';
 import '../../../core/components/appbar/base_app_bar.dart';
 import '../../../core/components/bottom_navigation_bar/bottom_navigation_bar.dart';
-import '../../../core/components/container/black_shadow_container.dart';
 
 import '../../reports/view/reports_view.dart';
 import '../viewmodel/bottom_bar_view_model.dart';
@@ -21,7 +20,11 @@ class BottomBarView extends StatelessWidget {
       builder: (model) => Scaffold(
         appBar: BaseAppBar(title: _label[model.currentIndex]),
         body: _screens[model.currentIndex],
-        bottomNavigationBar: BlackShadowContainer(
+        bottomNavigationBar: ClipRRect(
+          borderRadius: const BorderRadius.only(
+            topLeft: Radius.circular(40),
+            topRight: Radius.circular(40),
+          ),
           child: CustomBottomNavigationBar(model: model),
         ),
       ),

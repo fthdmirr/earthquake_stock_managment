@@ -10,8 +10,7 @@ class BaseAppBar extends AppBar {
   }) : super(
           title: Headline3Text(
             text: title,
-            color: AppColors.white,
+            color: AppColors.dark,
           ),
-          
         );
 }

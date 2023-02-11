@@ -1,16 +1,16 @@
+// ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'dart:io';
 
-import 'package:earhquake_stock_managment/core/common/models/send_item_model.dart';
 import 'package:excel/excel.dart';
 import 'package:flutter/material.dart';
-import 'package:kartal/kartal.dart';
 import 'package:lecle_downloads_path_provider/lecle_downloads_path_provider.dart';
 import 'package:path/path.dart';
 import 'package:permission_handler/permission_handler.dart';
 
-import '../../../core/utils/constants/app_color.dart';
-import '../../../core/utils/responsive_builder.dart';
-import '../../../core/utils/theme/theme.dart';
+import 'package:earhquake_stock_managment/core/common/models/send_item_model.dart';
+
+import '../../../core/components/card/product_detail_card.dart';
+import '../../../core/components/card/product_selection_card.dart';
 
 class ReportsView extends StatefulWidget {
   const ReportsView({super.key});
@@ -127,7 +127,7 @@ class _ReportsViewState extends State<ReportsView> {
 
     File(join(
         "$downloadsDirectoryPath/${DateTime.now().toIso8601String()}.xlsx"))
-      ..createSync(recursive: true)
+      ..createSync(recursive: false)
       ..writeAsBytesSync(fileBytes ?? []);
     changeLoadingStatus();
   }
@@ -137,96 +137,13 @@ class _ReportsViewState extends State<ReportsView> {
     return Scaffold(
       body: Center(
         child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Center(
-              child: loading
-                  ? const CircularProgressIndicator()
-                  : ElevatedButton(
-                      onPressed: _exportToExcel,
-                      child: const Text('Ürünleri Excele çikart'),
-                    ),
-            ),
-            Expanded(
-              flex: 1,
-              child: SingleChildScrollView(
-                scrollDirection: Axis.horizontal,
-                child: ResponsiveBuilder(
-                  builder: (windowsize) => DataTable(
-                    columnSpacing:
-                        windowsize.isTablet != true ? context.width / 7 : 100,
-                    columns: List.generate(
-                      dataTableColumnLabelText.length,
-                      (index) => DataColumn(
-                        label: Text(
-                          dataTableColumnLabelText[index],
-                          style: TextStyle(
-                            color: AppColors.whiteGrey,
-                            fontSize: myTheme.textTheme.displaySmall!.fontSize,
-                          ),
-                        ),
-                      ),
-                    ),
-                    rows: const [
-                      DataRow(
-                        cells: [
-                          DataCell(
-                            Text(
-                              '0',
-                            ),
-                          ),
-                          DataCell(
-                            Text(
-                              '0',
-                            ),
-                          ),
-                          DataCell(
-                            Center(
-                              child: Text(
-                                'o',
-                              ),
-                            ),
-                          ),
-                          DataCell(
-                            Center(
-                              child: Text(
-                                '0',
-                              ),
-                            ),
-                          ),
-                          DataCell(
-                            Center(
-                              child: Text(
-                                '0',
-                              ),
-                            ),
-                          ),
-                          DataCell(
-                            Center(
-                              child: Text(
-                                '0',
-                              ),
-                            ),
-                          ),
-                        ],
-                      ),
-                    ],
-                  ),
-                ),
-              ),
-            ),
+          children: const [
+            SizedBox(height: 20),
+            ProductDetailCard(),
+            ProductSelectionCard(),
           ],
         ),
       ),
     );
   }
-
-  final List<String> dataTableColumnLabelText = [
-    'Araç Tipi',
-    'Araç Plakası',
-    'Gelen İl',
-    'Ürün',
-    'Ürün Tipi',
-    'Miktar',
-  ];
 }
