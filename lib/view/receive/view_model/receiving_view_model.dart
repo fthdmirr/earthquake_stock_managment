@@ -71,6 +71,7 @@ class ReceivingViewModel extends BaseViewModel {
         selectedItem,
         int.parse(quantityController.text),
         selectedCity,
+        DateTime.now().toIso8601String(),
       ));
     } catch (e) {
       log(e.toString());

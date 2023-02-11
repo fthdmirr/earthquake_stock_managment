@@ -11,6 +11,7 @@ class ReceiveModel {
     this.item,
     this.quantity,
     this.city,
+    this.date,
   );
   @HiveField(0)
   final Vehicle vehicle;
@@ -22,8 +23,10 @@ class ReceiveModel {
   final int quantity;
   @HiveField(4)
   final Item item;
-    @HiveField(5)
+  @HiveField(5)
   final String city;
+  @HiveField(6)
+  final String? date;
 }
 
 @HiveType(typeId: 1)
