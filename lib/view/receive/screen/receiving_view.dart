@@ -1,13 +1,9 @@
 import 'package:earhquake_stock_managment/core/common/models/app_images/app_images.dart';
 import 'package:earhquake_stock_managment/core/common/models/inventory_item.model.dart';
 
-import '../../../core/common/models/receive_model.dart';
 import '../../../core/common/provider/view_model_provider.dart';
-import '../../../core/components/dropdown/dropdown_and_title.dart';
 import '../../../core/components/input/base_input.dart';
 import '../../../core/init/navigation/navigation_service.dart';
-import '../../../core/utils/constants/enum/cities_of_turkey.dart';
-import '../../../main.dart';
 import 'package:earhquake_stock_managment/view/receive/view_model/receiving_view_model.dart';
 
 import 'package:flutter/material.dart';
@@ -25,9 +21,6 @@ class ReceivingView extends StatelessWidget {
     return ViewModelProvider<ReceivingViewModel>(
       model: ReceivingViewModel(
         context: context,
-        receiveCacheManager: receiveCacheManager,
-        itemCacheManager: itemCacheManager,
-        itemTypeCacheManager: itemTypeCacheManager,
       ),
       builder: (ReceivingViewModel model) => Scaffold(
         resizeToAvoidBottomInset: false,

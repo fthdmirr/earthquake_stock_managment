@@ -1,15 +1,15 @@
-import '../../common/models/receive_model.dart';
+import 'package:earhquake_stock_managment/core/common/models/Vehicle/Vehicle_model.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 
-class ItemTypeCacheManager {
-  ItemTypeCacheManager(this.key) {
+class VehicleCacheManager {
+  VehicleCacheManager(this.key) {
     init();
   }
 
   final String key;
-  Box<ItemType>? _box;
+  Box<Vehicle>? _box;
 
-  Box<ItemType>? get box => _box;
+  Box<Vehicle>? get box => _box;
 
   Future<void> init() async {
     registerAdapters();
@@ -18,19 +18,19 @@ class ItemTypeCacheManager {
     }
   }
 
-  Future<void> addItems(List<ItemType> values) async {
+  Future<void> addItems(List<Vehicle> values) async {
     await box?.addAll(values);
   }
 
-  ItemType? getItem(String key) {
+  Vehicle? getItem(String key) {
     return box?.get(key);
   }
 
-  Future<void> addValue(ItemType value) async {
+  Future<void> addValue(Vehicle value) async {
     await box?.add(value);
   }
 
-  // Future<void> putValue(ItemType value) async {
+  // Future<void> putValue(Vehicle value) async {
   //   await box?.put(key, value);
   // }
 
@@ -38,13 +38,13 @@ class ItemTypeCacheManager {
     await box?.delete(key);
   }
 
-  List<ItemType>? getValues() {
+  List<Vehicle>? getValues() {
     return box?.values.toList();
   }
 
   void registerAdapters() {
     if (!Hive.isAdapterRegistered(2)) {
-      Hive.registerAdapter(ItemTypeAdapter());
+      Hive.registerAdapter(VehicleAdapter());
     }
   }
 }
