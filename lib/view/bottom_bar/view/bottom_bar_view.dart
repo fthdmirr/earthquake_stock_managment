@@ -1,11 +1,12 @@
+import 'package:earhquake_stock_managment/view/home/view/home_page.dart';
+import 'package:earhquake_stock_managment/view/receive/screen/receiving_view.dart';
 import 'package:flutter/material.dart';
 
 import '../../../core/common/provider/view_model_provider.dart';
 import '../../../core/components/appbar/base_app_bar.dart';
 import '../../../core/components/bottom_navigation_bar/bottom_navigation_bar.dart';
 import '../../../core/components/container/black_shadow_container.dart';
-import '../../home/view/home_page.dart';
-import '../../receive/screen/receiving_view.dart';
+
 import '../viewmodel/bottom_bar_view_model.dart';
 
 class BottomBarView extends StatelessWidget {

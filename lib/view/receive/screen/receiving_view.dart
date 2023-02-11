@@ -1,11 +1,14 @@
-import 'package:flutter/material.dart';
+import 'package:earhquake_stock_managment/core/common/models/receive_model.dart';
+import 'package:earhquake_stock_managment/core/common/provider/view_model_provider.dart';
+import 'package:earhquake_stock_managment/core/components/dropdown/dropdown_and_title.dart';
+import 'package:earhquake_stock_managment/core/components/input/base_input.dart';
+import 'package:earhquake_stock_managment/core/init/hive_manager/item_hive_manager.dart';
+import 'package:earhquake_stock_managment/core/init/hive_manager/item_type_hive_manager.dart';
+import 'package:earhquake_stock_managment/core/init/hive_manager/receive_hive_manager.dart';
+import 'package:earhquake_stock_managment/core/utils/constants/enum/cities_of_turkey.dart';
+import 'package:earhquake_stock_managment/view/receive/view_model/receiving_view_model.dart';
 
-import '../../../core/common/models/receive_model.dart';
-import '../../../core/common/provider/view_model_provider.dart';
-import '../../../core/components/dropdown/dropdown_input.dart';
-import '../../../core/utils/constants/app_color.dart';
-import '../../../core/utils/constants/enum/cities_of_turkey.dart';
-import 'receiving_view_model.dart';
+import 'package:flutter/material.dart';
 
 class ReceivingView extends StatelessWidget {
   const ReceivingView({super.key});
@@ -13,7 +16,12 @@ class ReceivingView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ViewModelProvider(
-      model: ReceivingViewModel(context: context),
+      model: ReceivingViewModel(
+        context: context,
+        receiveCacheManager: ReceiveCacheManager('receiving'),
+        itemCacheManager: ItemCacheManager('item'),
+        itemTypeCacheManager: ItemTypeCacheManager('itemTypes'),
+      ),
       builder: (model) => Scaffold(
         body: SingleChildScrollView(
           padding: const EdgeInsets.all(16.0),
@@ -25,8 +33,8 @@ class ReceivingView extends StatelessWidget {
                 dropDownFirstValue: Vehicle.kamyon.name,
               ),
               const BaseInput(
-                title: 'Araç Plakası',
-                hint: 'Lütfen araç plakası giriniz',
+                title: 'Araç Plakasi',
+                hint: 'Lütfen araç plakasi giriniz',
               ),
               const SizedBox(height: 15),
               DropdownAndTitleWidget(
@@ -44,97 +52,15 @@ class ReceivingView extends StatelessWidget {
                 dropdownList: CitiesOfTurkey.values.map((e) => e.name).toList(),
                 dropDownFirstValue: CitiesOfTurkey.kayseri.name,
               ),
+              const BaseInput(
+                title: 'Miktar',
+                hint: 'Lütfen gelen ürün miktarini giriniz',
+                inputType: TextInputType.number,
+              ),
             ],
           ),
         ),
       ),
-    );
-  }
-}
-
-class BaseInput extends StatelessWidget {
-  const BaseInput({
-    super.key,
-    required this.title,
-    required this.hint,
-  });
-
-  final String title;
-  final String hint;
-  @override
-  Widget build(BuildContext context) {
-    return Row(
-      children: [
-        Expanded(child: Text('$title:   ')),
-        Expanded(
-          flex: 3,
-          child: TextFormField(
-            controller: TextEditingController(),
-            decoration: InputDecoration(
-              hintText: hint,
-              border: const OutlineInputBorder(),
-              focusedBorder: OutlineInputBorder(
-                borderRadius: BorderRadius.circular(20),
-                borderSide: const BorderSide(
-                  width: 2,
-                  style: BorderStyle.solid,
-                  color: AppColors.blueGem,
-                ),
-              ),
-              enabledBorder: OutlineInputBorder(
-                borderRadius: BorderRadius.circular(20),
-                borderSide: const BorderSide(
-                  width: 2,
-                  style: BorderStyle.solid,
-                  color: AppColors.whiteGrey,
-                ),
-              ),
-              errorBorder: OutlineInputBorder(
-                borderRadius: BorderRadius.circular(20),
-                borderSide: const BorderSide(
-                  width: 2,
-                  style: BorderStyle.solid,
-                  color: AppColors.orange,
-                ),
-              ),
-            ),
-          ),
-        ),
-      ],
-    );
-  }
-}
-
-class DropdownAndTitleWidget extends StatelessWidget {
-  const DropdownAndTitleWidget({
-    super.key,
-    required this.title,
-    required this.dropdownList,
-    this.dropDownFirstValue,
-  });
-
-  final String title;
-  final List<String> dropdownList;
-  final String? dropDownFirstValue;
-  @override
-  Widget build(BuildContext context) {
-    return Column(
-      children: [
-        Row(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Expanded(child: Text('$title:   ')),
-            Expanded(
-              flex: 3,
-              child: DropdownInput<String>(
-                dropdownValues: dropdownList,
-                firstValue: dropDownFirstValue,
-              ),
-            ),
-          ],
-        ),
-        const SizedBox(height: 16),
-      ],
     );
   }
 }
