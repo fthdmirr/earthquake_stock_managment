@@ -22,6 +22,7 @@ class ProductsView extends StatelessWidget {
             child: ListTile(
               title: Text(model.categories.keys.toList()[index]),
               trailing: Text('${model.categories.values.toList()[index]}'),
+              onTap: () => model.navigateToDetail(model.categories.keys.toList()[index]),
             ),
           ),
         ),

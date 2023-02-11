@@ -4,6 +4,8 @@ import 'package:earhquake_stock_managment/core/common/models/receive_model.dart'
 import 'package:earhquake_stock_managment/core/common/provider/base_provider.dart';
 import 'package:earhquake_stock_managment/core/init/hive_manager/item_hive_manager.dart';
 import 'package:earhquake_stock_managment/core/init/hive_manager/receive_hive_manager.dart';
+import 'package:earhquake_stock_managment/core/init/navigation/navigation_service.dart';
+import 'package:earhquake_stock_managment/view/products_detail/view/products_detail_view.dart';
 
 class ProductsViewModel extends BaseViewModel {
   ProductsViewModel({
@@ -13,13 +15,14 @@ class ProductsViewModel extends BaseViewModel {
   }) {
     _getAllReceivings();
     _getCategories();
+    _getItems();
   }
 
   final ReceiveCacheManager receiveCacheManager;
   final ItemCacheManager itemCacheManager;
 
   List<ReceiveModel> _receivings = [];
-  final List<Item> _items = [
+  List<Item> _items = [
     Item('Kiyafet'),
     Item('Su'),
     Item('Yiyecek'),
@@ -55,6 +58,18 @@ class ProductsViewModel extends BaseViewModel {
     } catch (e) {
       log(e.toString());
     }
+  }
+
+  Future<void> _getItems() async {
+    try {
+      _items = itemCacheManager.getValues() ?? [];
+    } catch (e) {
+      log(e.toString());
+    }
+  }
+
+  void navigateToDetail(String item) {
+    NavigationService.instance.navigateToPage(ProductsDetailView.routeName, data: item);
   }
 
   // Future<void> _getItemTypes() async {

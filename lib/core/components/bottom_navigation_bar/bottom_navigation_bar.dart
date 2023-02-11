@@ -45,6 +45,12 @@ class CustomBottomNavigationBar extends BottomNavigationBar {
               ),
               label: 'Rapor',
             ),
+            BottomNavigationBarItem(
+              icon: Icon(
+                Icons.category,
+              ),
+              label: 'Kategoriler',
+            ),
           ],
         );
 }

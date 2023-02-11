@@ -29,9 +29,9 @@ class ReceiveCacheManager {
     await box?.add(value);
   }
 
-  // Future<void> putValue(ReceiveModel value) async {
-  //   await box?.put(key, value);
-  // }
+  Future<void> putValue(ReceiveModel value) async {
+    await box?.put(key, value);
+  }
 
   Future<void> removeItem(String key) async {
     await box?.delete(key);

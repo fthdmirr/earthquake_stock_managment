@@ -1,52 +1,47 @@
-import 'package:earhquake_stock_managment/core/common/models/receive_model.dart';
 import 'package:earhquake_stock_managment/core/common/provider/view_model_provider.dart';
+import 'package:earhquake_stock_managment/core/components/appbar/base_app_bar.dart';
 import 'package:earhquake_stock_managment/core/components/dropdown/dropdown_and_title.dart';
 import 'package:earhquake_stock_managment/core/components/input/base_input.dart';
-import 'package:earhquake_stock_managment/core/utils/constants/enum/cities_of_turkey.dart';
+import 'package:earhquake_stock_managment/core/utils/constants/enum/earhquake_cities_and_districts.dart';
 import 'package:earhquake_stock_managment/main.dart';
-import 'package:earhquake_stock_managment/view/receive/view_model/receiving_view_model.dart';
+import 'package:earhquake_stock_managment/view/products_detail/view_model/products_detail_view_model.dart';
 
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
-class ReceivingView extends StatelessWidget {
-  const ReceivingView({super.key});
-
+class ProductsDetailView extends StatelessWidget {
+  const ProductsDetailView({super.key});
+  static const routeName = '/productsDetail';
   @override
   Widget build(BuildContext context) {
     return ViewModelProvider(
-      model: ReceivingViewModel(
+      model: ProductsDetailViewModel(
         context: context,
         receiveCacheManager: receiveCacheManager,
-        itemCacheManager: itemCacheManager,
-        itemTypeCacheManager: itemTypeCacheManager,
+        itemTypeManager: itemTypeCacheManager,
       ),
-      builder: (ReceivingViewModel model) => Scaffold(
+      builder: (ProductsDetailViewModel model) => Scaffold(
+          appBar: BaseAppBar(title: 'Gönderim'),
           body: SingleChildScrollView(
               padding: const EdgeInsets.all(16.0),
               child: Column(
                 children: [
-                  DropdownAndTitleWidget(
-                    title: 'Araç Tipi',
-                    dropdownList: Vehicle.values.map((e) => e.name).toList(),
-                    dropDownFirstValue: Vehicle.kamyon.name,
-                  ),
                   BaseInput(
-                    title: 'Araç Plakasi',
-                    hint: 'Lütfen araç plakasi giriniz',
-                    controller: model.carPlate,
+                    title: 'Ürün',
+                    controller: TextEditingController(text: model.selectedItem),
+                    isEnabled: false,
                   ),
                   const SizedBox(height: 16),
                   DropdownAndTitleWidget(
-                    title: 'Gelen İl',
-                    dropdownList: CitiesOfTurkey.values.map((e) => e.name).toList(),
-                    dropDownFirstValue: model.selectedCity,
+                    title: 'Gideceği İl',
+                    dropdownList: EarthquakeCitiesAndDistricts.values.map((e) => e.name).toList(),
+                    dropDownFirstValue: model.selectedEathquakeCity.name,
                   ),
-                  DropdownAndTitleWidget(
-                    title: 'Ürün',
-                    dropdownList: model.items.map((e) => e.itemName).toList(),
-                    dropDownFirstValue: model.selectedItem.itemName,
-                  ),
+                  // DropdownAndTitleWidget(
+                  //   title: 'Gideceği İlçe',
+                  //   dropdownList: model.selectedEathquakeCity.districts,
+                  //   dropDownFirstValue: model.selectedEathquakeCity.districts.first,
+                  // ),
                   DropdownAndTitleWidget(
                     title: 'Ürün Tipi',
                     dropdownList: model.itemTypes.map((e) => e.itemType).toList(),
@@ -64,9 +59,9 @@ class ReceivingView extends StatelessWidget {
                   ),
                   const SizedBox(height: 50),
                   ElevatedButton.icon(
-                      onPressed: model.addReceiving,
+                      onPressed: () {},
                       icon: const Icon(Icons.done),
-                      label: const Text('Mal Kabul Yap'))
+                      label: const Text('Gönderim Yap'))
                 ],
               ))),
     );
