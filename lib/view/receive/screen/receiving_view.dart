@@ -6,6 +6,7 @@ import 'package:earhquake_stock_managment/core/init/hive_manager/item_hive_manag
 import 'package:earhquake_stock_managment/core/init/hive_manager/item_type_hive_manager.dart';
 import 'package:earhquake_stock_managment/core/init/hive_manager/receive_hive_manager.dart';
 import 'package:earhquake_stock_managment/core/utils/constants/enum/cities_of_turkey.dart';
+import 'package:earhquake_stock_managment/main.dart';
 import 'package:earhquake_stock_managment/view/receive/view_model/receiving_view_model.dart';
 
 import 'package:flutter/material.dart';
@@ -18,9 +19,9 @@ class ReceivingView extends StatelessWidget {
     return ViewModelProvider(
       model: ReceivingViewModel(
         context: context,
-        receiveCacheManager: ReceiveCacheManager.instance,
-        itemCacheManager: ItemCacheManager.instance,
-        itemTypeCacheManager: ItemTypeCacheManager.instance,
+        receiveCacheManager:receiveCacheManager,
+        itemCacheManager: itemCacheManager,
+        itemTypeCacheManager: itemTypeCacheManager,
       ),
       builder: (ReceivingViewModel model) => Scaffold(
           body: SingleChildScrollView(

@@ -2,7 +2,9 @@ import 'dart:developer';
 
 import 'package:earhquake_stock_managment/core/common/models/receive_model.dart';
 import 'package:earhquake_stock_managment/core/common/provider/base_provider.dart';
-import 'package:earhquake_stock_managment/core/init/hive_manager/i_cache_managar.dart';
+import 'package:earhquake_stock_managment/core/init/hive_manager/item_hive_manager.dart';
+import 'package:earhquake_stock_managment/core/init/hive_manager/item_type_hive_manager.dart';
+import 'package:earhquake_stock_managment/core/init/hive_manager/receive_hive_manager.dart';
 import 'package:flutter/material.dart';
 
 class ReceivingViewModel extends BaseViewModel {
@@ -15,9 +17,9 @@ class ReceivingViewModel extends BaseViewModel {
     _init();
   }
 
-  final ICacheManager<ReceiveModel> receiveCacheManager;
-  final ICacheManager<Item> itemCacheManager;
-  final ICacheManager<ItemType> itemTypeCacheManager;
+  final ReceiveCacheManager receiveCacheManager;
+  final ItemCacheManager itemCacheManager;
+  final ItemTypeCacheManager itemTypeCacheManager;
 
   final TextEditingController _itemTypeNameController = TextEditingController();
   final TextEditingController _quantityController = TextEditingController();

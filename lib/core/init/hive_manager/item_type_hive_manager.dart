@@ -1,43 +1,46 @@
 import 'package:earhquake_stock_managment/core/common/models/receive_model.dart';
-import 'package:earhquake_stock_managment/core/init/hive_manager/i_cache_managar.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 
-class ItemTypeCacheManager extends ICacheManager<ItemType> {
-  ItemTypeCacheManager._init(super.key);
-
-  static ItemTypeCacheManager? _instance;
-  static ItemTypeCacheManager get instance {
-    return _instance ??= ItemTypeCacheManager._init('itemTypeCache');
+class ItemTypeCacheManager {
+  ItemTypeCacheManager(this.key){
+    init();
   }
-  @override
+
+  final String key;
+  Box<ItemType>? _box;
+
+  Box<ItemType>? get box => _box;
+
+  Future<void> init() async {
+    registerAdapters();
+    if (!(_box?.isOpen ?? false)) {
+      _box = await Hive.openBox(key);
+    }
+  }
+
   Future<void> addItems(List<ItemType> values) async {
     await box?.addAll(values);
   }
 
-  @override
   ItemType? getItem(String key) {
     return box?.get(key);
   }
 
-  @override
   Future<void> putValue(ItemType value) async {
     await box?.put(key, value);
   }
 
-  @override
   Future<void> removeItem(String key) async {
     await box?.delete(key);
   }
 
-  @override
   List<ItemType>? getValues() {
     return box?.values.toList();
   }
 
-  @override
   void registerAdapters() {
     if (!Hive.isAdapterRegistered(2)) {
- Hive.registerAdapter(ItemTypeAdapter());
+      Hive.registerAdapter(ItemTypeAdapter());
     }
   }
 }
