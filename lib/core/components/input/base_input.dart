@@ -7,12 +7,14 @@ class BaseInput extends StatelessWidget {
     super.key,
     required this.title,
     required this.hint,
-    this.inputType,
+    required this.controller,
+    this.inputType, 
   });
 
   final String title;
   final TextInputType? inputType;
   final String hint;
+  final TextEditingController controller;
   @override
   Widget build(BuildContext context) {
     return Row(
@@ -21,9 +23,8 @@ class BaseInput extends StatelessWidget {
         Expanded(
           flex: 3,
           child: TextFormField(
-          
             keyboardType: inputType,
-            controller: TextEditingController(),
+            controller: controller,
             decoration: InputDecoration(
               hintText: hint,
               border: const OutlineInputBorder(),
