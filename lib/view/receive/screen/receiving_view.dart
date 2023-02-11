@@ -1,3 +1,5 @@
+import 'package:earhquake_stock_managment/core/common/models/app_images/app_images.dart';
+
 import '../../../core/common/models/receive_model.dart';
 import '../../../core/common/provider/view_model_provider.dart';
 import '../../../core/components/dropdown/dropdown_and_title.dart';
@@ -82,6 +84,11 @@ class ReceivingView extends StatelessWidget {
                       FilteringTextInputFormatter.digitsOnly,
                       LengthLimitingTextInputFormatter(10),
                     ],
+                  ),
+                  Image(
+                    image: AppImages.manClothesIcon,
+                    width: 300,
+                    height: 300,
                   ),
                   const SizedBox(height: 50),
                   ElevatedButton.icon(
