@@ -18,7 +18,7 @@ class ProductsDetailView extends StatelessWidget {
       model: ProductsDetailViewModel(
         context: context,
         receiveCacheManager: receiveCacheManager,
-        itemCacheManager: itemCacheManager,
+        itemTypeManager: itemTypeCacheManager,
       ),
       builder: (ProductsDetailViewModel model) => Scaffold(
           appBar: BaseAppBar(title: 'Gönderim'),

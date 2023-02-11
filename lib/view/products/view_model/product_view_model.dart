@@ -15,13 +15,14 @@ class ProductsViewModel extends BaseViewModel {
   }) {
     _getAllReceivings();
     _getCategories();
+    _getItems();
   }
 
   final ReceiveCacheManager receiveCacheManager;
   final ItemCacheManager itemCacheManager;
 
   List<ReceiveModel> _receivings = [];
-  final List<Item> _items = [
+  List<Item> _items = [
     Item('Kiyafet'),
     Item('Su'),
     Item('Yiyecek'),
@@ -59,8 +60,16 @@ class ProductsViewModel extends BaseViewModel {
     }
   }
 
+  Future<void> _getItems() async {
+    try {
+      _items = itemCacheManager.getValues() ?? [];
+    } catch (e) {
+      log(e.toString());
+    }
+  }
+
   void navigateToDetail(String item) {
-    NavigationService.instance.navigateToPage(ProductsDetailView.routeName,data: item);
+    NavigationService.instance.navigateToPage(ProductsDetailView.routeName, data: item);
   }
 
   // Future<void> _getItemTypes() async {

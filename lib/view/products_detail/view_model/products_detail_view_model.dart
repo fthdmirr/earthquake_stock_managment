@@ -3,6 +3,7 @@ import 'dart:developer';
 import 'package:earhquake_stock_managment/core/common/models/receive_model.dart';
 import 'package:earhquake_stock_managment/core/common/provider/base_provider.dart';
 import 'package:earhquake_stock_managment/core/init/hive_manager/item_hive_manager.dart';
+import 'package:earhquake_stock_managment/core/init/hive_manager/item_type_hive_manager.dart';
 import 'package:earhquake_stock_managment/core/init/hive_manager/receive_hive_manager.dart';
 import 'package:earhquake_stock_managment/core/utils/constants/enum/earhquake_cities_and_districts.dart';
 import 'package:flutter/material.dart';
@@ -11,24 +12,16 @@ class ProductsDetailViewModel extends BaseViewModel {
   ProductsDetailViewModel({
     required super.context,
     required this.receiveCacheManager,
-    required this.itemCacheManager,
+    required this.itemTypeManager,
   }) {
     _getItemTypes();
     _getSelectedItem();
   }
 
   final ReceiveCacheManager receiveCacheManager;
-  final ItemCacheManager itemCacheManager;
+  final ItemTypeCacheManager itemTypeManager;
 
-  List<Item> _items = [
-    Item('Kiyafet'),
-    Item('Su'),
-    Item('Yiyecek'),
-    Item('Temel Gida'),
-    Item('Temizlik Malzemesi'),
-    Item('Çadir'),
-    Item('Çocuk Bezi'),
-  ];
+
   List<ItemType> itemTypes = [
     ItemType('Adet'),
     ItemType('Çuval'),
@@ -48,7 +41,7 @@ class ProductsDetailViewModel extends BaseViewModel {
 
   Future<void> _getItemTypes() async {
     try {
-      _items = itemCacheManager.getValues() ?? [];
+      itemTypes = itemTypeManager.getValues() ?? [];
     } catch (e) {
       log(e.toString());
     }
