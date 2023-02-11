@@ -8,11 +8,11 @@ part 'report_model.g.dart';
 class Report {
   Report({
     required this.dateTime,
-    required this.quantity,
+    required this.vehicleInfo,
 
   });
   @HiveField(0)
   final String dateTime;
   @HiveField(1)
-  final List<VehicleInfo> quantity;
+  final VehicleInfo vehicleInfo;
 }

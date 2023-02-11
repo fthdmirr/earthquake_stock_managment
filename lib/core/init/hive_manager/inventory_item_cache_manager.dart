@@ -27,8 +27,9 @@ class InventoryItemCacheManager {
     return box?.get(key);
   }
 
-  Future<void> addValue(InventoryItem value) async {
+  Future<InventoryItem> addValue(InventoryItem value) async {
     await box?.add(value);
+    return value;
   }
 
   Future<void> putValue(InventoryItem value) async {

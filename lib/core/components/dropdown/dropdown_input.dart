@@ -4,11 +4,12 @@ import 'package:flutter/material.dart';
 
 class DropdownInput<T> extends StatelessWidget {
   const DropdownInput(
-      {super.key, required this.dropdownValues, this.firstValue, required this.title});
+      {super.key, required this.dropdownValues, this.firstValue, required this.title, this.enable});
 
   final List<T> dropdownValues;
   final T? firstValue;
   final String title;
+  final bool? enable;
 
   @override
   Widget build(BuildContext context) {
@@ -32,6 +33,7 @@ class DropdownInput<T> extends StatelessWidget {
         },
         items: dropdownValues.map<DropdownMenuItem<T>>((T value) {
           return DropdownMenuItem<T>(
+            enabled: enable ?? true,
             value: value,
             child: BodyMediumText(
               text: '$value',
