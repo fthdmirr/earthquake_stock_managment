@@ -1,3 +1,4 @@
+import 'package:earhquake_stock_managment/core/common/models/app_images/app_images.dart';
 import 'package:flutter/material.dart';
 
 import '../../utils/constants/app_color.dart';
@@ -22,9 +23,15 @@ class ProductDetailCard extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              const CircleAvatar(
+              CircleAvatar(
                 radius: 30,
                 backgroundColor: AppColors.wildSand,
+                child: Image(
+                  image: AppImages.memoryImage('empty_icon'),
+                  width: 25,
+                  height: 25,
+                  color: AppColors.primaryColor,
+                ),
               ),
               const SizedBox(width: 15),
               Column(

@@ -29,4 +29,6 @@ abstract class AppColors {
   static const lynch = Color(0xff6A7B93);
   static const deepCove = Color(0xff03053D);
   static const greyapp = Color(0xffC5CBD9);
+  static const ligherGreen = Color(0xffF0FFE9);
+  static const darkerGreen = Color(0xff085E27);
 }
