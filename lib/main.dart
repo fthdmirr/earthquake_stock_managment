@@ -1,19 +1,18 @@
 import 'package:earhquake_stock_managment/app.dart';
-import 'package:earhquake_stock_managment/core/init/hive_manager/item_hive_manager.dart';
-import 'package:earhquake_stock_managment/core/init/hive_manager/item_type_hive_manager.dart';
-import 'package:earhquake_stock_managment/core/init/hive_manager/receive_hive_manager.dart';
+import 'package:earhquake_stock_managment/core/init/hive_manager/inventory_item_cache_manager.dart';
+import 'package:earhquake_stock_managment/core/utils/constants/hive/hive_constants.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 
-import 'core/init/hive_manager/send_item_hive_manager.dart';
-
-final ItemCacheManager itemCacheManager = ItemCacheManager('items');
-final ItemTypeCacheManager itemTypeCacheManager =
-    ItemTypeCacheManager('itemType');
-final ReceiveCacheManager receiveCacheManager = ReceiveCacheManager('receive');
-final SendItemCacheManager sendItemCacheManager =
-    SendItemCacheManager('sendItem');
+final InventoryItemCacheManager itemCacheManager =
+    InventoryItemCacheManager(HiveConstants.inventoryItem);
+final InventoryItemCacheManager reportCacheManager =
+    InventoryItemCacheManager(HiveConstants.report);
+final InventoryItemCacheManager vehicleCacheManager =
+    InventoryItemCacheManager(HiveConstants.vehicle);
+final InventoryItemCacheManager vehicleInfoCacheManager =
+    InventoryItemCacheManager(HiveConstants.vehicleInfo);
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();

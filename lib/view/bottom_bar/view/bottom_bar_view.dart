@@ -1,13 +1,12 @@
-import '../../products/view/produts_view.dart';
-import '../../receive/screen/receiving_view.dart';
+import 'package:earhquake_stock_managment/core/common/provider/view_model_provider.dart';
+import 'package:earhquake_stock_managment/core/components/appbar/base_app_bar.dart';
+import 'package:earhquake_stock_managment/core/components/bottom_navigation_bar/bottom_navigation_bar.dart';
+import 'package:earhquake_stock_managment/core/components/container/black_shadow_container.dart';
+import 'package:earhquake_stock_managment/view/bottom_bar/viewmodel/bottom_bar_view_model.dart';
+import 'package:earhquake_stock_managment/view/home_page/screen/home_view.dart';
+import 'package:earhquake_stock_managment/view/products/view/produts_view.dart';
+import 'package:earhquake_stock_managment/view/reports/view/reports_view.dart';
 import 'package:flutter/material.dart';
-
-import '../../../core/common/provider/view_model_provider.dart';
-import '../../../core/components/appbar/base_app_bar.dart';
-import '../../../core/components/bottom_navigation_bar/bottom_navigation_bar.dart';
-
-import '../../reports/view/reports_view.dart';
-import '../viewmodel/bottom_bar_view_model.dart';
 
 class BottomBarView extends StatelessWidget {
   BottomBarView({super.key});
@@ -32,7 +31,7 @@ class BottomBarView extends StatelessWidget {
   }
 
   final List<Widget> _screens = [
-    const ReceivingView(),
+    const HomeView(),
     const ProductsView(),
     const ReportsView(),
   ];

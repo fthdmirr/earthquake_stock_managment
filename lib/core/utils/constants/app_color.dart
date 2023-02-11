@@ -17,6 +17,9 @@ abstract class AppColors {
   static const blueGem = Color(0xFF3215A3);
   static const whiteGrey = Color(0xff9EA7BE);
   static const orange = Color(0xffE98162);
+  static const systemBackground = Color(0xFFF4F4F4);
+  static const primaryColor = Color(0xFF64DAB5);
+  static const textColor = Color(0xFF3B4963);
   static const mercury = Color(0xffE5E5E5);
   static const dark = Color(0xff121118);
   static const darkGrey = Color(0xff3B4963);
