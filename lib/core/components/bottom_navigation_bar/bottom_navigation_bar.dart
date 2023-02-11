@@ -1,4 +1,4 @@
-import 'package:earhquake_stock_managment/view/bottom_bar/viewmodel/bottom_bar_view_model.dart';
+import '../../../view/bottom_bar/viewmodel/bottom_bar_view_model.dart';
 import 'package:flutter/material.dart';
 
 import '../../utils/constants/app_color.dart';
@@ -44,12 +44,6 @@ class CustomBottomNavigationBar extends BottomNavigationBar {
                 Icons.description,
               ),
               label: 'Rapor',
-            ),
-            BottomNavigationBarItem(
-              icon: Icon(
-                Icons.category,
-              ),
-              label: 'Kategoriler',
             ),
           ],
         );

@@ -65,4 +65,12 @@ final ThemeData myTheme = ThemeData(
       fontStyle: FontStyle.normal,
     ),
   ),
+  elevatedButtonTheme: const ElevatedButtonThemeData(
+    style: ButtonStyle(
+      backgroundColor: MaterialStatePropertyAll(AppColors.blueGem),
+    ),
+  ),
+  floatingActionButtonTheme: const FloatingActionButtonThemeData(
+    backgroundColor: AppColors.whiteGrey,
+  ),
 );

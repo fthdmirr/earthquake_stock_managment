@@ -1,11 +1,11 @@
 import 'dart:developer';
 
-import 'package:earhquake_stock_managment/core/common/models/receive_model.dart';
-import 'package:earhquake_stock_managment/core/common/provider/base_provider.dart';
-import 'package:earhquake_stock_managment/core/init/hive_manager/item_hive_manager.dart';
-import 'package:earhquake_stock_managment/core/init/hive_manager/receive_hive_manager.dart';
-import 'package:earhquake_stock_managment/core/init/navigation/navigation_service.dart';
-import 'package:earhquake_stock_managment/view/products_detail/view/products_detail_view.dart';
+import '../../../core/common/models/receive_model.dart';
+import '../../../core/common/provider/base_provider.dart';
+import '../../../core/init/hive_manager/item_hive_manager.dart';
+import '../../../core/init/hive_manager/receive_hive_manager.dart';
+import '../../../core/init/navigation/navigation_service.dart';
+import '../../products_detail/view/products_detail_view.dart';
 
 class ProductsViewModel extends BaseViewModel {
   ProductsViewModel({
@@ -23,21 +23,21 @@ class ProductsViewModel extends BaseViewModel {
 
   List<ReceiveModel> _receivings = [];
   List<Item> _items = [
-    Item('Kiyafet'),
+    Item('Kıyafet'),
     Item('Su'),
     Item('Yiyecek'),
-    Item('Temel Gida'),
+    Item('Temel Goda'),
     Item('Temizlik Malzemesi'),
-    Item('Çadir'),
+    Item('Çadır'),
     Item('Çocuk Bezi'),
   ];
   Map<String, int> categories = {
-    'Kiyafet': 0,
+    'Kıyafet': 0,
     'Su': 0,
     'Yiyecek': 0,
-    'Temel Gida': 0,
+    'Temel Gıda': 0,
     'Temizlik Malzemesi': 0,
-    'Çadir': 0,
+    'Çadır': 0,
     'Çocuk Bezi': 0,
   };
 
@@ -69,7 +69,8 @@ class ProductsViewModel extends BaseViewModel {
   }
 
   void navigateToDetail(String item) {
-    NavigationService.instance.navigateToPage(ProductsDetailView.routeName, data: item);
+    NavigationService.instance
+        .navigateToPage(ProductsDetailView.routeName, data: item);
   }
 
   // Future<void> _getItemTypes() async {

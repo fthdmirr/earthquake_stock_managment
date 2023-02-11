@@ -1,6 +1,9 @@
 import 'package:earhquake_stock_managment/core/components/dropdown/dropdown_input.dart';
 import 'package:flutter/material.dart';
 
+import '../../utils/constants/app_color.dart';
+import '../text/headline/headline5_text.dart';
+
 class DropdownAndTitleWidget extends StatelessWidget {
   const DropdownAndTitleWidget({
     super.key,
@@ -19,7 +22,12 @@ class DropdownAndTitleWidget extends StatelessWidget {
         Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Expanded(child: Text('$title:   ')),
+            Expanded(
+              child: Headline5Text(
+                text: '$title:   ',
+                color: AppColors.black,
+              ),
+            ),
             Expanded(
               flex: 3,
               child: DropdownInput<String>(

@@ -1,4 +1,5 @@
-import 'package:earhquake_stock_managment/core/utils/constants/app_color.dart';
+import '../text/body/body_medium_text.dart';
+import '../../utils/constants/app_color.dart';
 import 'package:flutter/material.dart';
 
 class DropdownInput<T> extends StatelessWidget {
@@ -56,7 +57,10 @@ class DropdownInput<T> extends StatelessWidget {
         items: dropdownValues.map<DropdownMenuItem<T>>((T value) {
           return DropdownMenuItem<T>(
             value: value,
-            child: Text('$value'),
+            child: BodyMediumText(
+              text: '$value',
+              color: AppColors.black,
+            ),
           );
         }).toList(),
       ),

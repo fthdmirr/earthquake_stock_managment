@@ -1,13 +1,18 @@
-import 'package:earhquake_stock_managment/core/common/models/receive_model.dart';
-import 'package:earhquake_stock_managment/core/common/provider/view_model_provider.dart';
-import 'package:earhquake_stock_managment/core/components/dropdown/dropdown_and_title.dart';
-import 'package:earhquake_stock_managment/core/components/input/base_input.dart';
-import 'package:earhquake_stock_managment/core/utils/constants/enum/cities_of_turkey.dart';
-import 'package:earhquake_stock_managment/main.dart';
+import '../../../core/common/models/receive_model.dart';
+import '../../../core/common/provider/view_model_provider.dart';
+import '../../../core/components/dropdown/dropdown_and_title.dart';
+import '../../../core/components/input/base_input.dart';
+import '../../../core/init/navigation/navigation_service.dart';
+import '../../../core/utils/constants/enum/cities_of_turkey.dart';
+import '../../../main.dart';
 import 'package:earhquake_stock_managment/view/receive/view_model/receiving_view_model.dart';
 
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+
+import '../../../core/components/text/headline/headline5_text.dart';
+import '../../../core/utils/constants/app_color.dart';
+import '../../added_item_type/added_category_view.dart';
 
 class ReceivingView extends StatelessWidget {
   const ReceivingView({super.key});
@@ -22,6 +27,20 @@ class ReceivingView extends StatelessWidget {
         itemTypeCacheManager: itemTypeCacheManager,
       ),
       builder: (ReceivingViewModel model) => Scaffold(
+          resizeToAvoidBottomInset: false,
+          floatingActionButton: Visibility(
+            child: FloatingActionButton.extended(
+              onPressed: () => NavigationService.instance
+                  .navigateToPage(AddedCategory.routeName),
+              icon: const Icon(
+                Icons.add,
+              ),
+              label: Headline5Text(
+                text: 'Kategori Ekle',
+                color: AppColors.white,
+              ),
+            ),
+          ),
           body: SingleChildScrollView(
               padding: const EdgeInsets.all(16.0),
               child: Column(
@@ -39,7 +58,8 @@ class ReceivingView extends StatelessWidget {
                   const SizedBox(height: 16),
                   DropdownAndTitleWidget(
                     title: 'Gelen İl',
-                    dropdownList: CitiesOfTurkey.values.map((e) => e.name).toList(),
+                    dropdownList:
+                        CitiesOfTurkey.values.map((e) => e.name).toList(),
                     dropDownFirstValue: model.selectedCity,
                   ),
                   DropdownAndTitleWidget(
@@ -49,7 +69,8 @@ class ReceivingView extends StatelessWidget {
                   ),
                   DropdownAndTitleWidget(
                     title: 'Ürün Tipi',
-                    dropdownList: model.itemTypes.map((e) => e.itemType).toList(),
+                    dropdownList:
+                        model.itemTypes.map((e) => e.itemType).toList(),
                     dropDownFirstValue: model.selectedItemType.itemType,
                   ),
                   BaseInput(

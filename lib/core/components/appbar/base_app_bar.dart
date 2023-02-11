@@ -1,4 +1,4 @@
-import 'package:earhquake_stock_managment/core/utils/constants/app_color.dart';
+import '../../utils/constants/app_color.dart';
 import 'package:flutter/material.dart';
 
 import '../text/headline/headline3_text.dart';

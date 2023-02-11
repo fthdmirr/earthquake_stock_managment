@@ -1,7 +1,7 @@
-import 'package:earhquake_stock_managment/core/common/models/receive_model.dart';
-import 'package:earhquake_stock_managment/core/common/provider/base_provider.dart';
-import 'package:earhquake_stock_managment/core/init/hive_manager/item_hive_manager.dart';
-import 'package:earhquake_stock_managment/core/init/hive_manager/item_type_hive_manager.dart';
+import '../../core/common/models/receive_model.dart';
+import '../../core/common/provider/base_provider.dart';
+import '../../core/init/hive_manager/item_hive_manager.dart';
+import '../../core/init/hive_manager/item_type_hive_manager.dart';
 import 'package:flutter/material.dart';
 
 class AddedCategoriesViewModel extends BaseViewModel {

@@ -1,6 +1,6 @@
-import 'package:earhquake_stock_managment/core/common/provider/view_model_provider.dart';
-import 'package:earhquake_stock_managment/main.dart';
-import 'package:earhquake_stock_managment/view/products/view_model/product_view_model.dart';
+import '../../../core/common/provider/view_model_provider.dart';
+import '../../../main.dart';
+import '../view_model/product_view_model.dart';
 
 import 'package:flutter/material.dart';
 
@@ -22,7 +22,8 @@ class ProductsView extends StatelessWidget {
             child: ListTile(
               title: Text(model.categories.keys.toList()[index]),
               trailing: Text('${model.categories.values.toList()[index]}'),
-              onTap: () => model.navigateToDetail(model.categories.keys.toList()[index]),
+              onTap: () =>
+                  model.navigateToDetail(model.categories.keys.toList()[index]),
             ),
           ),
         ),

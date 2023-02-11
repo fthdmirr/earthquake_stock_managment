@@ -1,6 +1,5 @@
-import 'package:earhquake_stock_managment/view/added_item_type/added_category_view.dart';
-import 'package:earhquake_stock_managment/view/products/view/produts_view.dart';
-import 'package:earhquake_stock_managment/view/receive/screen/receiving_view.dart';
+import '../../products/view/produts_view.dart';
+import '../../receive/screen/receiving_view.dart';
 import 'package:flutter/material.dart';
 
 import '../../../core/common/provider/view_model_provider.dart';
@@ -32,9 +31,12 @@ class BottomBarView extends StatelessWidget {
   final List<Widget> _screens = [
     const ReceivingView(),
     const ProductsView(),
-    const ReportsView(),
-    const AddedCategory(),
+    ReportsView(),
   ];
 
-  final List<String> _label = ['Mal Kabul', 'Ürün', 'Rapor', 'Kategoriler'];
+  final List<String> _label = [
+    'Mal Kabul',
+    'Ürün',
+    'Rapor',
+  ];
 }
