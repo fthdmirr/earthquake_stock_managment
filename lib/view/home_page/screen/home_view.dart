@@ -18,7 +18,6 @@ class HomeView extends StatelessWidget {
       ),
       builder: (ReceivingViewModel model) => Scaffold(
         resizeToAvoidBottomInset: false,
-        backgroundColor: AppColors.systemBackground,
         floatingActionButton: Visibility(
           child: FloatingActionButton.extended(
             onPressed: model.ada,

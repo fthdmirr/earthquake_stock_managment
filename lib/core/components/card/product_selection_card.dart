@@ -44,6 +44,10 @@ class ProductSelectionCard extends StatelessWidget {
               const CircleAvatar(
                 radius: 30,
                 backgroundColor: AppColors.pippin,
+                child: Icon(
+                  Icons.remove_circle,
+                  size: 40,
+                ),
               ),
               Row(
                 children: [

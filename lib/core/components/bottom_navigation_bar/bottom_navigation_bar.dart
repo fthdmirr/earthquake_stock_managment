@@ -43,6 +43,12 @@ class CustomBottomNavigationBar extends BottomNavigationBar {
             ),
             const BottomNavigationBarItem(
               icon: Icon(
+                Icons.fire_truck,
+              ),
+              label: 'Tır',
+            ),
+            const BottomNavigationBarItem(
+              icon: Icon(
                 Icons.description,
               ),
               label: 'Rapor',
