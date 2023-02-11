@@ -42,17 +42,17 @@ class ReceivingView extends StatelessWidget {
                   DropdownAndTitleWidget(
                     title: 'Gelen İl',
                     dropdownList: CitiesOfTurkey.values.map((e) => e.name).toList(),
-                    dropDownFirstValue: CitiesOfTurkey.kayseri.name,
+                    dropDownFirstValue: model.selectedCity,
                   ),
                   DropdownAndTitleWidget(
                     title: 'Ürün',
                     dropdownList: model.items.map((e) => e.itemName).toList(),
-                    dropDownFirstValue: model.items.first.itemName,
+                    dropDownFirstValue: model.selectedItem.itemName,
                   ),
                   DropdownAndTitleWidget(
                     title: 'Ürün Tipi',
                     dropdownList: model.itemTypes.map((e) => e.itemType).toList(),
-                    dropDownFirstValue: model.itemTypes.first.itemType,
+                    dropDownFirstValue: model.selectedItemType.itemType,
                   ),
                   BaseInput(
                     title: 'Miktar',

@@ -5,6 +5,7 @@ import 'package:earhquake_stock_managment/core/common/provider/base_provider.dar
 import 'package:earhquake_stock_managment/core/init/hive_manager/item_hive_manager.dart';
 import 'package:earhquake_stock_managment/core/init/hive_manager/item_type_hive_manager.dart';
 import 'package:earhquake_stock_managment/core/init/hive_manager/receive_hive_manager.dart';
+import 'package:earhquake_stock_managment/core/utils/constants/enum/cities_of_turkey.dart';
 import 'package:flutter/material.dart';
 
 class ReceivingViewModel extends BaseViewModel {
@@ -45,8 +46,9 @@ class ReceivingViewModel extends BaseViewModel {
 
   Vehicle selectedVehicle = Vehicle.kamyon;
   TextEditingController carPlate = TextEditingController(text: '');
-  ItemType selectedItemType = ItemType('');
-  Item selectedItem = Item('');
+  ItemType selectedItemType = ItemType('Adet');
+  Item selectedItem = Item('Kiyafet');
+  String selectedCity = CitiesOfTurkey.kayseri.name;
 
   void _getItem() {
     items.addAll(itemCacheManager.getValues() ?? []);
@@ -69,6 +71,7 @@ class ReceivingViewModel extends BaseViewModel {
         selectedItemType,
         selectedItem,
         int.parse(quantityController.text),
+        selectedCity,
       ));
     } catch (e) {
       log(e.toString());
