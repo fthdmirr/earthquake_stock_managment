@@ -14,7 +14,7 @@ class CustomBottomNavigationBar extends BottomNavigationBar {
           onTap: (index) => model.changeBody(index),
           items: [
             BottomNavigationBarItem(
-              label: 'Mal Kabul',
+              label: 'Ana Sayfa',
               icon: Stack(
                 children: [
                   const Icon(
@@ -39,7 +39,7 @@ class CustomBottomNavigationBar extends BottomNavigationBar {
               icon: Icon(
                 Icons.list,
               ),
-              label: 'Ürün',
+              label: 'Mal Kabul',
             ),
             const BottomNavigationBarItem(
               icon: Icon(

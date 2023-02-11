@@ -1,5 +1,5 @@
 import 'package:earhquake_stock_managment/core/common/models/inventory_item/inventory_item_model.dart';
-import 'package:earhquake_stock_managment/core/init/hive_manager/inventory_item_cache_manager.dart';
+import 'package:earhquake_stock_managment/main.dart';
 
 import '../../../core/common/provider/base_provider.dart';
 
@@ -8,36 +8,32 @@ class HomeViewModel extends BaseViewModel {
     required super.context,
   });
 
-  final InventoryItemCacheManager itemCacheManager =
-      InventoryItemCacheManager('inventoryItem');
-  List<InventoryItem> tempInventoryItems = [];
-
   @override
   initViewModel() async {
-    //setInventoryItem();
+    setInventoryItem();
 
     super.initViewModel();
   }
 
-  ada() {
-    itemCacheManager.putAtValue(
-      5,
+  add() {
+    itemCacheManager.addValue(
       InventoryItem(
-        id: '5',
+        id: '3',
         name: 'Çocuk Bezi',
         quantity: 10,
         icon: 'tent_icon',
       ),
     );
+    //update();
     notifyListeners();
   }
 
-  setInventoryItem() {
-    tempInventoryItems = itemCacheManager.getValues();
+  // update() {
+  //   inventoryItems = itemCacheManager.getValues();
+  // }
 
-    for (var i = 0; i < inventoryItems.length; i++) {
-      inventoryItems[i].quantity = tempInventoryItems[i].quantity;
-    }
+  setInventoryItem() {
+    inventoryItems.addAll(itemCacheManager.getValues());
     notifyListeners();
   }
 

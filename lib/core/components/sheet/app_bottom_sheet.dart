@@ -1,3 +1,4 @@
+import 'package:earhquake_stock_managment/core/common/models/app_images/app_images.dart';
 import 'package:earhquake_stock_managment/core/components/dropdown/dropdown_input.dart';
 import 'package:earhquake_stock_managment/core/components/input/base_input.dart';
 import 'package:earhquake_stock_managment/core/utils/constants/app_color.dart';
@@ -5,7 +6,8 @@ import 'package:flutter/material.dart';
 import 'package:kartal/kartal.dart';
 
 class AppBottomSheet {
-  Future showBottomSheet(BuildContext context, int currentQuantity, String currentItem) async {
+  Future showBottomSheet(BuildContext context, String icon, int currentQuantity,
+      String currentItem, Function()? onPressed) async {
     return await showModalBottomSheet(
       backgroundColor: AppColors.white,
       context: context,
@@ -36,7 +38,11 @@ class AppBottomSheet {
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    const SizedBox(height: 44, child: Icon(Icons.abc)),
+                    Image(
+                      image: AppImages.memoryImage(icon),
+                      height: 44,
+                      width: 44,
+                    ),
                     Text(
                       currentItem,
                       style: const TextStyle(fontWeight: FontWeight.w400, fontSize: 18),

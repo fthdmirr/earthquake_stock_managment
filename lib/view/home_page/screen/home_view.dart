@@ -1,7 +1,7 @@
 import 'package:earhquake_stock_managment/core/common/models/app_images/app_images.dart';
 import 'package:earhquake_stock_managment/core/common/models/inventory_item/inventory_item_model.dart';
 import 'package:earhquake_stock_managment/core/common/provider/view_model_provider.dart';
-import 'package:earhquake_stock_managment/core/components/inapp_notifier/inapp_notifier_service.dart';
+import 'package:earhquake_stock_managment/core/components/sheet/app_bottom_sheet.dart';
 import 'package:earhquake_stock_managment/core/components/text/headline/headline5_text.dart';
 import 'package:earhquake_stock_managment/core/utils/constants/app_color.dart';
 import 'package:earhquake_stock_managment/view/home_page/view_model/home_viewmodel.dart';
@@ -21,7 +21,9 @@ class HomeView extends StatelessWidget {
         resizeToAvoidBottomInset: false,
         floatingActionButton: Visibility(
           child: FloatingActionButton.extended(
-            onPressed: () {},
+            onPressed: () {
+              model.add();
+            },
             icon: const Icon(
               Icons.add,
             ),
@@ -43,6 +45,7 @@ class HomeView extends StatelessWidget {
                 itemCount: model.inventoryItems.length,
                 itemBuilder: (context, index) => ReceivePageItemWidget(
                   item: model.inventoryItems[index],
+                  bottomSheetButton: () {},
                 ),
               ),
             ),
@@ -55,20 +58,19 @@ class HomeView extends StatelessWidget {
 
 class ReceivePageItemWidget extends StatelessWidget {
   final InventoryItem item;
+  final Function()? bottomSheetButton;
   const ReceivePageItemWidget({
     super.key,
     required this.item,
+    required this.bottomSheetButton,
   });
 
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
-        InAppNotifier().add(
-          InAppNotifierModel(
-            child: const Text('Kategori Eklendi'),
-          ),
-        );
+        AppBottomSheet()
+            .showBottomSheet(context, item.icon, item.quantity, item.name, bottomSheetButton);
       },
       child: Container(
         margin: const EdgeInsets.all(8),

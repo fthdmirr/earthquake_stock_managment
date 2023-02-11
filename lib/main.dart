@@ -1,8 +1,5 @@
 import 'package:earhquake_stock_managment/app.dart';
-import 'package:earhquake_stock_managment/core/common/models/app_images/app_images.dart';
-import 'package:earhquake_stock_managment/core/components/inapp_notifier/inapp_notifier_service.dart';
 import 'package:earhquake_stock_managment/core/init/hive_manager/inventory_item_cache_manager.dart';
-import 'package:earhquake_stock_managment/core/utils/constants/app_color.dart';
 import 'package:earhquake_stock_managment/core/utils/constants/hive/hive_constants.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';

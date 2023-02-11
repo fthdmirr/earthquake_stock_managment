@@ -5,7 +5,8 @@ import 'package:earhquake_stock_managment/core/utils/constants/app_color.dart';
 import 'package:earhquake_stock_managment/view/bottom_bar/viewmodel/bottom_bar_view_model.dart';
 import 'package:earhquake_stock_managment/view/home_page/screen/home_view.dart';
 import 'package:earhquake_stock_managment/view/product_selection_view/view/product_selection_view.dart';
-import 'package:earhquake_stock_managment/view/products/view/produts_view.dart';
+import 'package:earhquake_stock_managment/view/receive/screen/receiving_view.dart';
+import 'package:earhquake_stock_managment/view/reports/view/reports_view.dart';
 import 'package:flutter/material.dart';
 
 class BottomBarView extends StatelessWidget {
@@ -33,15 +34,15 @@ class BottomBarView extends StatelessWidget {
 
   final List<Widget> _screens = [
     const HomeView(),
-    const ProductsView(),
+    const ReceivingView(),
     const ProductSelectionView(),
-    const ProductSelectionView(),
+    const ReportsView(),
   ];
 
   final List<String> _label = [
+    'Ana Sayfa',
     'Mal Kabul',
-    'Ürün',
-    'Tıra Ürün Seçimi',
+    'Tır Ürün Seçimi',
     'Rapor',
   ];
 }

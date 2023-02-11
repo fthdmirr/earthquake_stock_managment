@@ -1,9 +1,6 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 
-import 'package:earhquake_stock_managment/core/common/models/app_images/app_images.dart';
 import 'package:earhquake_stock_managment/core/common/provider/view_model_provider.dart';
-import 'package:earhquake_stock_managment/core/components/card/product_detail_card.dart';
-import 'package:earhquake_stock_managment/core/components/card/product_selection_card.dart';
 import 'package:earhquake_stock_managment/core/components/multipagetabbar/multipagetabbar.dart';
 import 'package:earhquake_stock_managment/core/utils/constants/app_color.dart';
 import 'package:earhquake_stock_managment/view/reports/viewmodel/reports.viewmodel.dart';
