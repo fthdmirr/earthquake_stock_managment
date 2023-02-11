@@ -1,6 +1,6 @@
 name: earhquake_stock_managment
 description: A new Flutter project.
-publish_to: 'none' 
+publish_to: 'none'
 
 version: 1.0.0+1
 
@@ -12,23 +12,21 @@ dependencies:
   cupertino_icons: ^1.0.2
   flutter:
     sdk: flutter
+  hive_flutter: ^1.1.0
+  hive_generator: ^2.0.0
   kartal: ^2.8.0
   lottie: ^2.2.0
   provider: ^6.0.5
   responsive_framework: ^0.2.0
-  hive_flutter: ^1.1.0
-  hive_generator: ^2.0.0
-
+  syncfusion_flutter_datagrid_export: ^20.4.49-beta
 
 dev_dependencies:
-  flutter_lints: ^2.0.0
   build_runner: ^2.3.3
+  flutter_lints: ^2.0.0
   flutter_test:
     sdk: flutter
-
 
 flutter:
   uses-material-design: true
   assets:
     - assets/lottie/
-
