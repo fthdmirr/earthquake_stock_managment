@@ -8,6 +8,7 @@ class ReceiveModel {
     this.vehicle,
     this.carPlate,
     this.itemType,
+    this.item,
     this.quantity,
   );
   @HiveField(0)
@@ -18,6 +19,8 @@ class ReceiveModel {
   final ItemType itemType;
   @HiveField(3)
   final int quantity;
+  @HiveField(4)
+  final Item item;
 }
 
 @HiveType(typeId: 1)

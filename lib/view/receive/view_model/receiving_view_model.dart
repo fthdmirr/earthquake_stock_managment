@@ -32,7 +32,6 @@ class ReceivingViewModel extends BaseViewModel {
     Item('Temel Gida'),
     Item('Temizlik Malzemesi'),
     Item('Çadir'),
-    Item('Çadir'),
     Item('Çocuk Bezi'),
   ];
   List<ItemType> itemTypes = [
@@ -45,6 +44,7 @@ class ReceivingViewModel extends BaseViewModel {
   Vehicle selectedVehicle = Vehicle.kamyon;
   String carPlate = '';
   ItemType selectedItemType = ItemType('');
+  Item selectedItem = Item('');
 
   void _getItem() {
     items.addAll(itemCacheManager.getValues() ?? []);
@@ -62,7 +62,12 @@ class ReceivingViewModel extends BaseViewModel {
   Future<void> addReceiving() async {
     try {
       await receiveCacheManager.putValue(ReceiveModel(
-          selectedVehicle, carPlate, selectedItemType, int.parse(quantityController.text)));
+        selectedVehicle,
+        carPlate,
+        selectedItemType,
+        selectedItem,
+        int.parse(quantityController.text),
+      ));
     } catch (e) {
       log(e.toString());
     }

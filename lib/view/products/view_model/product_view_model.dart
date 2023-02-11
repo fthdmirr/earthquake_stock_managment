@@ -8,23 +8,40 @@ class ProductsViewModel extends BaseViewModel {
   ProductsViewModel({
     required super.context,
     required this.receiveCacheManager,
-    required this.itemTypeCacheManager,
+    required this.itemCacheManager,
   }) {
     _getAllReceivings();
+    _getCategories();
   }
 
   final ICacheManager<ReceiveModel> receiveCacheManager;
-  final ICacheManager<ItemType> itemTypeCacheManager;
+  final ICacheManager<Item> itemCacheManager;
 
   List<ReceiveModel> _receivings = [];
-  List<ItemType> _itemTypes = [];
-  Map<String, int> categories = {};
+  List<Item> _items = [
+    Item('Kiyafet'),
+    Item('Su'),
+    Item('Yiyecek'),
+    Item('Temel Gida'),
+    Item('Temizlik Malzemesi'),
+    Item('Çadir'),
+    Item('Çocuk Bezi'),
+  ];
+  Map<String, int> categories = {
+    'Kiyafet':0,
+    'Su':0,
+    'Yiyecek':0,
+    'Temel Gida':0,
+    'Temizlik Malzemesi':0,
+    'Çadir':0,
+    'Çocuk Bezi':0,
+  };
 
-  void get getCategories {
+  void _getCategories() {
     for (var received in _receivings) {
-      for (var itemType in _itemTypes) {
-        if (itemType.itemType == received.itemType.itemType) {
-          categories[received.itemType.itemType] = received.quantity;
+      for (var item in _items) {
+        if (item.itemName == received.item.itemName) {
+          categories[received.item.itemName] = received.quantity;
         }
       }
     }
@@ -40,7 +57,7 @@ class ProductsViewModel extends BaseViewModel {
 
   Future<void> _getItemTypes() async {
     try {
-      _itemTypes = itemTypeCacheManager.getValues() ?? [];
+      _items = itemCacheManager.getValues() ?? [];
     } catch (e) {
       log(e.toString());
     }

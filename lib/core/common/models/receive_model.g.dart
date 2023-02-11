@@ -20,6 +20,7 @@ class ReceiveModelAdapter extends TypeAdapter<ReceiveModel> {
       fields[0] as Vehicle,
       fields[1] as String,
       fields[2] as ItemType,
+      fields[4] as Item,
       fields[3] as int,
     );
   }
@@ -27,7 +28,7 @@ class ReceiveModelAdapter extends TypeAdapter<ReceiveModel> {
   @override
   void write(BinaryWriter writer, ReceiveModel obj) {
     writer
-      ..writeByte(4)
+      ..writeByte(5)
       ..writeByte(0)
       ..write(obj.vehicle)
       ..writeByte(1)
@@ -35,7 +36,9 @@ class ReceiveModelAdapter extends TypeAdapter<ReceiveModel> {
       ..writeByte(2)
       ..write(obj.itemType)
       ..writeByte(3)
-      ..write(obj.quantity);
+      ..write(obj.quantity)
+      ..writeByte(4)
+      ..write(obj.item);
   }
 
   @override
