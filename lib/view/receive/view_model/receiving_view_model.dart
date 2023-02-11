@@ -1,8 +1,8 @@
-import 'dart:developer';
-
+import 'package:earhquake_stock_managment/core/common/models/app_icons_extension.dart';
 import 'package:earhquake_stock_managment/core/common/models/app_images/app_images.dart';
-import 'package:earhquake_stock_managment/core/common/models/inventory_item.model.dart';
+import 'package:earhquake_stock_managment/core/common/models/inventory_item/inventory_item_model.dart';
 import 'package:earhquake_stock_managment/core/init/hive_manager/inventory_item_cache_manager.dart';
+import 'package:flutter/material.dart';
 
 import '../../../core/common/provider/base_provider.dart';
 
@@ -18,11 +18,22 @@ class ReceivingViewModel extends BaseViewModel {
   @override
   initViewModel() async {
     setInventoryItem();
+
     super.initViewModel();
   }
 
+  ada() {
+    itemCacheManager.addValue(InventoryItem(
+      id: '5',
+      name: 'Çocuk Bezi',
+      quantity: 10,
+      icon: 'tent_icon',
+    ));
+    notifyListeners();
+  }
+
   setInventoryItem() {
-    tempInventoryItems = itemCacheManager.getValues() as List<InventoryItem>;
+    tempInventoryItems = itemCacheManager.getValues();
 
     for (var i = 0; i < inventoryItems.length; i++) {
       inventoryItems[i].quantity = tempInventoryItems[i].quantity;
@@ -34,47 +45,49 @@ class ReceivingViewModel extends BaseViewModel {
       id: '1',
       name: 'Erkek Kıyafet',
       quantity: 0,
-      iconPath: AppImages.manClothesIcon,
+      icon: 'man_clothes_icon',
     ),
     InventoryItem(
       id: '2',
       name: 'Kadın Kıyafet',
       quantity: 0,
-      iconPath: AppImages.womenClothesIcon,
+      icon: 'women_clothes_icon',
     ),
     InventoryItem(
       id: '3',
       name: 'Yiyecek',
       quantity: 0,
-      iconPath: AppImages.foodIcon,
+      icon: 'food_icon',
     ),
     InventoryItem(
       id: '4',
       name: 'Temel Gıda',
       quantity: 0,
-      iconPath: AppImages.stapleFoodIcon,
+      icon: 'staple_food_icon',
     ),
     InventoryItem(
-        id: '5',
-        name: 'Temizlik Malzemesi',
-        quantity: 0,
-        iconPath: AppImages.cleaningMaterialsIcon),
+      id: '5',
+      name: 'Temizlik Malzemesi',
+      quantity: 0,
+      icon: 'cleaning_materials_icon',
+    ),
     InventoryItem(
       id: '6',
       name: 'İlaç',
       quantity: 0,
-      iconPath: AppImages.medicineIcon,
+      icon: 'medicine_icon',
     ),
     InventoryItem(
-        id: '7',
-        name: 'Çocuk Maması',
-        quantity: 0,
-        iconPath: AppImages.childFoodIcon),
+      id: '7',
+      name: 'Çocuk Maması',
+      quantity: 0,
+      icon: 'child_food_icon',
+    ),
     InventoryItem(
       id: '8',
       name: 'Çadır',
       quantity: 0,
-      iconPath: AppImages.tentIcon,
+      icon: 'tent_icon',
     ),
   ];
 

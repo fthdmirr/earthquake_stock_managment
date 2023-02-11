@@ -1,5 +1,5 @@
 import 'package:earhquake_stock_managment/core/common/models/app_images/app_images.dart';
-import 'package:earhquake_stock_managment/core/common/models/inventory_item.model.dart';
+import 'package:earhquake_stock_managment/core/common/models/inventory_item/inventory_item_model.dart';
 
 import '../../../core/common/provider/view_model_provider.dart';
 import '../../../core/init/navigation/navigation_service.dart';
@@ -25,8 +25,7 @@ class ReceivingView extends StatelessWidget {
         backgroundColor: AppColors.systemBackground,
         floatingActionButton: Visibility(
           child: FloatingActionButton.extended(
-            onPressed: () => NavigationService.instance
-                .navigateToPage(AddedCategory.routeName),
+            onPressed: model.ada,
             icon: const Icon(
               Icons.add,
             ),
@@ -90,13 +89,13 @@ class ReceivePageItemWidget extends StatelessWidget {
             child: Padding(
               padding: const EdgeInsets.all(8.0),
               child: Image(
-                image: item.iconPath ?? AppImages.emptyIcon,
+                image: AppImages.memoryImage(item.icon),
                 color: AppColors.primaryColor,
               ),
             ),
           ),
           Text(
-            item.name ?? '',
+            item.name,
             style: Theme.of(context).textTheme.headlineMedium?.copyWith(
                   fontWeight: FontWeight.w400,
                   color: AppColors.textColor,
