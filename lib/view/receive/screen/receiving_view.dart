@@ -36,6 +36,7 @@ class ReceivingView extends StatelessWidget {
                     title: 'Araç Plakasi',
                     hint: 'Lütfen araç plakasi giriniz',
                   ),
+                  const SizedBox(height: 16),
                   DropdownAndTitleWidget(
                     title: 'Gelen İl',
                     dropdownList: CitiesOfTurkey.values.map((e) => e.name).toList(),
