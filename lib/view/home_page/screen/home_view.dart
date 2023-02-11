@@ -69,8 +69,8 @@ class ReceivePageItemWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
-        AppBottomSheet()
-            .showBottomSheet(context, item.icon, item.quantity, item.name, bottomSheetButton);
+        AppBottomSheet().showBottomSheet(
+            context, item.icon ?? 'empty_icon', item.quantity, item.name, bottomSheetButton);
       },
       child: Container(
         margin: const EdgeInsets.all(8),
@@ -95,7 +95,7 @@ class ReceivePageItemWidget extends StatelessWidget {
               child: Padding(
                 padding: const EdgeInsets.all(8.0),
                 child: Image(
-                  image: AppImages.memoryImage(item.icon),
+                  image: AppImages.memoryImage(item.icon ?? 'empty_icon'),
                   color: AppColors.primaryColor,
                 ),
               ),

@@ -46,6 +46,7 @@ class VehicleInfoCacheManager {
   void registerAdapters() {
     if (!Hive.isAdapterRegistered(HiveConstants.vehicleInfoId)) {
       Hive.registerAdapter(VehicleInfoAdapter());
+      
     }
   }
 }

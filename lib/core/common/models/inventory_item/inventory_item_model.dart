@@ -8,12 +8,12 @@ class InventoryItem {
   InventoryItem({
     required this.quantity,
     required this.name,
-    required this.icon,
+    this.icon,
   });
   @HiveField(0)
   int quantity;
   @HiveField(1)
   String name;
   @HiveField(2)
-  String icon;
+  String? icon;
 }

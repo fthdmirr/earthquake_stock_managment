@@ -3,7 +3,7 @@ import 'package:hive_flutter/hive_flutter.dart';
 
 part 'route_status.g.dart';
 
-@HiveType(typeId: HiveConstants.vehicleId)
+@HiveType(typeId: HiveConstants.routeStatusId)
 enum RouteStatus {
   @HiveField(0)
   came,

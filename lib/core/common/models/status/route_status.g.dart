@@ -8,7 +8,7 @@ part of 'route_status.dart';
 
 class RouteStatusAdapter extends TypeAdapter<RouteStatus> {
   @override
-  final int typeId = 3;
+  final int typeId = 4;
 
   @override
   RouteStatus read(BinaryReader reader) {

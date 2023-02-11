@@ -19,7 +19,7 @@ class InventoryItemAdapter extends TypeAdapter<InventoryItem> {
     return InventoryItem(
       quantity: fields[0] as int,
       name: fields[1] as String,
-      icon: fields[2] as String,
+      icon: fields[2] as String?,
     );
   }
 

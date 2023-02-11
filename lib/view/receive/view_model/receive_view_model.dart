@@ -6,17 +6,18 @@ import 'package:earhquake_stock_managment/core/common/models/vehicle_info/vehicl
 import 'package:earhquake_stock_managment/core/common/provider/base_provider.dart';
 import 'package:earhquake_stock_managment/core/utils/constants/enum/cities_of_turkey.dart';
 import 'package:earhquake_stock_managment/main.dart';
+import 'package:earhquake_stock_managment/view/bottom_bar/view/bottom_bar_view.dart';
 import 'package:flutter/material.dart';
 
 class ReceiveViewModel extends BaseViewModel {
   ReceiveViewModel({required super.context});
 
-  final TextEditingController vehiclePlate = TextEditingController();
   final String selectedVehicle = 'Kamyon';
   final String fromTheProvience = CitiesOfTurkey.kayseri.name;
 
   final String selectedItem = 'Meyve';
   final String selectedItemType = 'Koli';
+  final TextEditingController vehiclePlate = TextEditingController();
   final TextEditingController quantity = TextEditingController();
   final TextEditingController name = TextEditingController();
   final TextEditingController telNo = TextEditingController();
@@ -25,20 +26,24 @@ class ReceiveViewModel extends BaseViewModel {
   Vehicle? pickedVehicle;
   List<InventoryItem> inventoryItems = [];
 
-  Future<void> addedVehicleValues() async {
-    pickedVehicle = await vehicleCacheManager.addValue(Vehicle(
+  void addedVehicleValue() {
+    pickedVehicle = Vehicle(
         vehicleType: selectedVehicle,
         driverName: name.text.trim(),
         driverPhone: telNo.text.trim(),
-        plate: plate.text.trim()));
+        plate: plate.text.trim());
   }
 
-  Future<void> addInventoryItem(inventoryItem) async {
-    inventoryItems.add(inventoryItem);
+  void addInventoryItem() {
+    inventoryItems.add(
+      InventoryItem(quantity: int.parse(quantity.text.trim()), name: selectedItem),
+    );
+    quantity.clear();
   }
 
-  Future<void> finishReceive(int quantity) async {
-    reportCacheManager.addValue(Report(
+  Future<void> finishReceive() async {
+    if (pickedVehicle == null) return;
+    await reportCacheManager.addValue(Report(
         dateTime: DateTime.now().toIso8601String(),
         vehicleInfo: VehicleInfo(
           destinationCity: fromTheProvience,
@@ -46,7 +51,24 @@ class ReceiveViewModel extends BaseViewModel {
           routeStatus: RouteStatus.came,
           inventoryItems: inventoryItems,
         )));
+    _clearDatas();
+    Future.delayed(Duration.zero).then((value) {
+      Navigator.pushAndRemoveUntil(
+          context,
+          MaterialPageRoute(
+            builder: (context) => BottomBarView(),
+          ),
+          (route) => false);
+    });
   }
 
-  void _clearDatas() {}
+  void _clearDatas() {
+    quantity.clear();
+    name.clear();
+    telNo.clear();
+    plate.clear();
+    vehiclePlate.clear();
+    inventoryItems.clear();
+    pickedVehicle = null;
+  }
 }
