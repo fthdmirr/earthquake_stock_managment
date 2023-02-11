@@ -3,7 +3,7 @@ import 'package:earhquake_stock_managment/core/common/models/inventory_item/inve
 import 'package:earhquake_stock_managment/core/common/provider/view_model_provider.dart';
 import 'package:earhquake_stock_managment/core/components/text/headline/headline5_text.dart';
 import 'package:earhquake_stock_managment/core/utils/constants/app_color.dart';
-import 'package:earhquake_stock_managment/view/home_page/view_model/home.viewmodel.dart';
+import 'package:earhquake_stock_managment/view/home_page/view_model/home_viewmodel.dart';
 
 import 'package:flutter/material.dart';
 
@@ -12,11 +12,11 @@ class HomeView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ViewModelProvider<ReceivingViewModel>(
-      model: ReceivingViewModel(
+    return ViewModelProvider<HomeViewModel>(
+      model: HomeViewModel(
         context: context,
       ),
-      builder: (ReceivingViewModel model) => Scaffold(
+      builder: (HomeViewModel model) => Scaffold(
         resizeToAvoidBottomInset: false,
         backgroundColor: AppColors.systemBackground,
         floatingActionButton: Visibility(

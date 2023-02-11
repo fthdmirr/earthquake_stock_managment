@@ -8,12 +8,12 @@ class StepperView extends StatefulWidget {
     super.key,
     required this.steppers,
     required this.onPressed,
-    required this.widget,
+    required this.widgets,
   });
 
   final List<StepperModel> steppers;
   final Function onPressed;
-  final Widget widget;
+  final List<Widget> widgets;
 
   @override
   State<StepperView> createState() => _StepperViewViewState();
@@ -55,12 +55,12 @@ class _StepperViewViewState extends State<StepperView> {
             ],
           ),
           const Spacer(flex: 1),
-          Expanded(flex: 5, child: widget.widget),
+          Expanded(flex: 8, child: widget.widgets[currentIndex]),
         ],
       ),
       bottomNavigationBar: ElevatedButton(
         onPressed: () {
-          changeCurrentIndex(currentIndex + 1);
+          if (currentIndex != widget.widgets.length - 1) changeCurrentIndex(currentIndex + 1);
           widget.onPressed();
         },
         style: ButtonStyle(

@@ -3,8 +3,8 @@ import 'package:earhquake_stock_managment/core/init/hive_manager/inventory_item_
 
 import '../../../core/common/provider/base_provider.dart';
 
-class ReceivingViewModel extends BaseViewModel {
-  ReceivingViewModel({
+class HomeViewModel extends BaseViewModel {
+  HomeViewModel({
     required super.context,
   });
 
