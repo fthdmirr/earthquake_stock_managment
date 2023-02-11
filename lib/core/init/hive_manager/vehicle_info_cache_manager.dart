@@ -1,4 +1,5 @@
 import 'package:earhquake_stock_managment/core/common/models/vehicle_info/vehicle_info_model.dart';
+import 'package:earhquake_stock_managment/core/utils/constants/hive/hive_constants.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 
 class VehicleInfoCacheManager {
@@ -43,7 +44,7 @@ class VehicleInfoCacheManager {
   }
 
   void registerAdapters() {
-    if (!Hive.isAdapterRegistered(1)) {
+    if (!Hive.isAdapterRegistered(HiveConstants.vehicleInfoId)) {
       Hive.registerAdapter(VehicleInfoAdapter());
     }
   }
