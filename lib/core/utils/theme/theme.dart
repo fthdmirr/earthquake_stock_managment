@@ -1,76 +1,130 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 import '../constants/app_color.dart';
 
 final ThemeData myTheme = ThemeData(
-  scaffoldBackgroundColor: AppColors.white,
+  scaffoldBackgroundColor: AppColors.mercury,
   appBarTheme: const AppBarTheme(
-    backgroundColor: AppColors.blueGem,
+    backgroundColor: AppColors.white,
     centerTitle: true,
+    iconTheme: IconThemeData(
+      color: AppColors.deepCove,
+    ),
+    elevation: 0,
   ),
-  textTheme: const TextTheme(
-    displayLarge: TextStyle(
-      color: Color(0x8a000000),
+  textTheme: TextTheme(
+    displayLarge: GoogleFonts.inter(
+      color: AppColors.dark,
       fontSize: 32,
       fontWeight: FontWeight.w700,
       fontStyle: FontStyle.normal,
     ),
-    displayMedium: TextStyle(
-      color: Color(0x8a000000),
+    displayMedium: GoogleFonts.inter(
+      color: AppColors.dark,
       fontSize: 25,
       fontWeight: FontWeight.w700,
       fontStyle: FontStyle.normal,
     ),
-    displaySmall: TextStyle(
-      color: Color(0x8a000000),
+    displaySmall: GoogleFonts.inter(
+      color: AppColors.dark,
       fontSize: 20,
       fontWeight: FontWeight.w600,
       fontStyle: FontStyle.normal,
     ),
-    headlineMedium: TextStyle(
-      color: Color(0x8a000000),
+    headlineMedium: GoogleFonts.inter(
+      color: AppColors.dark,
       fontSize: 18,
       fontWeight: FontWeight.w600,
       fontStyle: FontStyle.normal,
     ),
-    headlineSmall: TextStyle(
-      color: Color(0xdd000000),
+    headlineSmall: GoogleFonts.inter(
+      color: AppColors.dark,
       fontSize: 16,
       fontWeight: FontWeight.w600,
       fontStyle: FontStyle.normal,
-      fontFamily: 'semiBold',
     ),
-    titleLarge: TextStyle(
-      color: Color(0xdd000000),
+    titleLarge: GoogleFonts.inter(
+      color: AppColors.dark,
       fontSize: 14,
       fontWeight: FontWeight.w600,
       fontStyle: FontStyle.normal,
     ),
-    bodyLarge: TextStyle(
-      color: Color(0xdd000000),
+    bodyLarge: GoogleFonts.inter(
+      color: AppColors.dark,
       fontSize: 18,
       fontWeight: FontWeight.w400,
       fontStyle: FontStyle.normal,
     ),
-    bodyMedium: TextStyle(
-      color: Color(0xdd000000),
+    bodyMedium: GoogleFonts.inter(
+      color: AppColors.dark,
       fontSize: 16,
       fontWeight: FontWeight.w400,
       fontStyle: FontStyle.normal,
     ),
-    labelLarge: TextStyle(
-      color: Color(0xdd000000),
+    labelLarge: GoogleFonts.inter(
+      color: AppColors.dark,
       fontSize: 18,
       fontWeight: FontWeight.w500,
       fontStyle: FontStyle.normal,
     ),
   ),
-  elevatedButtonTheme: const ElevatedButtonThemeData(
+  elevatedButtonTheme: ElevatedButtonThemeData(
     style: ButtonStyle(
-      backgroundColor: MaterialStatePropertyAll(AppColors.blueGem),
+      textStyle: MaterialStatePropertyAll(
+        GoogleFonts.inter(
+          color: AppColors.dark,
+          fontSize: 18,
+          fontWeight: FontWeight.w500,
+          fontStyle: FontStyle.normal,
+        ),
+      ),
+      backgroundColor: const MaterialStatePropertyAll(
+        AppColors.green,
+      ),
     ),
   ),
   floatingActionButtonTheme: const FloatingActionButtonThemeData(
     backgroundColor: AppColors.whiteGrey,
+  ),
+  bottomSheetTheme: const BottomSheetThemeData(
+    backgroundColor: AppColors.white,
+    modalBackgroundColor: Colors.red,
+    shape: RoundedRectangleBorder(
+      borderRadius: BorderRadius.only(
+        topLeft: Radius.circular(40),
+        topRight: Radius.circular(40),
+      ),
+    ),
+  ),
+  popupMenuTheme: const PopupMenuThemeData(
+    color: AppColors.white,
+    shape: RoundedRectangleBorder(
+      borderRadius: BorderRadius.only(
+        topLeft: Radius.circular(12),
+        topRight: Radius.circular(12),
+      ),
+    ),
+  ),
+  bottomNavigationBarTheme: const BottomNavigationBarThemeData(
+    backgroundColor: AppColors.white,
+    type: BottomNavigationBarType.fixed,
+    showSelectedLabels: true,
+    selectedItemColor: AppColors.dark,
+    unselectedItemColor: AppColors.lynch,
+    selectedLabelStyle: TextStyle(
+      color: AppColors.dark,
+    ),
+    unselectedLabelStyle: TextStyle(
+      color: AppColors.lynch,
+    ),
+    selectedIconTheme: IconThemeData(
+      color: AppColors.dark,
+      size: 30,
+    ),
+    unselectedIconTheme: IconThemeData(
+      color: AppColors.lynch,
+      size: 30,
+    ),
   ),
 );

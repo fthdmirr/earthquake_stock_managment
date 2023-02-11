@@ -1,10 +1,4 @@
-import 'dart:developer';
-
 import '../../../core/common/provider/base_provider.dart';
-import '../../../core/init/hive_manager/inventory_item_cache_manager.dart';
-import '../../../core/init/hive_manager/vehicle_cache_manager.dart';
-import '../../../core/init/navigation/navigation_service.dart';
-import '../../products_detail/view/products_detail_view.dart';
 
 class ProductsViewModel extends BaseViewModel {
   ProductsViewModel({

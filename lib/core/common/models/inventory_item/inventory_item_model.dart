@@ -12,11 +12,11 @@ class InventoryItem {
     required this.icon,
   });
   @HiveField(0)
-  final String id;
+  String id;
   @HiveField(1)
-  final int quantity;
+  int quantity;
   @HiveField(2)
-  final String name;
+  String name;
   @HiveField(3)
-  final String icon;
+  String icon;
 }

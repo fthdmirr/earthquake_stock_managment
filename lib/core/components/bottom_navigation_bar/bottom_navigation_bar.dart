@@ -1,3 +1,5 @@
+import 'package:earhquake_stock_managment/core/components/text/body/body_medium_text.dart';
+
 import '../../../view/bottom_bar/viewmodel/bottom_bar_view_model.dart';
 import 'package:flutter/material.dart';
 
@@ -8,38 +10,38 @@ class CustomBottomNavigationBar extends BottomNavigationBar {
     super.key,
     required BottomBarViewModel model,
   }) : super(
-          backgroundColor: AppColors.white,
-          type: BottomNavigationBarType.fixed,
-          showSelectedLabels: true,
-          selectedItemColor: AppColors.black,
-          unselectedItemColor: AppColors.whiteGrey,
           currentIndex: model.currentIndex,
           onTap: (index) => model.changeBody(index),
-          selectedLabelStyle: const TextStyle(
-            color: AppColors.black,
-          ),
-          selectedIconTheme: const IconThemeData(
-            color: AppColors.black,
-            size: 30,
-          ),
-          unselectedIconTheme: const IconThemeData(
-            color: AppColors.whiteGrey,
-            size: 30,
-          ),
-          items: const [
+          items: [
             BottomNavigationBarItem(
               label: 'Mal Kabul',
-              icon: Icon(
-                Icons.local_shipping,
+              icon: Stack(
+                children: [
+                  const Icon(
+                    Icons.local_shipping,
+                  ),
+                  Positioned(
+                    left: 10,
+                    bottom: 10,
+                    child: CircleAvatar(
+                      radius: 10,
+                      backgroundColor: AppColors.red.withOpacity(0.7),
+                      child: BodyMediumText(
+                        text: '5',
+                        color: AppColors.white,
+                      ),
+                    ),
+                  ),
+                ],
               ),
             ),
-            BottomNavigationBarItem(
+            const BottomNavigationBarItem(
               icon: Icon(
                 Icons.list,
               ),
               label: 'Ürün',
             ),
-            BottomNavigationBarItem(
+            const BottomNavigationBarItem(
               icon: Icon(
                 Icons.description,
               ),
