@@ -21,7 +21,7 @@ class ReceivingView extends StatelessWidget {
         itemCacheManager: ItemCacheManager('item'),
         itemTypeCacheManager: ItemTypeCacheManager('itemTypes'),
       ),
-      builder: (model) => Scaffold(
+      builder: (ReceivingViewModel model) => Scaffold(
           body: SingleChildScrollView(
               padding: const EdgeInsets.all(16.0),
               child: Column(
@@ -42,19 +42,24 @@ class ReceivingView extends StatelessWidget {
                   ),
                   DropdownAndTitleWidget(
                     title: 'Ürün',
-                    dropdownList: CitiesOfTurkey.values.map((e) => e.name).toList(),
-                    dropDownFirstValue: CitiesOfTurkey.kayseri.name,
+                    dropdownList: model.items.map((e) => e.itemName).toList(),
+                    dropDownFirstValue: model.items.first.itemName,
                   ),
                   DropdownAndTitleWidget(
                     title: 'Ürün Tipi',
-                    dropdownList: CitiesOfTurkey.values.map((e) => e.name).toList(),
-                    dropDownFirstValue: CitiesOfTurkey.kayseri.name,
+                    dropdownList: model.itemTypes.map((e) => e.itemType).toList(),
+                    dropDownFirstValue: model.itemTypes.first.itemType,
                   ),
                   const BaseInput(
                     title: 'Miktar',
                     hint: 'Lütfen gelen ürün miktarini giriniz',
                     inputType: TextInputType.number,
                   ),
+                  const SizedBox(height: 50),
+                  ElevatedButton.icon(
+                      onPressed: model.addReceiving,
+                      icon: const Icon(Icons.done),
+                      label: const Text('Mal Kabul Yap'))
                 ],
               ))),
     );
