@@ -1,5 +1,8 @@
 import 'dart:developer';
 
+import 'package:earhquake_stock_managment/core/common/models/app_images/app_images.dart';
+import 'package:earhquake_stock_managment/core/common/models/inventory_item.model.dart';
+
 import '../../../core/common/models/receive_model.dart';
 import '../../../core/common/provider/base_provider.dart';
 import '../../../core/init/hive_manager/item_hive_manager.dart';
@@ -23,7 +26,8 @@ class ReceivingViewModel extends BaseViewModel {
   final ItemTypeCacheManager itemTypeCacheManager;
 
   final TextEditingController _itemTypeNameController = TextEditingController();
-  final TextEditingController _quantityController = TextEditingController(text: '0');
+  final TextEditingController _quantityController =
+      TextEditingController(text: '0');
 
   TextEditingController get itemTypeNameController => _itemTypeNameController;
   TextEditingController get quantityController => _quantityController;
@@ -41,6 +45,59 @@ class ReceivingViewModel extends BaseViewModel {
     ItemType('Adet'),
     ItemType('Çuval'),
     ItemType('Koli'),
+  ];
+
+  setInventoryItem() {
+    //hiveden gelen quantity değerleri ile inventoryItems quantity değerleri eşitlenir.
+  }
+
+  List<InventoryItem> inventoryItems = [
+    InventoryItem(
+      id: '1',
+      name: 'Erkek Kıyafet',
+      quantity: 0,
+      iconPath: AppImages.manClothesIcon,
+    ),
+    InventoryItem(
+      id: '2',
+      name: 'Kadın Kıyafet',
+      quantity: 0,
+      iconPath: AppImages.womenClothesIcon,
+    ),
+    InventoryItem(
+      id: '3',
+      name: 'Yiyecek',
+      quantity: 0,
+      iconPath: AppImages.foodIcon,
+    ),
+    InventoryItem(
+      id: '4',
+      name: 'Temel Gıda',
+      quantity: 0,
+      iconPath: AppImages.stapleFoodIcon,
+    ),
+    InventoryItem(
+        id: '5',
+        name: 'Temizlik Malzemesi',
+        quantity: 0,
+        iconPath: AppImages.cleaningMaterialsIcon),
+    InventoryItem(
+      id: '6',
+      name: 'İlaç',
+      quantity: 0,
+      iconPath: AppImages.medicineIcon,
+    ),
+    InventoryItem(
+        id: '7',
+        name: 'Çocuk Maması',
+        quantity: 0,
+        iconPath: AppImages.childFoodIcon),
+    InventoryItem(
+      id: '8',
+      name: 'Çadır',
+      quantity: 0,
+      iconPath: AppImages.tentIcon,
+    ),
   ];
 
   Vehicle selectedVehicle = Vehicle.kamyon;
