@@ -23,7 +23,7 @@ class ReceivingViewModel extends BaseViewModel {
   final ItemTypeCacheManager itemTypeCacheManager;
 
   final TextEditingController _itemTypeNameController = TextEditingController();
-  final TextEditingController _quantityController = TextEditingController();
+  final TextEditingController _quantityController = TextEditingController(text: '0');
 
   TextEditingController get itemTypeNameController => _itemTypeNameController;
   TextEditingController get quantityController => _quantityController;
