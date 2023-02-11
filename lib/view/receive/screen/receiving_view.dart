@@ -23,47 +23,49 @@ class ReceivingView extends StatelessWidget {
         itemTypeCacheManager: ItemTypeCacheManager('itemTypes'),
       ),
       builder: (ReceivingViewModel model) => Scaffold(
-          body: SingleChildScrollView(
-              padding: const EdgeInsets.all(16.0),
-              child: Column(
-                children: [
-                  DropdownAndTitleWidget(
-                    title: 'Araç Tipi',
-                    dropdownList: Vehicle.values.map((e) => e.name).toList(),
-                    dropDownFirstValue: Vehicle.kamyon.name,
-                  ),
-                  const BaseInput(
-                    title: 'Araç Plakasi',
-                    hint: 'Lütfen araç plakasi giriniz',
-                  ),
-                  const SizedBox(height: 16),
-                  DropdownAndTitleWidget(
-                    title: 'Gelen İl',
-                    dropdownList: CitiesOfTurkey.values.map((e) => e.name).toList(),
-                    dropDownFirstValue: CitiesOfTurkey.kayseri.name,
-                  ),
-                  DropdownAndTitleWidget(
-                    title: 'Ürün',
-                    dropdownList: model.items.map((e) => e.itemName).toList(),
-                    dropDownFirstValue: model.items.first.itemName,
-                  ),
-                  DropdownAndTitleWidget(
-                    title: 'Ürün Tipi',
-                    dropdownList: model.itemTypes.map((e) => e.itemType).toList(),
-                    dropDownFirstValue: model.itemTypes.first.itemType,
-                  ),
-                  const BaseInput(
-                    title: 'Miktar',
-                    hint: 'Lütfen gelen ürün miktarini giriniz',
-                    inputType: TextInputType.number,
-                  ),
-                  const SizedBox(height: 50),
-                  ElevatedButton.icon(
-                      onPressed: model.addReceiving,
-                      icon: const Icon(Icons.done),
-                      label: const Text('Mal Kabul Yap'))
-                ],
-              ))),
+        body: SingleChildScrollView(
+          padding: const EdgeInsets.all(16.0),
+          child: Column(
+            children: [
+              DropdownAndTitleWidget(
+                title: 'Araç Tipi',
+                dropdownList: Vehicle.values.map((e) => e.name).toList(),
+                dropDownFirstValue: Vehicle.kamyon.name,
+              ),
+              const BaseInput(
+                title: 'Araç Plakasi',
+                hint: 'Lütfen araç plakasi giriniz',
+              ),
+              const SizedBox(height: 16),
+              DropdownAndTitleWidget(
+                title: 'Gelen İl',
+                dropdownList: CitiesOfTurkey.values.map((e) => e.name).toList(),
+                dropDownFirstValue: CitiesOfTurkey.kayseri.name,
+              ),
+              DropdownAndTitleWidget(
+                title: 'Ürün',
+                dropdownList: model.items.map((e) => e.itemName).toList(),
+                dropDownFirstValue: model.items.first.itemName,
+              ),
+              DropdownAndTitleWidget(
+                title: 'Ürün Tipi',
+                dropdownList: model.itemTypes.map((e) => e.itemType).toList(),
+                dropDownFirstValue: model.itemTypes.first.itemType,
+              ),
+              const BaseInput(
+                title: 'Miktar',
+                hint: 'Lütfen gelen ürün miktarini giriniz',
+                inputType: TextInputType.number,
+              ),
+              const SizedBox(height: 50),
+              ElevatedButton.icon(
+                  onPressed: model.addReceiving,
+                  icon: const Icon(Icons.done),
+                  label: const Text('Mal Kabul Yap'))
+            ],
+          ),
+        ),
+      ),
     );
   }
 }
