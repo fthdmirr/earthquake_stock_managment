@@ -1,5 +1,4 @@
 import 'package:earhquake_stock_managment/core/components/stepper/stepper_model.dart';
-import 'package:earhquake_stock_managment/core/components/text/button/button_large_text.dart';
 import 'package:earhquake_stock_managment/core/utils/constants/app_color.dart';
 import 'package:flutter/material.dart';
 import 'package:kartal/kartal.dart';
@@ -9,12 +8,12 @@ class StepperView extends StatefulWidget {
     super.key,
     required this.steppers,
     required this.onPressed,
-    required this.widget,
+    required this.widgets,
   });
 
   final List<StepperModel> steppers;
   final Function onPressed;
-  final Widget widget;
+  final List<Widget> widgets;
 
   @override
   State<StepperView> createState() => _StepperViewViewState();
@@ -57,37 +56,20 @@ class _StepperViewViewState extends State<StepperView> {
             ],
           ),
           const Spacer(flex: 1),
-          Expanded(
-            flex: 5,
-            child: widget.widget,
-          ),
+          Expanded(flex: 8, child: widget.widgets[currentIndex]),
         ],
       ),
-      bottomNavigationBar: Container(
-        width: double.infinity,
-        height: 100,
-        margin: const EdgeInsets.symmetric(horizontal: 0, vertical: 0),
-        decoration: const BoxDecoration(
-          color: AppColors.white,
-        ),
-        child: Center(
-          child: ElevatedButton(
-            onPressed: () {
-              changeCurrentIndex(currentIndex + 1);
-              widget.onPressed();
-            },
-            style: ElevatedButton.styleFrom(
-              minimumSize: Size(
-                context.width / 1.5,
-                context.dynamicHeight(0.06),
-              ),
-            ),
-            child: ButtonLargeText(
-              text: 'Yüklenen Ürünleri Tamamla',
-              color: AppColors.dark,
-            ),
-          ),
-        ),
+      bottomNavigationBar: ElevatedButton(
+        onPressed: () {
+          if (currentIndex != widget.widgets.length - 1) {
+            changeCurrentIndex(currentIndex + 1);
+          }
+          widget.onPressed();
+        },
+        style: ButtonStyle(
+            minimumSize: MaterialStateProperty.all<Size>(
+                Size(double.infinity, context.dynamicHeight(0.06)))),
+        child: const Text('Devam Et'),
       ),
     );
   }

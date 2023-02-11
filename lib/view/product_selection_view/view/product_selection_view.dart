@@ -5,6 +5,9 @@ import 'package:earhquake_stock_managment/view/product_selection_view/viewmodel/
 import 'package:flutter/material.dart';
 
 import '../../../core/components/card/product_selection_card.dart';
+import '../../../core/components/dropdown/dropdown_input.dart';
+import '../../../core/components/input/base_input.dart';
+import '../../../core/utils/constants/enum/cities_of_turkey.dart';
 
 class ProductSelectionView extends StatelessWidget {
   const ProductSelectionView({super.key});
@@ -20,22 +23,46 @@ class ProductSelectionView extends StatelessWidget {
           StepperModel(title: 'Genel Bakış', index: 2),
         ],
         onPressed: () {},
-        widget: Column(
-          children: [
-            Expanded(
-              child: ListView.builder(
-                shrinkWrap: true,
-                itemCount: 3,
-                physics: const BouncingScrollPhysics(),
-                itemBuilder: (context, index) => ProductSelectionCard(
-                  decrementPrees: () => model.decrement(),
-                  incrementPrees: () => model.increment(),
-                  productNumber: model.productNumber,
-                ),
+        widgets: [
+          Column(
+            children: [
+              DropdownInput(
+                dropdownValues: const ['Kamyon', 'Tır', 'Kamyonet'],
+                firstValue: model.selectedVehicle,
+              ),
+              const SizedBox(height: 12),
+              BaseInput(title: 'Araç Plakası', controller: model.vehiclePlate),
+              const SizedBox(height: 12),
+              DropdownInput(
+                dropdownValues:
+                    CitiesOfTurkey.values.map((e) => e.name).toList(),
+                firstValue: model.fromTheProvience,
+              ),
+            ],
+          ),
+          Expanded(
+            child: ListView.builder(
+              shrinkWrap: true,
+              itemCount: 3,
+              physics: const BouncingScrollPhysics(),
+              itemBuilder: (context, index) => ProductSelectionCard(
+                decrementPrees: () => model.decrement(),
+                incrementPrees: () => model.increment(),
+                productNumber: model.productNumber,
               ),
             ),
-          ],
-        ),
+          ),
+          Container(
+            width: 100,
+            height: 100,
+            color: Colors.red,
+          ),
+          Container(
+            width: 100,
+            height: 100,
+            color: Colors.red,
+          ),
+        ],
       ),
     );
   }
