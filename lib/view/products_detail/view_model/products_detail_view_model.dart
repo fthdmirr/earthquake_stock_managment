@@ -1,10 +1,12 @@
 import 'dart:developer';
 
 import 'package:earhquake_stock_managment/core/common/models/receive_model.dart';
+import 'package:earhquake_stock_managment/core/common/models/send_item_model.dart';
 import 'package:earhquake_stock_managment/core/common/provider/base_provider.dart';
 import 'package:earhquake_stock_managment/core/init/hive_manager/item_type_hive_manager.dart';
 import 'package:earhquake_stock_managment/core/init/hive_manager/receive_hive_manager.dart';
 import 'package:earhquake_stock_managment/core/utils/constants/enum/earhquake_cities_and_districts.dart';
+import 'package:earhquake_stock_managment/main.dart';
 import 'package:flutter/material.dart';
 
 class ProductsDetailViewModel extends BaseViewModel {
@@ -42,6 +44,11 @@ class ProductsDetailViewModel extends BaseViewModel {
     } catch (e) {
       log(e.toString());
     }
+  }
+
+  void addSendItem(ReceiveModel receiveModel) {
+    sendItemCacheManager.addValue(SendItemModel(receiveModel, DateTime.now().toIso8601String(),
+        selectedEathquakeCity.name, int.parse(quantityController.text)));
   }
 
   // Future<void> sendItem() async {
