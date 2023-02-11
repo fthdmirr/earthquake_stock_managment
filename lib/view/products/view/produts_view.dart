@@ -12,20 +12,20 @@ class ProductsView extends StatelessWidget {
       model: ProductsViewModel(
         context: context,
       ),
-      builder: (ProductsViewModel model) => Scaffold(
-        // body: ListView.builder(
-        //   itemCount: model.categories.length,
-        //   itemBuilder: (context, index) => Card(
-        //     child: ListTile(
-        //       title: Text('model.categories.keys.toList()[index]'),
-        //       trailing: Text(''),
-        //       onTap: () {
-        //         //model.navigateToDetail(model.categories.keys.toList()[index])
-        //       },
-        //     ),
-        //   ),
-        // ),
-      ),
+      builder: (ProductsViewModel model) => const Scaffold(
+          // body: ListView.builder(
+          //   itemCount: model.categories.length,
+          //   itemBuilder: (context, index) => Card(
+          //     child: ListTile(
+          //       title: Text('model.categories.keys.toList()[index]'),
+          //       trailing: Text(''),
+          //       onTap: () {
+          //         //model.navigateToDetail(model.categories.keys.toList()[index])
+          //       },
+          //     ),
+          //   ),
+          // ),
+          ),
     );
   }
 }
