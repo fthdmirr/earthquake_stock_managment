@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import '../../core/common/provider/view_model_provider.dart';
 import '../../core/components/appbar/base_app_bar.dart';
 import '../../core/components/input/base_input.dart';
-import '../../main.dart';
 import 'added_categories_view_model.dart';
 
 class AddedCategory extends StatelessWidget {
@@ -15,8 +14,6 @@ class AddedCategory extends StatelessWidget {
     return ViewModelProvider(
       model: AddedCategoriesViewModel(
         context: context,
-        itemCacheManager: itemCacheManager,
-        itemTypeCacheManager: itemTypeCacheManager,
       ),
       builder: (AddedCategoriesViewModel model) => Scaffold(
         appBar: BaseAppBar(
@@ -33,13 +30,13 @@ class AddedCategory extends StatelessWidget {
                     child: BaseInput(
                       title: 'Ürün Ekle',
                       hint: 'Kuru gida - Kiyafet - Su vb.',
-                      controller: model.itemNameController,
+                      controller: TextEditingController(),
                     ),
                   ),
                   const SizedBox(width: 10),
                   Expanded(
                     child: ElevatedButton(
-                      onPressed: model.addedItem,
+                      onPressed: () {},
                       child: const Icon(Icons.add),
                     ),
                   ),
@@ -53,34 +50,19 @@ class AddedCategory extends StatelessWidget {
                     child: BaseInput(
                       title: 'Ürün Tipi Ekle',
                       hint: 'Adet - Çuval - Koli',
-                      controller: model.itemTypeNameController,
+                      controller: TextEditingController(),
                     ),
                   ),
                   const SizedBox(width: 10),
                   Expanded(
                     child: ElevatedButton(
-                      onPressed: model.addedItem,
+                      onPressed: () {},
                       child: const Icon(Icons.add),
                     ),
                   ),
                 ],
               ),
               const SizedBox(height: 30),
-              if (model.history.isNotEmpty)
-                Container(
-                  padding: const EdgeInsets.all(6),
-                  decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(5),
-                      color: Colors.green),
-                  child: Text(
-                    'En son gerçekleşen işlem: ${model.history.last} eklendi',
-                    style: const TextStyle(
-                      fontSize: 14,
-                      fontWeight: FontWeight.bold,
-                      color: Colors.white,
-                    ),
-                  ),
-                ),
             ],
           ),
         ),

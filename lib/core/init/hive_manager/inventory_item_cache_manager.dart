@@ -1,16 +1,16 @@
+import 'package:earhquake_stock_managment/core/common/models/inventory_item/inventory_item_model.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 
-import '../../common/models/receive_model.dart';
 
-class ItemCacheManager {
-  ItemCacheManager(this.key) {
+class InventoryItemCacheManager {
+  InventoryItemCacheManager(this.key) {
     init();
   }
 
   final String key;
-  Box<Item>? _box;
+  Box<InventoryItem>? _box;
 
-  Box<Item>? get box => _box;
+  Box<InventoryItem>? get box => _box;
 
   Future<void> init() async {
     registerAdapters();
@@ -19,19 +19,19 @@ class ItemCacheManager {
     }
   }
 
-  Future<void> addItems(List<Item> values) async {
+  Future<void> addItems(List<InventoryItem> values) async {
     await box?.addAll(values);
   }
 
-  Item? getItem(String key) {
+  InventoryItem? getItem(String key) {
     return box?.get(key);
   }
 
-  Future<void> addValue(Item value) async {
+  Future<void> addValue(InventoryItem value) async {
     await box?.add(value);
   }
 
-  Future<void> putValue(Item value) async {
+  Future<void> putValue(InventoryItem value) async {
     await box?.put(key, value);
   }
 
@@ -39,13 +39,13 @@ class ItemCacheManager {
     await box?.delete(key);
   }
 
-  List<Item>? getValues() {
+  List<InventoryItem>? getValues() {
     return box?.values.toList();
   }
 
   void registerAdapters() {
     if (!Hive.isAdapterRegistered(1)) {
-      Hive.registerAdapter(ItemAdapter());
+      Hive.registerAdapter(InventoryItemAdapter());
     }
   }
 }
