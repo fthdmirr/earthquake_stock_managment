@@ -10,7 +10,12 @@ class ProductSelectionViewModel extends BaseViewModel {
 
   int productNumber = 0;
 
-  final TextEditingController vehiclePlate = TextEditingController();
+  final TextEditingController vehicleTypeController = TextEditingController();
+  final TextEditingController vehicleNoController = TextEditingController();
+  final TextEditingController driverInformationController =
+      TextEditingController();
+  final TextEditingController phoneNoController = TextEditingController();
+
   final String selectedVehicle = 'Kamyon';
   final String fromTheProvience = CitiesOfTurkey.kayseri.name;
 

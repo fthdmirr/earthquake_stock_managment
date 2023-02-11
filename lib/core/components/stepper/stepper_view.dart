@@ -30,6 +30,7 @@ class _StepperViewViewState extends State<StepperView> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      resizeToAvoidBottomInset: false,
       body: Column(
         children: [
           SizedBox(height: context.dynamicHeight(0.02)),

@@ -3,6 +3,7 @@ import 'package:earhquake_stock_managment/core/components/stepper/stepper_model.
 import 'package:earhquake_stock_managment/core/components/stepper/stepper_view.dart';
 import 'package:earhquake_stock_managment/view/product_selection_view/viewmodel/product_selection_view_model.dart';
 import 'package:flutter/material.dart';
+import 'package:mask_text_input_formatter/mask_text_input_formatter.dart';
 
 import '../../../core/components/card/product_selection_card.dart';
 import '../../../core/components/dropdown/dropdown_input.dart';
@@ -24,21 +25,54 @@ class ProductSelectionView extends StatelessWidget {
         ],
         onPressed: () {},
         widgets: [
-          Column(
-            children: [
-              DropdownInput(
-                dropdownValues: const ['Kamyon', 'Tır', 'Kamyonet'],
-                firstValue: model.selectedVehicle,
+          SingleChildScrollView(
+            child: Padding(
+              padding: const EdgeInsets.symmetric(
+                horizontal: 15,
+                vertical: 10,
               ),
-              const SizedBox(height: 12),
-              BaseInput(title: 'Araç Plakası', controller: model.vehiclePlate),
-              const SizedBox(height: 12),
-              DropdownInput(
-                dropdownValues:
-                    CitiesOfTurkey.values.map((e) => e.name).toList(),
-                firstValue: model.fromTheProvience,
+              child: Column(
+                children: [
+                  DropdownInput(
+                    title: 'Araç Tipi',
+                    dropdownValues: const ['Kamyon', 'Tır', 'Kamyonet'],
+                    firstValue: model.selectedVehicle,
+                  ),
+                  const SizedBox(height: 12),
+                  BaseInput(
+                    title: 'Araç Plakası',
+                    inputType: TextInputType.name,
+                    controller: model.vehicleNoController,
+                  ),
+                  const SizedBox(height: 12),
+                  BaseInput(
+                    title: 'Şoför Bilgisi',
+                    inputType: TextInputType.name,
+                    controller: model.driverInformationController,
+                  ),
+                  const SizedBox(height: 12),
+                  BaseInput(
+                    title: 'Telefon Numarası',
+                    inputType: TextInputType.phone,
+                    controller: model.phoneNoController,
+                    inputFormatter: [
+                      MaskTextInputFormatter(
+                        initialText: "(XXX) XXX-XX-XX",
+                        mask: '(###) ###-##-##',
+                        filter: {"#": RegExp(r'^[0-9]*$')},
+                      ),
+                    ],
+                  ),
+                  const SizedBox(height: 12),
+                  DropdownInput(
+                    title: 'Gidecek Yer',
+                    dropdownValues:
+                        CitiesOfTurkey.values.map((e) => e.name).toList(),
+                    firstValue: model.fromTheProvience,
+                  ),
+                ],
               ),
-            ],
+            ),
           ),
           Expanded(
             child: ListView.builder(
