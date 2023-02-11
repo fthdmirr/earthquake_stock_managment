@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
 import '../../utils/constants/app_color.dart';
+import '../text/headline/headline5_text.dart';
 
 class BaseInput extends StatelessWidget {
   const BaseInput({
@@ -24,7 +25,12 @@ class BaseInput extends StatelessWidget {
   Widget build(BuildContext context) {
     return Row(
       children: [
-        Expanded(child: Text('$title:   ')),
+        Expanded(
+          child: Headline5Text(
+            text: '$title:   ',
+            color: AppColors.black,
+          ),
+        ),
         Expanded(
           flex: 3,
           child: TextFormField(

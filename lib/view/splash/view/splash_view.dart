@@ -1,5 +1,5 @@
-import 'package:earhquake_stock_managment/core/components/text/headline/headline3_text.dart';
-import 'package:earhquake_stock_managment/core/utils/constants/app_color.dart';
+import '../../../core/components/text/headline/headline3_text.dart';
+import '../../../core/utils/constants/app_color.dart';
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
 

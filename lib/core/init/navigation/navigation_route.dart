@@ -1,5 +1,6 @@
-import 'package:earhquake_stock_managment/view/bottom_bar/view/bottom_bar_view.dart';
-import 'package:earhquake_stock_managment/view/products_detail/view/products_detail_view.dart';
+import '../../../view/added_item_type/added_category_view.dart';
+import '../../../view/bottom_bar/view/bottom_bar_view.dart';
+import '../../../view/products_detail/view/products_detail_view.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -15,7 +16,10 @@ class NavigationRoute {
       case BottomBarView.routeName:
         return FadeTransitionPageRoute(BottomBarView(), settings: args);
       case ProductsDetailView.routeName:
-        return FadeTransitionPageRoute(const ProductsDetailView(), settings: args);
+        return FadeTransitionPageRoute(const ProductsDetailView(),
+            settings: args);
+      case AddedCategory.routeName:
+        return FadeTransitionPageRoute(const AddedCategory(), settings: args);
 
       default:
         return MaterialPageRoute(
@@ -42,8 +46,8 @@ class FadeTransitionPageRoute extends CupertinoPageRoute {
       : super(settings: settings, builder: (BuildContext context) => widget);
 
   @override
-  Widget buildPage(
-      BuildContext context, Animation<double> animation, Animation<double> secondaryAnimation) {
+  Widget buildPage(BuildContext context, Animation<double> animation,
+      Animation<double> secondaryAnimation) {
     return FadeTransition(opacity: animation, child: widget);
   }
 
@@ -65,6 +69,7 @@ class FadeTransitionPageRoute extends CupertinoPageRoute {
         onlyForwardAnimation = animation;
         break;
     }
-    return theme.buildTransitions(this, context, onlyForwardAnimation, secondaryAnimation, child);
+    return theme.buildTransitions(
+        this, context, onlyForwardAnimation, secondaryAnimation, child);
   }
 }

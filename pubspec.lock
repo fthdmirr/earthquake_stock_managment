@@ -278,6 +278,14 @@ packages:
     description: flutter
     source: sdk
     version: "0.0.0"
+  flutter_excel:
+    dependency: "direct main"
+    description:
+      name: flutter_excel
+      sha256: "2e0daa4e8f8d318306e87e9758e0a2d153f21c9989df0ca36a801d566a3bfd31"
+      url: "https://pub.dev"
+    source: hosted
+    version: "1.0.1"
   flutter_lints:
     dependency: "direct dev"
     description:

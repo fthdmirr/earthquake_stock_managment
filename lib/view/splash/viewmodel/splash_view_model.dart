@@ -1,4 +1,4 @@
-import 'package:earhquake_stock_managment/core/common/provider/base_provider.dart';
+import '../../../core/common/provider/base_provider.dart';
 
 import '../../../core/init/navigation/navigation_service.dart';
 import '../../bottom_bar/view/bottom_bar_view.dart';
