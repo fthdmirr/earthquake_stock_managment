@@ -2,7 +2,8 @@ import 'dart:developer';
 
 import 'package:earhquake_stock_managment/core/common/models/receive_model.dart';
 import 'package:earhquake_stock_managment/core/common/provider/base_provider.dart';
-import 'package:earhquake_stock_managment/core/init/hive_manager/i_cache_managar.dart';
+import 'package:earhquake_stock_managment/core/init/hive_manager/item_hive_manager.dart';
+import 'package:earhquake_stock_managment/core/init/hive_manager/receive_hive_manager.dart';
 
 class ProductsViewModel extends BaseViewModel {
   ProductsViewModel({
@@ -14,8 +15,8 @@ class ProductsViewModel extends BaseViewModel {
     _getCategories();
   }
 
-  final ICacheManager<ReceiveModel> receiveCacheManager;
-  final ICacheManager<Item> itemCacheManager;
+  final ReceiveCacheManager receiveCacheManager;
+  final ItemCacheManager itemCacheManager;
 
   List<ReceiveModel> _receivings = [];
   final List<Item> _items = [
@@ -41,7 +42,7 @@ class ProductsViewModel extends BaseViewModel {
     for (var received in _receivings) {
       for (var item in _items) {
         if (item.itemName == received.item.itemName) {
-          categories[received.item.itemName] = received.quantity;
+          categories[received.item.itemName] = received.quantity +  (categories[received.item.itemName] as int);
         }
       }
     }

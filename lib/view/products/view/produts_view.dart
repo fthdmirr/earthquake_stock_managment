@@ -1,6 +1,5 @@
 import 'package:earhquake_stock_managment/core/common/provider/view_model_provider.dart';
-import 'package:earhquake_stock_managment/core/init/hive_manager/item_hive_manager.dart';
-import 'package:earhquake_stock_managment/core/init/hive_manager/receive_hive_manager.dart';
+import 'package:earhquake_stock_managment/main.dart';
 import 'package:earhquake_stock_managment/view/products/view_model/product_view_model.dart';
 
 import 'package:flutter/material.dart';
@@ -13,8 +12,8 @@ class ProductsView extends StatelessWidget {
     return ViewModelProvider(
       model: ProductsViewModel(
         context: context,
-        receiveCacheManager: ReceiveCacheManager.instance,
-        itemCacheManager: ItemCacheManager.instance,
+        receiveCacheManager: receiveCacheManager,
+        itemCacheManager: itemCacheManager,
       ),
       builder: (ProductsViewModel model) => Scaffold(
         body: ListView.builder(

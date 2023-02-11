@@ -1,41 +1,43 @@
 import 'package:earhquake_stock_managment/core/common/models/receive_model.dart';
-import 'package:earhquake_stock_managment/core/init/hive_manager/i_cache_managar.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 
-class ItemCacheManager extends ICacheManager<Item> {
-  ItemCacheManager._init(super.key);
-
-  static ItemCacheManager? _instance;
-  static ItemCacheManager get instance {
-    return _instance ??= ItemCacheManager._init('itemCache');
+class ItemCacheManager {
+  ItemCacheManager(this.key) {
+    init();
   }
 
-  @override
+  final String key;
+  Box<Item>? _box;
+
+  Box<Item>? get box => _box;
+
+  Future<void> init() async {
+    registerAdapters();
+    if (!(_box?.isOpen ?? false)) {
+      _box = await Hive.openBox(key);
+    }
+  }
+
   Future<void> addItems(List<Item> values) async {
     await box?.addAll(values);
   }
 
-  @override
   Item? getItem(String key) {
     return box?.get(key);
   }
 
-  @override
   Future<void> putValue(Item value) async {
     await box?.put(key, value);
   }
 
-  @override
   Future<void> removeItem(String key) async {
     await box?.delete(key);
   }
 
-  @override
   List<Item>? getValues() {
     return box?.values.toList();
   }
 
-  @override
   void registerAdapters() {
     if (!Hive.isAdapterRegistered(1)) {
       Hive.registerAdapter(ItemAdapter());

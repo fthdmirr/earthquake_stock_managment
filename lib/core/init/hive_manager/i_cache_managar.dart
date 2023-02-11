@@ -1,32 +1,32 @@
-import 'package:hive_flutter/hive_flutter.dart';
+// import 'package:hive_flutter/hive_flutter.dart';
 
-abstract class ICacheManager<T> {
-  final String key;
-  Box<T>? _box;
+// abstract class ICacheManager<T> {
+//   final String key;
+//   Box<T>? _box;
 
-  Box<T>? get box => _box;
+//   Box<T>? get box => _box;
 
-  ICacheManager(this.key);
-  Future<void> init() async {
-    registerAdapters();
-    if (!(_box?.isOpen ?? false)) {
-      _box = await Hive.openBox(key);
-    }
-  }
+//   ICacheManager(this.key);
+//   Future<void> init() async {
+//     registerAdapters();
+//     if (!(_box?.isOpen ?? false)) {
+//       _box = await Hive.openBox(key);
+//     }
+//   }
 
-  void registerAdapters();
+//   void registerAdapters();
 
-  Future<void> clearAll() async {
-    await _box?.clear();
-  }
+//   Future<void> clearAll() async {
+//     await _box?.clear();
+//   }
 
-  Future<void> addItems(List<T> values);
+//   Future<void> addItems(List<T> values);
 
-  T? getItem(String key);
+//   T? getItem(String key);
 
-  List<T>? getValues();
+//   List<T>? getValues();
 
-  Future<void> putValue(T value);
+//   Future<void> putValue(T value);
 
-  Future<void> removeItem(String key);
-}
+//   Future<void> removeItem(String key);
+// }
