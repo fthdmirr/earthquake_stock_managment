@@ -4,10 +4,11 @@ import 'package:flutter/material.dart';
 
 class DropdownInput<T> extends StatelessWidget {
   const DropdownInput(
-      {super.key, required this.dropdownValues, this.firstValue});
+      {super.key, required this.dropdownValues, this.firstValue, required this.title});
 
   final List<T> dropdownValues;
   final T? firstValue;
+  final String title;
 
   @override
   Widget build(BuildContext context) {
@@ -23,32 +24,7 @@ class DropdownInput<T> extends StatelessWidget {
         elevation: 16,
         isExpanded: true,
         style: const TextStyle(color: Colors.black),
-        decoration: InputDecoration(
-          focusedBorder: OutlineInputBorder(
-            borderRadius: BorderRadius.circular(20),
-            borderSide: const BorderSide(
-              width: 2,
-              style: BorderStyle.solid,
-              color: AppColors.blueGem,
-            ),
-          ),
-          enabledBorder: OutlineInputBorder(
-            borderRadius: BorderRadius.circular(20),
-            borderSide: const BorderSide(
-              width: 2,
-              style: BorderStyle.solid,
-              color: AppColors.whiteGrey,
-            ),
-          ),
-          errorBorder: OutlineInputBorder(
-            borderRadius: BorderRadius.circular(20),
-            borderSide: const BorderSide(
-              width: 2,
-              style: BorderStyle.solid,
-              color: AppColors.orange,
-            ),
-          ),
-        ),
+        decoration: InputDecoration(label: Text(title)),
         onChanged: (T? value) {
           setState(() {
             dropDownValue = value as T;

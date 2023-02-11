@@ -47,6 +47,7 @@ class _VehicleInfoPage extends StatelessWidget {
         DropdownInput(
           dropdownValues: const ['Kamyon', 'Tır', 'Kamyonet'],
           firstValue: model.selectedVehicle,
+          title: 'Araç Tipi',
         ),
         const SizedBox(height: 12),
         BaseInput(title: 'Araç Plakası', controller: model.vehiclePlate),
@@ -54,6 +55,7 @@ class _VehicleInfoPage extends StatelessWidget {
         DropdownInput(
           dropdownValues: CitiesOfTurkey.values.map((e) => e.name).toList(),
           firstValue: model.fromTheProvience,
+          title: 'Gelen İl',
         ),
       ],
     );
@@ -71,11 +73,13 @@ class _ItemInfoPage extends StatelessWidget {
         DropdownInput(
           dropdownValues: const ['Kadın Kıyafet', 'Kuru Gıda', 'Meyve'],
           firstValue: model.selectedItem,
+          title: 'Ürün',
         ),
         const SizedBox(height: 12),
         DropdownInput(
           dropdownValues: const ['Koli', 'Adet'],
           firstValue: model.selectedItemType,
+          title: 'Ürün Tipi',
         ),
         const SizedBox(height: 12),
         BaseInput(
@@ -102,6 +106,7 @@ class _OverViewPage extends StatelessWidget {
         DropdownInput(
           dropdownValues: const ['Kamyon', 'Tır', 'Kamyonet'],
           firstValue: model.selectedVehicle,
+          title: 'Araç Tipi',
         ),
         const SizedBox(height: 12),
         BaseInput(
@@ -113,16 +118,19 @@ class _OverViewPage extends StatelessWidget {
         DropdownInput(
           dropdownValues: CitiesOfTurkey.values.map((e) => e.name).toList(),
           firstValue: model.fromTheProvience,
+          title: 'Gelen İl',
         ),
         const SizedBox(height: 12),
         DropdownInput(
           dropdownValues: const ['Kadın Kıyafet', 'Kuru Gıda', 'Meyve'],
           firstValue: model.selectedItem,
+          title: 'Ürün',
         ),
         const SizedBox(height: 12),
         DropdownInput(
           dropdownValues: const ['Koli', 'Adet'],
           firstValue: model.selectedItemType,
+          title: 'Ürün Tipi',
         ),
         const SizedBox(height: 12),
         BaseInput(
