@@ -1,9 +1,10 @@
 import 'package:earhquake_stock_managment/core/common/models/app_images/app_images.dart';
 import 'package:earhquake_stock_managment/core/common/models/inventory_item/inventory_item_model.dart';
 import 'package:earhquake_stock_managment/core/common/provider/view_model_provider.dart';
+import 'package:earhquake_stock_managment/core/components/inapp_notifier/inapp_notifier_service.dart';
 import 'package:earhquake_stock_managment/core/components/text/headline/headline5_text.dart';
 import 'package:earhquake_stock_managment/core/utils/constants/app_color.dart';
-import 'package:earhquake_stock_managment/view/home_page/view_model/home.viewmodel.dart';
+import 'package:earhquake_stock_managment/view/home_page/view_model/home_viewmodel.dart';
 
 import 'package:flutter/material.dart';
 
@@ -12,16 +13,15 @@ class HomeView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ViewModelProvider<ReceivingViewModel>(
-      model: ReceivingViewModel(
+    return ViewModelProvider<HomeViewModel>(
+      model: HomeViewModel(
         context: context,
       ),
-      builder: (ReceivingViewModel model) => Scaffold(
+      builder: (HomeViewModel model) => Scaffold(
         resizeToAvoidBottomInset: false,
-        backgroundColor: AppColors.systemBackground,
         floatingActionButton: Visibility(
           child: FloatingActionButton.extended(
-            onPressed: model.ada,
+            onPressed: () {},
             icon: const Icon(
               Icons.add,
             ),
@@ -62,48 +62,57 @@ class ReceivePageItemWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      margin: const EdgeInsets.all(8),
-      decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(10),
-        color: AppColors.white,
-      ),
-      child: Wrap(
-        crossAxisAlignment: WrapCrossAlignment.center,
-        alignment: WrapAlignment.center,
-        runAlignment: WrapAlignment.center,
-        direction: Axis.vertical,
-        spacing: 4,
-        children: [
-          Container(
-            height: 44,
-            width: 44,
-            decoration: const BoxDecoration(
-              color: AppColors.systemBackground,
-              shape: BoxShape.circle,
-            ),
-            child: Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: Image(
-                image: AppImages.memoryImage(item.icon),
-                color: AppColors.primaryColor,
+    return GestureDetector(
+      onTap: () {
+        InAppNotifier().add(
+          InAppNotifierModel(
+            child: const Text('Kategori Eklendi'),
+          ),
+        );
+      },
+      child: Container(
+        margin: const EdgeInsets.all(8),
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(10),
+          color: AppColors.white,
+        ),
+        child: Wrap(
+          crossAxisAlignment: WrapCrossAlignment.center,
+          alignment: WrapAlignment.center,
+          runAlignment: WrapAlignment.center,
+          direction: Axis.vertical,
+          spacing: 4,
+          children: [
+            Container(
+              height: 44,
+              width: 44,
+              decoration: const BoxDecoration(
+                color: AppColors.systemBackground,
+                shape: BoxShape.circle,
+              ),
+              child: Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: Image(
+                  image: AppImages.memoryImage(item.icon),
+                  color: AppColors.primaryColor,
+                ),
               ),
             ),
-          ),
-          Text(
-            item.name,
-            style: Theme.of(context).textTheme.headlineMedium?.copyWith(
-                  fontWeight: FontWeight.w400,
-                  color: AppColors.textColor,
-                ),
-          ),
-          Text(
-            '${item.quantity} ',
-            style: Theme.of(context).textTheme.displayMedium?.copyWith(
-                  color: AppColors.textColor,
-                ),
-          )
-        ],
+            Text(
+              item.name,
+              style: Theme.of(context).textTheme.headlineMedium?.copyWith(
+                    fontWeight: FontWeight.w400,
+                    color: AppColors.textColor,
+                  ),
+            ),
+            Text(
+              '${item.quantity} ',
+              style: Theme.of(context).textTheme.displayMedium?.copyWith(
+                    color: AppColors.textColor,
+                  ),
+            )
+          ],
+        ),
       ),
     );
   }

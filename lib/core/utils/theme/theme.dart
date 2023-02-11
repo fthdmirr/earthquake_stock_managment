@@ -79,6 +79,11 @@ final ThemeData myTheme = ThemeData(
           fontStyle: FontStyle.normal,
         ),
       ),
+      shape: MaterialStatePropertyAll(
+        RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(10),
+        ),
+      ),
       backgroundColor: const MaterialStatePropertyAll(
         AppColors.green,
       ),
@@ -110,6 +115,7 @@ final ThemeData myTheme = ThemeData(
     backgroundColor: AppColors.white,
     type: BottomNavigationBarType.fixed,
     showSelectedLabels: true,
+    elevation: 0,
     selectedItemColor: AppColors.dark,
     unselectedItemColor: AppColors.lynch,
     selectedLabelStyle: TextStyle(

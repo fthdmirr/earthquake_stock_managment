@@ -1,9 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
-import '../../utils/constants/app_color.dart';
-import '../text/headline/headline5_text.dart';
-
 class BaseInput extends StatelessWidget {
   const BaseInput({
     super.key,
@@ -23,52 +20,15 @@ class BaseInput extends StatelessWidget {
   final bool? isEnabled;
   @override
   Widget build(BuildContext context) {
-    return Row(
-      children: [
-        Expanded(
-          child: Headline5Text(
-            text: '$title:   ',
-            color: AppColors.black,
-          ),
-        ),
-        Expanded(
-          flex: 3,
-          child: TextFormField(
-            keyboardType: inputType,
-            controller: controller,
-            inputFormatters: inputFormatter,
-            enabled: isEnabled,
-            decoration: InputDecoration(
-              hintText: hint,
-              border: const OutlineInputBorder(),
-              focusedBorder: OutlineInputBorder(
-                borderRadius: BorderRadius.circular(20),
-                borderSide: const BorderSide(
-                  width: 2,
-                  style: BorderStyle.solid,
-                  color: AppColors.blueGem,
-                ),
-              ),
-              enabledBorder: OutlineInputBorder(
-                borderRadius: BorderRadius.circular(20),
-                borderSide: const BorderSide(
-                  width: 2,
-                  style: BorderStyle.solid,
-                  color: AppColors.whiteGrey,
-                ),
-              ),
-              errorBorder: OutlineInputBorder(
-                borderRadius: BorderRadius.circular(20),
-                borderSide: const BorderSide(
-                  width: 2,
-                  style: BorderStyle.solid,
-                  color: AppColors.orange,
-                ),
-              ),
-            ),
-          ),
-        ),
-      ],
+    return TextFormField(
+      keyboardType: inputType,
+      controller: controller,
+      inputFormatters: inputFormatter,
+      enabled: isEnabled,
+      decoration: InputDecoration(
+        hintText: hint,
+        labelText: title,
+      ),
     );
   }
 }

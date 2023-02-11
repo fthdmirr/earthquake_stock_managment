@@ -1,3 +1,4 @@
+// ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:flutter/material.dart';
 
 import '../../utils/constants/app_color.dart';
@@ -8,9 +9,15 @@ import '../text/headline/headline3_text.dart';
 import '../text/headline/headline4_text.dart';
 
 class ProductSelectionCard extends StatelessWidget {
-  const ProductSelectionCard({
-    super.key,
-  });
+  void Function() incrementPrees;
+  void Function() decrementPrees;
+  int productNumber;
+  ProductSelectionCard({
+    Key? key,
+    required this.incrementPrees,
+    required this.decrementPrees,
+    required this.productNumber,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -44,21 +51,29 @@ class ProductSelectionCard extends StatelessWidget {
               const CircleAvatar(
                 radius: 30,
                 backgroundColor: AppColors.pippin,
+                child: Icon(
+                  Icons.remove_circle,
+                  size: 40,
+                ),
               ),
               Row(
                 children: [
                   CustomBermudaTextButton(
-                    onPressed: () {},
+                    onPressed: () {
+                      decrementPrees();
+                    },
                     text: '-',
                   ),
                   const SizedBox(width: 20),
                   Headline2Text(
-                    text: '50',
+                    text: productNumber.toString(),
                     color: AppColors.black,
                   ),
                   const SizedBox(width: 20),
                   CustomBermudaTextButton(
-                    onPressed: () {},
+                    onPressed: () {
+                      incrementPrees();
+                    },
                     text: '+',
                   ),
                 ],
