@@ -4,13 +4,20 @@ part 'receive_model.g.dart';
 
 @HiveType(typeId: 0)
 class ReceiveModel {
-  ReceiveModel(this.vehicle, this.carPlate, this.itemType);
+  ReceiveModel(
+    this.vehicle,
+    this.carPlate,
+    this.itemType,
+    this.quantity,
+  );
   @HiveField(0)
   final Vehicle vehicle;
   @HiveField(1)
   final String carPlate;
   @HiveField(2)
   final ItemType itemType;
+  @HiveField(3)
+  final int quantity;
 }
 
 @HiveType(typeId: 1)

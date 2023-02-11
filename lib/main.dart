@@ -15,8 +15,6 @@ Future<void> main() async {
 
 Future<void> _init() async {
   await Hive.initFlutter();
-
-  Hive.registerAdapter(ReceiveModelAdapter());
   await SystemChrome.setPreferredOrientations([
     DeviceOrientation.portraitUp,
     DeviceOrientation.landscapeLeft,

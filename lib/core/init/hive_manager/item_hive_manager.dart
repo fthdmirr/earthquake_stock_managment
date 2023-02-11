@@ -32,11 +32,8 @@ class ItemCacheManager extends ICacheManager<Item> {
 
   @override
   void registerAdapters() {
-    if (!Hive.isAdapterRegistered(0)) {
+    if (!Hive.isAdapterRegistered(1)) {
       Hive.registerAdapter(ItemAdapter());
-      Hive.registerAdapter(ItemAdapter());
-      Hive.registerAdapter(ItemAdapter());
-      Hive.registerAdapter(VehicleAdapter());
     }
   }
 }

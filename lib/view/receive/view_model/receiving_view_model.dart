@@ -20,8 +20,10 @@ class ReceivingViewModel extends BaseViewModel {
   final ICacheManager<ItemType> itemTypeCacheManager;
 
   final TextEditingController _itemTypeNameController = TextEditingController();
+  final TextEditingController _quantityController = TextEditingController();
 
   TextEditingController get itemTypeNameController => _itemTypeNameController;
+  TextEditingController get quantityController => _quantityController;
 
   List<Item> items = [
     Item('Kiyafet'),
@@ -59,7 +61,8 @@ class ReceivingViewModel extends BaseViewModel {
 
   Future<void> addReceiving() async {
     try {
-      await receiveCacheManager.putValue(ReceiveModel(selectedVehicle, carPlate, selectedItemType));
+      await receiveCacheManager.putValue(ReceiveModel(
+          selectedVehicle, carPlate, selectedItemType, int.parse(quantityController.text)));
     } catch (e) {
       log(e.toString());
     }
