@@ -6,7 +6,6 @@ import 'package:earhquake_stock_managment/view/bottom_bar/viewmodel/bottom_bar_v
 import 'package:earhquake_stock_managment/view/home_page/screen/home_view.dart';
 import 'package:earhquake_stock_managment/view/product_selection_view/view/product_selection_view.dart';
 import 'package:earhquake_stock_managment/view/products/view/produts_view.dart';
-import 'package:earhquake_stock_managment/view/reports/view/reports_view.dart';
 import 'package:flutter/material.dart';
 
 class BottomBarView extends StatelessWidget {
@@ -36,7 +35,7 @@ class BottomBarView extends StatelessWidget {
     const HomeView(),
     const ProductsView(),
     const ProductSelectionView(),
-    const ReportsView(),
+    const ProductSelectionView(),
   ];
 
   final List<String> _label = [

@@ -1,41 +1,41 @@
-import 'package:earhquake_stock_managment/core/components/card/product_selection_card.dart';
-import 'package:earhquake_stock_managment/core/utils/constants/app_color.dart';
+import 'package:earhquake_stock_managment/core/common/provider/view_model_provider.dart';
+import 'package:earhquake_stock_managment/core/components/stepper/stepper_model.dart';
+import 'package:earhquake_stock_managment/core/components/stepper/stepper_view.dart';
+import 'package:earhquake_stock_managment/view/product_selection_view/viewmodel/product_selection_view_model.dart';
 import 'package:flutter/material.dart';
-import 'package:kartal/kartal.dart';
+
+import '../../../core/components/card/product_selection_card.dart';
 
 class ProductSelectionView extends StatelessWidget {
   const ProductSelectionView({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: Column(
-        children: [
-          Expanded(
-            child: ListView.builder(
-              shrinkWrap: true,
-              itemCount: 3,
-              physics: const BouncingScrollPhysics(),
-              itemBuilder: (context, index) => const ProductSelectionCard(),
-            ),
-          ),
-          Container(
-            width: double.infinity,
-            height: 100,
-            margin: const EdgeInsets.symmetric(horizontal: 0, vertical: 0),
-            decoration: const BoxDecoration(
-              color: AppColors.white,
-            ),
-            child: Center(
-              child: ElevatedButton(
-                onPressed: () {},
-                style: ElevatedButton.styleFrom(
-                    minimumSize: Size(context.width / 1, 70)),
-                child: const Text('data'),
+    return ViewModelProvider<ProductSelectionViewModel>(
+      model: ProductSelectionViewModel(context: context),
+      builder: (model) => StepperView(
+        steppers: [
+          StepperModel(title: 'Ürün Seçme', index: 0),
+          StepperModel(title: 'Tır Bilgileri', index: 1),
+          StepperModel(title: 'Genel Bakış', index: 2),
+        ],
+        onPressed: () {},
+        widget: Column(
+          children: [
+            Expanded(
+              child: ListView.builder(
+                shrinkWrap: true,
+                itemCount: 3,
+                physics: const BouncingScrollPhysics(),
+                itemBuilder: (context, index) => ProductSelectionCard(
+                  decrementPrees: () => model.decrement(),
+                  incrementPrees: () => model.increment(),
+                  productNumber: model.productNumber,
+                ),
               ),
             ),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }

@@ -79,10 +79,14 @@ final ThemeData myTheme = ThemeData(
           fontStyle: FontStyle.normal,
         ),
       ),
+      shape: MaterialStatePropertyAll(
+        RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(10),
+        ),
+      ),
       backgroundColor: const MaterialStatePropertyAll(
         AppColors.green,
       ),
-      
     ),
   ),
   floatingActionButtonTheme: const FloatingActionButtonThemeData(
