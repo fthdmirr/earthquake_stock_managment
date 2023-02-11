@@ -42,7 +42,7 @@ class ReceivingViewModel extends BaseViewModel {
   ];
 
   Vehicle selectedVehicle = Vehicle.kamyon;
-  String carPlate = '';
+  TextEditingController carPlate = TextEditingController(text: '');
   ItemType selectedItemType = ItemType('');
   Item selectedItem = Item('');
 
@@ -63,7 +63,7 @@ class ReceivingViewModel extends BaseViewModel {
     try {
       await receiveCacheManager.putValue(ReceiveModel(
         selectedVehicle,
-        carPlate,
+        carPlate.text,
         selectedItemType,
         selectedItem,
         int.parse(quantityController.text),

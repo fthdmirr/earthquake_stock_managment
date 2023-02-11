@@ -55,11 +55,11 @@ class ProductsViewModel extends BaseViewModel {
     }
   }
 
-  Future<void> _getItemTypes() async {
-    try {
-      _items = itemCacheManager.getValues() ?? [];
-    } catch (e) {
-      log(e.toString());
-    }
-  }
+  // Future<void> _getItemTypes() async {
+  //   try {
+  //     _items = itemCacheManager.getValues() ?? [];
+  //   } catch (e) {
+  //     log(e.toString());
+  //   }
+  // }
 }
