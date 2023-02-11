@@ -27,51 +27,86 @@ class _StepperViewViewState extends State<StepperView> {
     setState(() {});
   }
 
+  void buttonPressed() {
+    if (currentIndex != widget.widgets.length - 1) {
+      changeCurrentIndex(currentIndex + 1);
+    }
+    widget.onPressed();
+  }
+
+  void backButton() {
+    changeCurrentIndex(currentIndex - 1);
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      resizeToAvoidBottomInset: false,
-      body: Column(
-        children: [
-          SizedBox(height: context.dynamicHeight(0.02)),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-            children: [
-              ...widget.steppers
-                  .map((step) => Row(
-                        children: [
-                          Column(
-                            children: [
-                              CircleAvatar(
-                                backgroundColor: step.index <= currentIndex
-                                    ? AppColors.green
-                                    : AppColors.greyapp,
-                                maxRadius: 17.5,
-                              ),
-                              Text(step.title),
-                            ],
-                          ),
-                        ],
-                      ))
-                  .toList(),
-            ],
-          ),
-          const Spacer(flex: 1),
-          Expanded(flex: 8, child: widget.widgets[currentIndex]),
-        ],
-      ),
-      bottomNavigationBar: ElevatedButton(
-        onPressed: () {
-          if (currentIndex != widget.widgets.length - 1) {
-            changeCurrentIndex(currentIndex + 1);
-          }
-          widget.onPressed();
-        },
-        style: ButtonStyle(
-            minimumSize: MaterialStateProperty.all<Size>(
-                Size(double.infinity, context.dynamicHeight(0.06)))),
-        child: const Text('Devam Et'),
-      ),
+        body: Column(
+          children: [
+            Padding(
+              padding: const EdgeInsets.all(18.0),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                children: [
+                  ...widget.steppers
+                      .map(
+                        (step) => Row(
+                          children: [
+                            Column(
+                              children: [
+                                CircleAvatar(
+                                  backgroundColor: step.index <= currentIndex
+                                      ? AppColors.green
+                                      : AppColors.greyapp,
+                                  maxRadius: 17.5,
+                                ),
+                                Text(step.title),
+                              ],
+                            ),
+                          ],
+                        ),
+                      )
+                      .toList(),
+                ],
+              ),
+            ),
+            Expanded(flex: 8, child: widget.widgets[currentIndex]),
+          ],
+        ),
+        bottomNavigationBar: currentIndex == 0
+            ? _SingleButton(title: 'Devam Et', onPressed: buttonPressed)
+            : Row(
+                children: [
+                  Expanded(
+                      child: _SingleButton(
+                          title: 'Geri Dön',
+                          color: AppColors.greyapp,
+                          onPressed: backButton)),
+                  const SizedBox(width: 10),
+                  Expanded(
+                      child: _SingleButton(
+                          title: 'Devam Et', onPressed: buttonPressed))
+                ],
+              ));
+  }
+}
+
+class _SingleButton extends StatelessWidget {
+  const _SingleButton(
+      {required this.title, required this.onPressed, this.color});
+  final String title;
+  final Function() onPressed;
+  final Color? color;
+  @override
+  Widget build(BuildContext context) {
+    return ElevatedButton(
+      onPressed: onPressed,
+      style: ButtonStyle(
+          backgroundColor:
+              color != null ? MaterialStateProperty.all<Color>(color!) : null,
+          minimumSize: MaterialStateProperty.all<Size>(
+              Size(double.infinity, context.dynamicHeight(0.06)))),
+      child: Text(title),
     );
   }
 }
