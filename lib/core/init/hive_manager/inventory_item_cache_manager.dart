@@ -35,6 +35,10 @@ class InventoryItemCacheManager {
     await box?.put(key, value);
   }
 
+  Future<void> putAtValue(int index, InventoryItem value) async {
+    await box?.putAt(index, value);
+  }
+
   Future<void> removeItem(String key) async {
     await box?.delete(key);
   }

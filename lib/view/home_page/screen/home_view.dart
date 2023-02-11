@@ -1,18 +1,14 @@
 import 'package:earhquake_stock_managment/core/common/models/app_images/app_images.dart';
 import 'package:earhquake_stock_managment/core/common/models/inventory_item/inventory_item_model.dart';
-
-import '../../../core/common/provider/view_model_provider.dart';
-import '../../../core/init/navigation/navigation_service.dart';
-import 'package:earhquake_stock_managment/view/receive/view_model/receiving_view_model.dart';
+import 'package:earhquake_stock_managment/core/common/provider/view_model_provider.dart';
+import 'package:earhquake_stock_managment/core/components/text/headline/headline5_text.dart';
+import 'package:earhquake_stock_managment/core/utils/constants/app_color.dart';
+import 'package:earhquake_stock_managment/view/home_page/view_model/home.viewmodel.dart';
 
 import 'package:flutter/material.dart';
 
-import '../../../core/components/text/headline/headline5_text.dart';
-import '../../../core/utils/constants/app_color.dart';
-import '../../added_item_type/added_category_view.dart';
-
-class ReceivingView extends StatelessWidget {
-  const ReceivingView({super.key});
+class HomeView extends StatelessWidget {
+  const HomeView({super.key});
 
   @override
   Widget build(BuildContext context) {

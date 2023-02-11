@@ -1,8 +1,5 @@
-import 'package:earhquake_stock_managment/core/common/models/app_icons_extension.dart';
-import 'package:earhquake_stock_managment/core/common/models/app_images/app_images.dart';
 import 'package:earhquake_stock_managment/core/common/models/inventory_item/inventory_item_model.dart';
 import 'package:earhquake_stock_managment/core/init/hive_manager/inventory_item_cache_manager.dart';
-import 'package:flutter/material.dart';
 
 import '../../../core/common/provider/base_provider.dart';
 
@@ -17,18 +14,21 @@ class ReceivingViewModel extends BaseViewModel {
 
   @override
   initViewModel() async {
-    setInventoryItem();
+    //setInventoryItem();
 
     super.initViewModel();
   }
 
   ada() {
-    itemCacheManager.addValue(InventoryItem(
-      id: '5',
-      name: 'Çocuk Bezi',
-      quantity: 10,
-      icon: 'tent_icon',
-    ));
+    itemCacheManager.putAtValue(
+      5,
+      InventoryItem(
+        id: '5',
+        name: 'Çocuk Bezi',
+        quantity: 10,
+        icon: 'tent_icon',
+      ),
+    );
     notifyListeners();
   }
 
@@ -38,6 +38,7 @@ class ReceivingViewModel extends BaseViewModel {
     for (var i = 0; i < inventoryItems.length; i++) {
       inventoryItems[i].quantity = tempInventoryItems[i].quantity;
     }
+    notifyListeners();
   }
 
   List<InventoryItem> inventoryItems = [
@@ -90,39 +91,4 @@ class ReceivingViewModel extends BaseViewModel {
       icon: 'tent_icon',
     ),
   ];
-
-  // Vehicle selectedVehicle = Vehicle.kamyon;
-  // TextEditingController carPlate = TextEditingController(text: '');
-  // ItemType selectedItemType = ItemType('Adet');
-  // Item selectedItem = Item('Kiyafet');
-  // String selectedCity = CitiesOfTurkey.kayseri.name;
-
-  // void _getItem() {
-  //   items.addAll(itemCacheManager.getValues() ?? []);
-  // }
-
-  // void _getItemTypes() {
-  //   itemTypes.addAll(itemTypeCacheManager.getValues() ?? []);
-  // }
-
-  // void _init() {
-  //   _getItem();
-  //   _getItemTypes();
-  // }
-
-  // Future<void> addReceiving() async {
-  //   try {
-  //     await receiveCacheManager.addValue(ReceiveModel(
-  //       selectedVehicle,
-  //       carPlate.text,
-  //       selectedItemType,
-  //       selectedItem,
-  //       int.parse(quantityController.text),
-  //       selectedCity,
-  //       DateTime.now().toIso8601String(),
-  //     ));
-  //   } catch (e) {
-  //     log(e.toString());
-  //   }
-  // }
 }
