@@ -1,5 +1,6 @@
 import 'package:earhquake_stock_managment/core/components/dropdown/dropdown_input.dart';
 import 'package:earhquake_stock_managment/core/components/input/base_input.dart';
+import 'package:earhquake_stock_managment/core/components/sheet/app_bottom_sheet.dart';
 import 'package:earhquake_stock_managment/core/components/stepper/stepper_model.dart';
 import 'package:earhquake_stock_managment/core/components/stepper/stepper_view.dart';
 import 'package:earhquake_stock_managment/core/utils/constants/enum/cities_of_turkey.dart';
@@ -30,7 +31,8 @@ class ReceivingView extends StatelessWidget {
                 _ItemInfoPage(model),
                 _OverViewPage(model),
               ],
-              onPressed: () {},
+              onPressed: () {
+              },
             ));
   }
 }
