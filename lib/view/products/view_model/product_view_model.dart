@@ -18,7 +18,7 @@ class ProductsViewModel extends BaseViewModel {
   final ICacheManager<Item> itemCacheManager;
 
   List<ReceiveModel> _receivings = [];
-  List<Item> _items = [
+  final List<Item> _items = [
     Item('Kiyafet'),
     Item('Su'),
     Item('Yiyecek'),
@@ -28,13 +28,13 @@ class ProductsViewModel extends BaseViewModel {
     Item('Çocuk Bezi'),
   ];
   Map<String, int> categories = {
-    'Kiyafet':0,
-    'Su':0,
-    'Yiyecek':0,
-    'Temel Gida':0,
-    'Temizlik Malzemesi':0,
-    'Çadir':0,
-    'Çocuk Bezi':0,
+    'Kiyafet': 0,
+    'Su': 0,
+    'Yiyecek': 0,
+    'Temel Gida': 0,
+    'Temizlik Malzemesi': 0,
+    'Çadir': 0,
+    'Çocuk Bezi': 0,
   };
 
   void _getCategories() {

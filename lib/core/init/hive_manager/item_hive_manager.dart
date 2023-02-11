@@ -3,7 +3,12 @@ import 'package:earhquake_stock_managment/core/init/hive_manager/i_cache_managar
 import 'package:hive_flutter/hive_flutter.dart';
 
 class ItemCacheManager extends ICacheManager<Item> {
-  ItemCacheManager(String key) : super(key);
+  ItemCacheManager._init(super.key);
+
+  static ItemCacheManager? _instance;
+  static ItemCacheManager get instance {
+    return _instance ??= ItemCacheManager._init('itemCache');
+  }
 
   @override
   Future<void> addItems(List<Item> values) async {

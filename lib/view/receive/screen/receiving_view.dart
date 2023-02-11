@@ -18,9 +18,9 @@ class ReceivingView extends StatelessWidget {
     return ViewModelProvider(
       model: ReceivingViewModel(
         context: context,
-        receiveCacheManager: ReceiveCacheManager('receiving'),
-        itemCacheManager: ItemCacheManager('item'),
-        itemTypeCacheManager: ItemTypeCacheManager('itemTypes'),
+        receiveCacheManager: ReceiveCacheManager.instance,
+        itemCacheManager: ItemCacheManager.instance,
+        itemTypeCacheManager: ItemTypeCacheManager.instance,
       ),
       builder: (ReceivingViewModel model) => Scaffold(
           body: SingleChildScrollView(

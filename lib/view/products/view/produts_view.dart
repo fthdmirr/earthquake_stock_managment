@@ -13,8 +13,8 @@ class ProductsView extends StatelessWidget {
     return ViewModelProvider(
       model: ProductsViewModel(
         context: context,
-        receiveCacheManager: ReceiveCacheManager('receiving'),
-        itemCacheManager: ItemCacheManager('item'),
+        receiveCacheManager: ReceiveCacheManager.instance,
+        itemCacheManager: ItemCacheManager.instance,
       ),
       builder: (ProductsViewModel model) => Scaffold(
         body: ListView.builder(
