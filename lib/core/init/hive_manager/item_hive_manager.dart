@@ -26,6 +26,10 @@ class ItemCacheManager {
     return box?.get(key);
   }
 
+  Future<void> addValue(Item value) async {
+    await box?.add(value);
+  }
+
   Future<void> putValue(Item value) async {
     await box?.put(key, value);
   }

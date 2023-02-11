@@ -65,7 +65,7 @@ class ReceivingViewModel extends BaseViewModel {
 
   Future<void> addReceiving() async {
     try {
-      await receiveCacheManager.putValue(ReceiveModel(
+      await receiveCacheManager.addValue(ReceiveModel(
         selectedVehicle,
         carPlate.text,
         selectedItemType,

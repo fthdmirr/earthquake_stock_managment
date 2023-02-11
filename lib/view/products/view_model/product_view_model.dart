@@ -42,7 +42,8 @@ class ProductsViewModel extends BaseViewModel {
     for (var received in _receivings) {
       for (var item in _items) {
         if (item.itemName == received.item.itemName) {
-          categories[received.item.itemName] = received.quantity +  (categories[received.item.itemName] as int);
+          categories[received.item.itemName] =
+              received.quantity + (categories[received.item.itemName] as int);
         }
       }
     }
