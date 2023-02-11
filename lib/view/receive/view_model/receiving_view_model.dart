@@ -39,7 +39,7 @@ class ReceivingViewModel extends BaseViewModel {
     ItemType('Koli'),
     ItemType('Poşet'),
   ];
-  
+
   Vehicle selectedVehicle = Vehicle.kamyon;
   String carPlate = '';
   ItemType selectedItemType = ItemType('');
