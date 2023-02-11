@@ -14,8 +14,8 @@ class NavigationRoute {
     switch (args.name) {
       case BottomBarView.routeName:
         return FadeTransitionPageRoute(BottomBarView(), settings: args);
-      case HomePage.routeName:
-        return FadeTransitionPageRoute(const HomePage(), settings: args);
+      case HomeView.routeName:
+        return FadeTransitionPageRoute(const HomeView(), settings: args);
 
       default:
         return MaterialPageRoute(

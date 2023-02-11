@@ -21,7 +21,7 @@ class DropdownAndTitleWidget extends StatelessWidget {
           children: [
             Expanded(child: Text('$title:   ')),
             Expanded(
-              flex: 2,
+              flex: 3,
               child: DropdownInput<String>(
                 dropdownValues: dropdownList,
                 firstValue: dropDownFirstValue,
