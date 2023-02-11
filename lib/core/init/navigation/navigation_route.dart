@@ -1,5 +1,4 @@
 import 'package:earhquake_stock_managment/view/bottom_bar/view/bottom_bar_view.dart';
-import 'package:earhquake_stock_managment/view/products/view/produts_view.dart';
 import 'package:earhquake_stock_managment/view/products_detail/view/products_detail_view.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';

@@ -41,7 +41,6 @@ class ReceivingViewModel extends BaseViewModel {
     ItemType('Adet'),
     ItemType('Çuval'),
     ItemType('Koli'),
-    ItemType('Poşet'),
   ];
 
   Vehicle selectedVehicle = Vehicle.kamyon;

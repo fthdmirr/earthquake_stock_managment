@@ -1,3 +1,4 @@
+import 'package:earhquake_stock_managment/view/added_item_type/added_category_view.dart';
 import 'package:earhquake_stock_managment/view/products/view/produts_view.dart';
 import 'package:earhquake_stock_managment/view/receive/screen/receiving_view.dart';
 import 'package:flutter/material.dart';
@@ -32,11 +33,8 @@ class BottomBarView extends StatelessWidget {
     const ReceivingView(),
     const ProductsView(),
     const ReportsView(),
+    const AddedCategory(),
   ];
 
-  final List<String> _label = [
-    'Mal Kabul',
-    'Ürün',
-    'Rapor',
-  ];
+  final List<String> _label = ['Mal Kabul', 'Ürün', 'Rapor', 'Kategoriler'];
 }

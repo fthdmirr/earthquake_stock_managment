@@ -2,7 +2,6 @@ import 'dart:developer';
 
 import 'package:earhquake_stock_managment/core/common/models/receive_model.dart';
 import 'package:earhquake_stock_managment/core/common/provider/base_provider.dart';
-import 'package:earhquake_stock_managment/core/init/hive_manager/item_hive_manager.dart';
 import 'package:earhquake_stock_managment/core/init/hive_manager/item_type_hive_manager.dart';
 import 'package:earhquake_stock_managment/core/init/hive_manager/receive_hive_manager.dart';
 import 'package:earhquake_stock_managment/core/utils/constants/enum/earhquake_cities_and_districts.dart';
@@ -21,12 +20,10 @@ class ProductsDetailViewModel extends BaseViewModel {
   final ReceiveCacheManager receiveCacheManager;
   final ItemTypeCacheManager itemTypeManager;
 
-
   List<ItemType> itemTypes = [
     ItemType('Adet'),
     ItemType('Çuval'),
     ItemType('Koli'),
-    ItemType('Poşet'),
   ];
 
   String selectedItem = '';
@@ -46,4 +43,8 @@ class ProductsDetailViewModel extends BaseViewModel {
       log(e.toString());
     }
   }
+
+  // Future<void> sendItem() async {
+  //  await receiveCacheManager.putValue();
+  // }
 }
