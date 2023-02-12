@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 
 abstract class BaseViewModel extends ChangeNotifier {
-  BaseViewModel({required this.context});
+  BaseViewModel({required this.context}) {
+    initViewModel();
+  }
 
   BuildContext context;
 

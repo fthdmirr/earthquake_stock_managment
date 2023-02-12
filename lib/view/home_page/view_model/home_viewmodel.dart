@@ -1,5 +1,3 @@
-import 'dart:developer';
-
 import 'package:earhquake_stock_managment/core/common/models/inventory_item/inventory_item_model.dart';
 import 'package:earhquake_stock_managment/main.dart';
 
@@ -9,15 +7,15 @@ class HomeViewModel extends BaseViewModel {
   HomeViewModel({
     required super.context,
   }) {
-    initViewModel();
+    //initViewModel();
   }
 
-  @override
-  initViewModel() async {
-    setInventoryItem();
+  // @override
+  // initViewModel() async {
+  //   setInventoryItem();
 
-    super.initViewModel();
-  }
+  //   super.initViewModel();
+  // }
 
   add() {
     itemCacheManager.addValue(
