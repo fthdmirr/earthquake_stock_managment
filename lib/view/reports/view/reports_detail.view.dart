@@ -1,3 +1,4 @@
+import 'package:earhquake_stock_managment/core/components/appbar/base_app_bar.dart';
 import 'package:earhquake_stock_managment/core/components/card/product_detail_card.dart';
 import 'package:earhquake_stock_managment/core/utils/constants/app_color.dart';
 import 'package:flutter/material.dart';
@@ -8,9 +9,7 @@ class ReportsDetailView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('Rapor Detay', style: TextStyle(color: Colors.black)),
-      ),
+      appBar: BaseAppBar(title: 'Rapor Detay'),
       body: SingleChildScrollView(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.start,

@@ -203,7 +203,8 @@ class TopSnackBar extends StatefulWidget {
   _TopSnackBarState createState() => _TopSnackBarState();
 }
 
-class _TopSnackBarState extends State<TopSnackBar> with SingleTickerProviderStateMixin {
+class _TopSnackBarState extends State<TopSnackBar>
+    with SingleTickerProviderStateMixin {
   late Animation offsetAnimation;
   late AnimationController animationController;
   double? topPosition;
@@ -295,7 +296,8 @@ class _TopSnackBarState extends State<TopSnackBar> with SingleTickerProviderStat
             left: widget.model.leftPadding,
             bottom: 10,
           ),
-      constraints: BoxConstraints(minHeight: 50 + MediaQuery.of(context).padding.top),
+      constraints:
+          BoxConstraints(minHeight: 50 + MediaQuery.of(context).padding.top),
       //height: 50 + MediaQuery.of(context).padding.top,
       decoration: BoxDecoration(
         color: skinColor,
@@ -366,7 +368,8 @@ class InAppModal extends StatefulWidget {
   _InAppModalState createState() => _InAppModalState();
 }
 
-class _InAppModalState extends State<InAppModal> with SingleTickerProviderStateMixin {
+class _InAppModalState extends State<InAppModal>
+    with SingleTickerProviderStateMixin {
   late Animation animation;
   late AnimationController animationController;
   double opacity = 0;
@@ -468,7 +471,8 @@ class _InAppModalState extends State<InAppModal> with SingleTickerProviderStateM
                           borderRadius: BorderRadius.circular(8),
                           child: Container(
                             padding: widget.model.contentPadding,
-                            color: widget.model.background ?? Colors.transparent,
+                            color:
+                                widget.model.background ?? Colors.transparent,
                             child: widget.model.child,
                           ),
                         ),
@@ -548,9 +552,15 @@ class InAppNotifierModel {
     this.dismissable = true,
     this.background,
   })  : showOutAnimationDuration = showOutAnimationDuration ??
-            (isBanner ? const Duration(milliseconds: 500) : const Duration(milliseconds: 500)),
+            (isBanner
+                ? const Duration(milliseconds: 500)
+                : const Duration(milliseconds: 500)),
         hideOutAnimationDuration = hideOutAnimationDuration ??
-            (isBanner ? const Duration(milliseconds: 550) : const Duration(milliseconds: 200)),
+            (isBanner
+                ? const Duration(milliseconds: 550)
+                : const Duration(milliseconds: 200)),
         displayDuration = displayDuration ??
-            (isBanner ? const Duration(milliseconds: 3000) : const Duration(days: 1));
+            (isBanner
+                ? const Duration(milliseconds: 3000)
+                : const Duration(days: 1));
 }

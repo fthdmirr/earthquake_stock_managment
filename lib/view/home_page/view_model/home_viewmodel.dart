@@ -1,5 +1,3 @@
-import 'dart:developer';
-
 import 'package:earhquake_stock_managment/core/common/models/inventory_item/inventory_item_model.dart';
 import 'package:earhquake_stock_managment/main.dart';
 

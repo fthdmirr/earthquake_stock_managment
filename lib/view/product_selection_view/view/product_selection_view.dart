@@ -10,9 +10,9 @@ import 'package:earhquake_stock_managment/view/product_selection_view/viewmodel/
 import '../../../core/components/card/product_selection_card.dart';
 import '../../../core/components/dropdown/dropdown_input.dart';
 import '../../../core/components/input/base_input.dart';
-import '../../../core/components/text/headline/headline4_text.dart';
 import '../../../core/utils/constants/app_color.dart';
 import '../../../core/utils/constants/enum/cities_of_turkey.dart';
+import '../../reports/view/reports_detail.view.dart';
 
 part '../widget/stepper_driver_ınformation.dart';
 
@@ -24,6 +24,7 @@ class ProductSelectionView extends StatelessWidget {
     return ViewModelProvider<ProductSelectionViewModel>(
       model: ProductSelectionViewModel(context: context),
       builder: (model) => StepperView(
+        singleButtontitle: 'Yüklenen Ürünleri Tamamla',
         steppers: [
           StepperModel(title: 'Ürün Seçme', index: 0),
           StepperModel(title: 'Tır Bilgileri', index: 1),
@@ -53,53 +54,42 @@ class ProductSelectionView extends StatelessWidget {
               vertical: 10,
             ),
             child: Column(
+              mainAxisAlignment: MainAxisAlignment.start,
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Column(
-                  children: [
-                    DropdownInput(
-                      title: 'Araç Tipi',
-                      dropdownValues: const ['Kamyon', 'Tır', 'Kamyonet'],
-                      firstValue: model.selectedVehicle,
-                    ),
-                    const SizedBox(height: 20),
-                    BaseInput(
-                      title: 'Araç Plakası',
-                      inputType: TextInputType.name,
-                      controller: model.vehicleNoController,
-                    ),
-                    const SizedBox(height: 20),
-                    BaseInput(
-                      title: 'Şoför Bilgisi',
-                      inputType: TextInputType.name,
-                      controller: model.driverInformationController,
-                    ),
-                    const SizedBox(height: 20),
-                    BaseInput(
-                      title: 'Telefon Numarası',
-                      inputType: TextInputType.phone,
-                      controller: model.phoneNoController,
-                      inputFormatter: [
-                        MaskTextInputFormatter(
-                          initialText: "(XXX) XXX-XX-XX",
-                          mask: '(###) ###-##-##',
-                          filter: {"#": RegExp(r'^[0-9]*$')},
-                        ),
-                      ],
-                    ),
-                    const SizedBox(height: 20),
-                    DropdownInput(
-                      title: 'Gidecek Yer',
-                      dropdownValues:
-                          CitiesOfTurkey.values.map((e) => e.name).toList(),
-                      firstValue: model.fromTheProvience,
-                    ),
-                  ],
+                const ReportsDetailTextPart(
+                  keyText: 'Araç Tipi',
+                  valueText: 'Kamyon',
                 ),
-                const SizedBox(height: 20),
-                Headline4Text(
-                  text: 'Ürünler',
-                  color: AppColors.dark,
+                const ReportsDetailTextPart(
+                  keyText: 'Araç Plakası',
+                  valueText: '34 AY 123',
+                ),
+                const ReportsDetailTextPart(
+                  keyText: 'Araç Sürücüsü',
+                  valueText: 'Ahmet Yılmaz',
+                ),
+                const ReportsDetailTextPart(
+                  keyText: 'Telefon Numarası',
+                  valueText: '0532 123 45 67',
+                ),
+                const ReportsDetailTextPart(
+                  keyText: 'Gidilecek Yer',
+                  valueText: 'Hatay',
+                ),
+                const SizedBox(
+                  height: 16,
+                ),
+                Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 16),
+                  child: Text(
+                    'Ürünler',
+                    style: Theme.of(context).textTheme.bodyLarge?.copyWith(
+                          color: AppColors.black,
+                          fontWeight: FontWeight.bold,
+                        ),
+                    textAlign: TextAlign.left,
+                  ),
                 ),
                 const SizedBox(height: 20),
                 ListView.builder(
