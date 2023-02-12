@@ -10,6 +10,7 @@ class BaseInput extends StatelessWidget {
     this.inputType,
     this.isEnabled,
     this.inputFormatter,
+    this.onChanged,
   });
 
   final String title;
@@ -18,6 +19,7 @@ class BaseInput extends StatelessWidget {
   final TextEditingController controller;
   final List<TextInputFormatter>? inputFormatter;
   final bool? isEnabled;
+  final void Function(String)? onChanged;
   @override
   Widget build(BuildContext context) {
     return TextFormField(
@@ -29,6 +31,7 @@ class BaseInput extends StatelessWidget {
         hintText: hint,
         labelText: title,
       ),
+      onChanged: onChanged,
     );
   }
 }

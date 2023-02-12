@@ -1,6 +1,7 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:earhquake_stock_managment/core/common/models/app_images/app_images.dart';
 import 'package:earhquake_stock_managment/core/common/models/inventory_item/inventory_item_model.dart';
+import 'package:earhquake_stock_managment/core/utils/input_field_generator.dart';
 import 'package:flutter/material.dart';
 
 import '../../utils/constants/app_color.dart';
@@ -48,8 +49,9 @@ class _ProductSelectionCardState extends State<ProductSelectionCard> {
               CircleAvatar(
                 radius: 30,
                 backgroundColor: AppColors.wildSand,
-                child:
-                    Image(image: AppImages.memoryImage(widget.inventoryItem.icon ?? 'empty_icon')),
+                child: Image(
+                    image: AppImages.memoryImage(
+                        widget.inventoryItem.icon ?? 'empty_icon')),
               ),
               Headline3Text(
                 text: widget.inventoryItem.name,
@@ -80,7 +82,8 @@ class _ProductSelectionCardState extends State<ProductSelectionCard> {
                     onPressed: () {
                       widget.onDicrise();
                       _textEditingController.text =
-                          (int.parse(_textEditingController.text) - 1).toString();
+                          (int.parse(_textEditingController.text) - 1)
+                              .toString();
                     },
                     text: '-',
                   ),
@@ -95,13 +98,20 @@ class _ProductSelectionCardState extends State<ProductSelectionCard> {
                           borderRadius: BorderRadius.circular(10),
                         ),
                       ),
+                      inputFormatters: getTextInputFormatters(
+                        onlyNumber: true,
+                        positiveIntegerFilter: true,
+                        spaceFilter: true,
+                        blockEmoji: true,
+                      ),
                     ),
                   ),
                   CustomBermudaTextButton(
                     onPressed: () {
                       widget.onIncrease();
                       _textEditingController.text =
-                          (int.parse(_textEditingController.text) + 1).toString();
+                          (int.parse(_textEditingController.text) + 1)
+                              .toString();
                     },
                     text: '+',
                   ),
