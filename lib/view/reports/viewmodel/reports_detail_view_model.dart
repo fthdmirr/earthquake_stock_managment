@@ -74,7 +74,7 @@ class ReportsDetailViewModel extends BaseViewModel {
                         _dataRow(
                             dataKey: 'SOFOR ADI', dataValue: report.vehicleInfo.vehicle.driverName),
                         _dataRow(
-                            dataKey: 'SOFOR İLETISIM',
+                            dataKey: 'SOFOR ILETISIM',
                             dataValue: report.vehicleInfo.vehicle.driverPhone),
                         ...getItems()
                       ],
@@ -95,7 +95,7 @@ class ReportsDetailViewModel extends BaseViewModel {
                 ),
                 pw.SizedBox(height: 42),
                 pw.Text(
-                  'Yukarida detay bilgileri yer alan araç belirtilen ile yardim amaciyla gitmesine izin verilmiştir',
+                  'Yukarida detay bilgileri yer alan araç belirtilen ile yardim amaciyla gitmesine izin verilmistir',
                   style: _style,
                   textAlign: pw.TextAlign.center,
                 ),
