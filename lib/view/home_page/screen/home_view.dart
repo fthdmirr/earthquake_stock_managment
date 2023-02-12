@@ -1,4 +1,6 @@
 import 'package:earhquake_stock_managment/core/common/provider/view_model_provider.dart';
+import 'package:earhquake_stock_managment/core/components/sheet/app_bottom_sheet.dart';
+import 'package:earhquake_stock_managment/core/components/text/headline/headline5_text.dart';
 import 'package:earhquake_stock_managment/core/components/text/body/body_medium_text.dart';
 import 'package:earhquake_stock_managment/core/utils/constants/app_color.dart';
 import 'package:earhquake_stock_managment/view/home_page/view_model/home_viewmodel.dart';
@@ -7,7 +9,6 @@ import 'package:flutter/material.dart';
 
 import '../../../core/common/models/app_images/app_images.dart';
 import '../../../core/common/models/inventory_item/inventory_item_model.dart';
-import '../../../core/components/sheet/app_bottom_sheet.dart';
 
 part '../widget/product_info_card.dart';
 part '../widget/receive_page_item_widget.dart';
@@ -21,7 +22,19 @@ class HomeView extends StatelessWidget {
       model: HomeViewModel(
         context: context,
       ),
-      builder: (HomeViewModel model) => Scaffold(
+      builder: (model) => Scaffold(
+        floatingActionButton: FloatingActionButton.extended(
+          onPressed: () {
+            model.getSepet();
+          },
+          icon: const Icon(
+            Icons.add,
+          ),
+          label: Headline5Text(
+            text: 'Kategori Ekle',
+            color: AppColors.white,
+          ),
+        ),
         body: Column(
           children: [
             const _ProductInfoCard(),
@@ -34,7 +47,9 @@ class HomeView extends StatelessWidget {
                 itemCount: model.inventoryItems.length,
                 itemBuilder: (context, index) => _ReceivePageItemWidget(
                   item: model.inventoryItems[index],
-                  bottomSheetButton: () {},
+                  bottomSheetButton: () => model.addToSepet(
+                    model.inventoryItems[index],
+                  ),
                 ),
               ),
             ),

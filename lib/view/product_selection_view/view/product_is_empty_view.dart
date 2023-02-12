@@ -1,4 +1,3 @@
-import 'package:earhquake_stock_managment/core/components/appbar/base_app_bar.dart';
 import 'package:earhquake_stock_managment/core/components/text/body/body_medium_text.dart';
 import 'package:earhquake_stock_managment/core/components/text/headline/headline4_text.dart';
 import 'package:flutter/material.dart';
@@ -12,7 +11,6 @@ class ProductIsEmptyView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: BaseAppBar(title: 'Tıra Ürün Seçimi'),
       body: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 30),
         child: Column(
@@ -31,8 +29,7 @@ class ProductIsEmptyView extends StatelessWidget {
             ),
             const SizedBox(height: 30),
             BodyMediumText(
-              text:
-                  'Lütfen ürün sekmesinden ilk önce ürünleri yükleme yapınız.',
+              text: 'Lütfen ürün sekmesinden ilk önce ürünleri yükleme yapınız.',
               textAlign: TextAlign.center,
               color: AppColors.textColor,
             ),
