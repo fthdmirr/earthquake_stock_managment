@@ -5,7 +5,6 @@ import 'package:earhquake_stock_managment/core/components/stepper/stepper_view.d
 import 'package:earhquake_stock_managment/core/utils/constants/enum/cities_of_turkey.dart';
 import 'package:earhquake_stock_managment/core/utils/input_field_generator.dart';
 import 'package:earhquake_stock_managment/view/receive/view_model/receive_view_model.dart';
-import 'package:flutter/services.dart';
 import 'package:mask_text_input_formatter/mask_text_input_formatter.dart';
 
 import '../../../core/common/provider/view_model_provider.dart';
@@ -35,7 +34,9 @@ class ReceivingView extends StatelessWidget {
           _OverViewPage(model),
         ],
         onPressed: (index) {
-          if (index == 0) model.addedVehicleValue();
+          if (index == 0 && model.formKey.currentState!.validate()) {
+            model.addedVehicleValue();
+          }
           if (index == 2) model.finishReceive();
         },
       ),
@@ -111,45 +112,48 @@ class _ItemInfoPage extends StatelessWidget {
     return SingleChildScrollView(
       child: Padding(
         padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 15),
-        child: Column(
-          children: [
-            DropdownInput(
-              dropdownValues: const ['Kadın Kıyafet', 'Kuru Gıda', 'Meyve'],
-              dropDownValue: model.selectedItem,
-              title: 'Ürün',
-              onChanged: (p0) {
-                model.selectedItem = p0 ?? 'Kamyon';
-              },
-            ),
-            const SizedBox(height: 12),
-            DropdownInput(
-              dropdownValues: const ['Koli', 'Adet'],
-              dropDownValue: model.selectedItemType,
-              title: 'Ürün Tipi',
-              onChanged: (p0) {
-                model.selectedItemType = p0 ?? 'Koli';
-              },
-            ),
-            const SizedBox(height: 12),
-            BaseInput(
-                title: 'Adet',
-                controller: model.quantity,
-                inputFormatter: getTextInputFormatters(
-                  onlyNumber: true,
-                  spaceFilter: true,
-                  positiveIntegerFilter: true,
-                )),
-            const SizedBox(height: 12),
-            Align(
-              alignment: Alignment.bottomLeft,
-              child: TextButton.icon(
-                onPressed: () => model.addInventoryItem(),
-                icon: const Icon(Icons.add),
-                label:
-                    Text(model.inventoryItems.isEmpty ? ' Ürünü Ekle' : 'Ürün Eklemeye Devam Et'),
+        child: Form(
+          key: model.formKey,
+          child: Column(
+            children: [
+              DropdownInput(
+                dropdownValues: const ['Kadın Kıyafet', 'Kuru Gıda', 'Meyve'],
+                dropDownValue: model.selectedItem,
+                title: 'Ürün',
+                onChanged: (p0) {
+                  model.selectedItem = p0 ?? 'Kamyon';
+                },
               ),
-            )
-          ],
+              const SizedBox(height: 12),
+              DropdownInput(
+                dropdownValues: const ['Koli', 'Adet'],
+                dropDownValue: model.selectedItemType,
+                title: 'Ürün Tipi',
+                onChanged: (p0) {
+                  model.selectedItemType = p0 ?? 'Koli';
+                },
+              ),
+              const SizedBox(height: 12),
+              BaseInput(
+                  title: 'Adet',
+                  controller: model.quantity,
+                  inputFormatter: getTextInputFormatters(
+                    onlyNumber: true,
+                    spaceFilter: true,
+                    positiveIntegerFilter: true,
+                  )),
+              const SizedBox(height: 12),
+              Align(
+                alignment: Alignment.bottomLeft,
+                child: TextButton.icon(
+                  onPressed: () => model.addInventoryItem(),
+                  icon: const Icon(Icons.add),
+                  label:
+                      Text(model.inventoryItems.isEmpty ? ' Ürünü Ekle' : 'Ürün Eklemeye Devam Et'),
+                ),
+              )
+            ],
+          ),
         ),
       ),
     );
@@ -180,6 +184,12 @@ class _OverViewPage extends StatelessWidget {
               title: 'Araç Plakası',
               controller: model.vehiclePlate,
               isEnabled: false,
+              validator: (p0) {
+                if (p0 == null || p0.isEmpty) {
+                  return 'Araç plakası boş olamaz';
+                }
+                return null;
+              },
             ),
             const SizedBox(height: 12),
             DropdownInput(
@@ -212,15 +222,6 @@ class _OverViewPage extends StatelessWidget {
               },
             ),
             const SizedBox(height: 12),
-            BaseInput(
-              title: 'Araç Plakası',
-              controller: model.vehiclePlate,
-              isEnabled: false,
-              inputFormatter: <TextInputFormatter>[
-                FilteringTextInputFormatter.digitsOnly,
-                LengthLimitingTextInputFormatter(10),
-              ],
-            ),
           ],
         ),
       ),

@@ -30,6 +30,12 @@ class DropdownInput<T> extends StatelessWidget {
         ),
         value: dropDownValue,
         elevation: 16,
+        validator: (T? value) {
+          if (value == null) {
+            return 'Lütfen bir değer seçiniz';
+          }
+          return null;
+        },
         isExpanded: true,
         style: const TextStyle(color: Colors.black),
         decoration: InputDecoration(label: Text(title)),

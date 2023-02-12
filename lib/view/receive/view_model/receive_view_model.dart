@@ -10,7 +10,6 @@ import 'package:earhquake_stock_managment/core/utils/constants/enum/cities_of_tu
 import 'package:earhquake_stock_managment/main.dart';
 import 'package:earhquake_stock_managment/view/bottom_bar/view/bottom_bar_view.dart';
 import 'package:flutter/material.dart';
-import 'package:kartal/kartal.dart';
 
 class ReceiveViewModel extends BaseViewModel {
   ReceiveViewModel({required super.context});
@@ -25,6 +24,8 @@ class ReceiveViewModel extends BaseViewModel {
   final TextEditingController name = TextEditingController();
   final TextEditingController telNo = TextEditingController();
   final TextEditingController plate = TextEditingController();
+  //create formkey
+  final GlobalKey<FormState> formKey = GlobalKey<FormState>();
 
   Vehicle? pickedVehicle;
   List<InventoryItem> inventoryItems = [];
@@ -38,14 +39,18 @@ class ReceiveViewModel extends BaseViewModel {
   }
 
   void addInventoryItem() {
-    inventoryItems.add(
-      InventoryItem(quantity: int.parse(quantity.text.trim()), name: selectedItem),
-    );
-    itemCacheManager.addValue(
-      InventoryItem(quantity: int.parse(quantity.text.trim()), name: selectedItem),
-    );
-    quantity.clear();
-    notifyListeners();
+    if (formKey.currentState!.validate()) {
+      inventoryItems.add(
+        InventoryItem(quantity: int.parse(quantity.text.trim()), name: selectedItem),
+      );
+      itemCacheManager.addValue(
+        InventoryItem(quantity: int.parse(quantity.text.trim()), name: selectedItem),
+      );
+      quantity.clear();
+      notifyListeners();
+    } else {
+      //show snackbar
+    }
   }
 
   Future<void> finishReceive() async {
@@ -63,10 +68,9 @@ class ReceiveViewModel extends BaseViewModel {
     );
 
     for (var element in inventoryItems) {
-       itemAndQuantityCacheManager
-        .addValue(ItemAndQuantites(quantity: element.quantity, itemName: element.name));
+      itemAndQuantityCacheManager
+          .addValue(ItemAndQuantites(quantity: element.quantity, itemName: element.name));
     }
-   
 
     _clearDatas();
     Future.delayed(Duration.zero).then(
