@@ -1,7 +1,6 @@
 import 'package:earhquake_stock_managment/core/common/models/app_images/app_images.dart';
 import 'package:earhquake_stock_managment/core/components/inapp_notifier/inapp_notifier_service.dart';
 import 'package:earhquake_stock_managment/core/utils/constants/app_color.dart';
-import 'package:earhquake_stock_managment/view/bottom_bar/view/bottom_bar_view.dart';
 import 'package:earhquake_stock_managment/view/splash/view/splash_view.dart';
 import 'package:flutter/material.dart';
 

@@ -65,9 +65,12 @@ class _SelectItemList extends StatelessWidget {
       itemBuilder: (context, index) => ProductSelectionCard(
         onDicrise: () => model.decrement(model.products[index]),
         onIncrease: () => model.increment(model.products[index]),
-        //controller: TextEditingController(text: model.products[index].quantity.toString()),
         productNumber: model.products[index].quantity,
         inventoryItem: model.products[index],
+        onChanged: (value) {
+          if (value == null) return;
+          model.products[index].quantity = int.parse(value);
+        },
         itemType: '',
         onDelete: () {
           model.deleteSepet(model.products[index]);
@@ -138,6 +141,10 @@ class _OverViewPage extends StatelessWidget {
               productNumber: model.products[index].quantity,
               inventoryItem: model.products[index],
               itemType: '',
+              onChanged: (value) {
+                if (value == null) return;
+                model.products[index].quantity = int.parse(value);
+              },
               onDelete: () {
                 model.deleteSepet(model.products[index]);
               },
