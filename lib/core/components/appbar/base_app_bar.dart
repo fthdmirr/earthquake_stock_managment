@@ -7,10 +7,12 @@ class BaseAppBar extends AppBar {
   BaseAppBar({
     super.key,
     required String title,
+    List<Widget>? actions,
   }) : super(
           title: Headline3Text(
             text: title,
             color: AppColors.dark,
           ),
+          actions: actions,
         );
 }
