@@ -31,7 +31,7 @@ class ReportsDetailViewModel extends BaseViewModel {
       List items = [];
       for (var i = 0; i < report.vehicleInfo.inventoryItems.length; i++) {
         items.addAll([
-          _dataRow(dataKey: 'MALZEME CİNSİ', dataValue: ''),
+          _dataRow(dataKey: 'MALZEME CINSI', dataValue: ''),
           _dataRow(
               dataKey: report.vehicleInfo.inventoryItems[i].name,
               dataValue: report.vehicleInfo.inventoryItems[i].quantity.toString()),
@@ -67,14 +67,14 @@ class ReportsDetailViewModel extends BaseViewModel {
                       children: [
                         _dataRow(dataKey: 'Tarih', dataValue: currentTime(report.dateTime)),
                         _dataRow(
-                            dataKey: 'Gittiği Yer', dataValue: report.vehicleInfo.destinationCity),
-                        _dataRow(dataKey: 'Gittiği Yer Kişi', dataValue: report.vehicleInfo.destinationCity),
-                        _dataRow(dataKey: 'GÖREV DURUMU', dataValue: 'GÖNÜLLÜ'),
+                            dataKey: 'Gittigi Yer', dataValue: report.vehicleInfo.destinationCity),
+                        _dataRow(dataKey: 'Gittigi Yer Kisi', dataValue: report.vehicleInfo.destinationCity),
+                        _dataRow(dataKey: 'GÖREV DURUMU', dataValue: 'Gonullu'),
                         _dataRow(dataKey: 'PLAKA', dataValue: report.vehicleInfo.vehicle.plate),
                         _dataRow(
-                            dataKey: 'ŞOFÖR ADI', dataValue: report.vehicleInfo.vehicle.driverName),
+                            dataKey: 'SOFOR ADI', dataValue: report.vehicleInfo.vehicle.driverName),
                         _dataRow(
-                            dataKey: 'ŞOFÖR İLETİŞİM',
+                            dataKey: 'SOFOR İLETISIM',
                             dataValue: report.vehicleInfo.vehicle.driverPhone),
                         ...getItems()
                       ],
@@ -83,7 +83,7 @@ class ReportsDetailViewModel extends BaseViewModel {
                 ),
                 pw.SizedBox(height: 12),
                 pw.Text(
-                  'MALZEME ÇIKIŞ FORMU',
+                  'MALZEME CIKIS FORMU',
                   style: _style,
                 ),
                 pw.Row(
@@ -95,7 +95,7 @@ class ReportsDetailViewModel extends BaseViewModel {
                 ),
                 pw.SizedBox(height: 42),
                 pw.Text(
-                  'Yukarıda detay bilgileri yer alan araç belirtilen ile yardım amacıyla gitmesine izin verilmiştir',
+                  'Yukarida detay bilgileri yer alan araç belirtilen ile yardim amaciyla gitmesine izin verilmiştir',
                   style: _style,
                   textAlign: pw.TextAlign.center,
                 ),

@@ -54,7 +54,6 @@ class ReportsViewModel extends BaseViewModel {
   }
 
   searchCameReports(String value) {
-    //check user deleted all text
     if (value.isEmpty) {
       cameReports = tempReports
           .where((element) => element.vehicleInfo.routeStatus == RouteStatus.came)

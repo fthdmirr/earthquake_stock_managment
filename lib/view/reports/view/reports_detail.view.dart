@@ -1,4 +1,5 @@
 import 'package:earhquake_stock_managment/core/common/models/report/report_model.dart';
+import 'package:earhquake_stock_managment/core/common/models/status/route_status.dart';
 import 'package:earhquake_stock_managment/core/common/provider/view_model_provider.dart';
 import 'package:earhquake_stock_managment/core/components/appbar/base_app_bar.dart';
 import 'package:earhquake_stock_managment/core/components/card/product_detail_card.dart';
@@ -9,7 +10,6 @@ import 'package:flutter/material.dart';
 class ReportsDetailView extends StatelessWidget {
   final Report report;
   const ReportsDetailView({super.key, required this.report});
-
   @override
   Widget build(BuildContext context) {
     return ViewModelProvider<ReportsDetailViewModel>(
@@ -18,7 +18,7 @@ class ReportsDetailView extends StatelessWidget {
         appBar: BaseAppBar(
           title: 'Rapor Detay',
           actions: [
-            IconButton(
+           if(report.vehicleInfo.routeStatus==RouteStatus.sending) IconButton(
               onPressed: () => model.printReport(report),
               icon: const Icon(Icons.print),
             )
