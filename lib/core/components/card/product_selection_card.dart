@@ -18,7 +18,8 @@ class ProductSelectionCard extends StatefulWidget {
     required this.onIncrease,
     required this.onDicrise,
     required this.itemType,
-    required this.onDelete
+    required this.onDelete,
+    this.onChanged,
   }) : super(key: key);
   final int productNumber;
   final InventoryItem inventoryItem;
@@ -26,6 +27,7 @@ class ProductSelectionCard extends StatefulWidget {
   final void Function() onIncrease;
   final void Function() onDicrise;
   final void Function()? onDelete;
+  final void Function(String?)? onChanged;
 
   @override
   State<ProductSelectionCard> createState() => _ProductSelectionCardState();
@@ -109,6 +111,7 @@ class _ProductSelectionCardState extends State<ProductSelectionCard> {
                         spaceFilter: true,
                         blockEmoji: true,
                       ),
+                      onChanged:widget.onChanged,
                     ),
                   ),
                   CustomBermudaTextButton(

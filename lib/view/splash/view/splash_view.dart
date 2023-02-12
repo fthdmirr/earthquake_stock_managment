@@ -11,7 +11,7 @@ class SplashView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ViewModelProvider<SplashViewModel>(
-      model: SplashViewModel(context: context),
+      model: SplashViewModel(context: context)..navigateToBottomBar(),
       builder: (model) => Scaffold(
         backgroundColor: const Color(0xff1E1E1E),
         body: Center(

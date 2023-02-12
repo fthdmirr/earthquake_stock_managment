@@ -1,7 +1,6 @@
 import '../../../view/added_item_type/added_category_view.dart';
 import '../../../view/bottom_bar/view/bottom_bar_view.dart';
 import '../../../view/product_selection_view/view/product_is_empty_view.dart';
-import '../../../view/products_detail/view/products_detail_view.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -16,9 +15,6 @@ class NavigationRoute {
     switch (args.name) {
       case BottomBarView.routeName:
         return FadeTransitionPageRoute(BottomBarView(), settings: args);
-      case ProductsDetailView.routeName:
-        return FadeTransitionPageRoute(const ProductsDetailView(),
-            settings: args);
       case AddedCategory.routeName:
         return FadeTransitionPageRoute(const AddedCategory(), settings: args);
       case ProductIsEmptyView.routeName:
