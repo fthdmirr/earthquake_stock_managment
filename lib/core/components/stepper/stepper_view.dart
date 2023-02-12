@@ -32,12 +32,12 @@ class _StepperViewViewState extends State<StepperView> {
     currentIndex = value;
     setState(() {});
   }
+
   void buttonPressed() {
+    if (widget.validated == false) return;
     widget.onPressed(currentIndex);
-      if(widget.validated==false) return;
-    if (currentIndex != widget.widgets.length - 1) {
-      changeCurrentIndex(currentIndex + 1);
-    }
+    if (currentIndex == widget.widgets.length - 1) return;
+    changeCurrentIndex(currentIndex + 1);
   }
 
   void backButton() {
@@ -77,7 +77,10 @@ class _StepperViewViewState extends State<StepperView> {
               ],
             ),
           ),
-          Expanded(flex: 8, child: widget.widgets[currentIndex]),
+          Expanded(
+            flex: 8,
+            child: widget.widgets[currentIndex],
+          ),
         ],
       ),
       bottomNavigationBar: currentIndex == 0

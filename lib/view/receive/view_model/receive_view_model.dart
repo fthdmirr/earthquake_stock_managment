@@ -24,6 +24,8 @@ class ReceiveViewModel extends BaseViewModel {
   final TextEditingController name = TextEditingController();
   final TextEditingController telNo = TextEditingController();
   final TextEditingController plate = TextEditingController();
+  //create formkey
+  final GlobalKey<FormState> formKey = GlobalKey<FormState>();
 
   Vehicle? pickedVehicle;
   List<InventoryItem> inventoryItems = [];
@@ -64,8 +66,8 @@ class ReceiveViewModel extends BaseViewModel {
     );
 
     for (var element in inventoryItems) {
-      itemAndQuantityCacheManager.addValue(
-          ItemAndQuantites(quantity: element.quantity, itemName: element.name));
+      itemAndQuantityCacheManager
+          .addValue(ItemAndQuantites(quantity: element.quantity, itemName: element.name));
     }
 
     _clearDatas();

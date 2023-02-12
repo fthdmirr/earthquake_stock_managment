@@ -52,7 +52,7 @@ class _StepperTruckInformation extends StatelessWidget {
           const SizedBox(height: 20),
           DropdownInput(
             title: 'Gidecek Yer',
-            dropdownValues: CitiesOfTurkey.values.map((e) => e.name).toList(),
+            dropdownValues: EarthquakeCitiesAndDistricts.values.map((e) => e.name).toList(),
             dropDownValue: model.toTheProvience,
             onChanged: (p0) {
               model.toTheProvience = p0 ?? 'Kamyon';

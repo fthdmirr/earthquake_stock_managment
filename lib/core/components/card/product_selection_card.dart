@@ -1,6 +1,7 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:earhquake_stock_managment/core/common/models/app_images/app_images.dart';
 import 'package:earhquake_stock_managment/core/common/models/inventory_item/inventory_item_model.dart';
+import 'package:earhquake_stock_managment/core/utils/input_field_generator.dart';
 import 'package:flutter/material.dart';
 
 import '../../utils/constants/app_color.dart';
@@ -10,17 +11,21 @@ import '../text/headline/headline3_text.dart';
 import '../text/headline/headline4_text.dart';
 
 class ProductSelectionCard extends StatefulWidget {
-  ProductSelectionCard({
+  const ProductSelectionCard({
     Key? key,
     required this.productNumber,
     required this.inventoryItem,
     required this.onIncrease,
     required this.onDicrise,
+    required this.itemType,
+    required this.onDelete
   }) : super(key: key);
-  int productNumber;
-  InventoryItem inventoryItem;
+  final int productNumber;
+  final InventoryItem inventoryItem;
+  final String itemType;
   final void Function() onIncrease;
   final void Function() onDicrise;
+  final void Function()? onDelete;
 
   @override
   State<ProductSelectionCard> createState() => _ProductSelectionCardState();
@@ -56,7 +61,7 @@ class _ProductSelectionCardState extends State<ProductSelectionCard> {
                 color: AppColors.dark,
               ),
               Headline4Text(
-                text: 'Kutu',
+                text: widget.itemType,
                 color: AppColors.darkGrey,
               ),
             ],
@@ -65,13 +70,16 @@ class _ProductSelectionCardState extends State<ProductSelectionCard> {
             crossAxisAlignment: CrossAxisAlignment.end,
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              CircleAvatar(
-                radius: 30,
-                backgroundColor: AppColors.pippin,
-                child: Image(
-                  image: AppImages.memoryImage('trash_icon'),
-                  width: 30,
-                  height: 30,
+              InkWell(
+                onTap: widget.onDelete,
+                child: CircleAvatar(
+                  radius: 30,
+                  backgroundColor: AppColors.pippin,
+                  child: Image(
+                    image: AppImages.memoryImage('trash_icon'),
+                    width: 30,
+                    height: 30,
+                  ),
                 ),
               ),
               Row(
@@ -94,6 +102,12 @@ class _ProductSelectionCardState extends State<ProductSelectionCard> {
                         border: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(10),
                         ),
+                      ),
+                      inputFormatters: getTextInputFormatters(
+                        onlyNumber: true,
+                        positiveIntegerFilter: true,
+                        spaceFilter: true,
+                        blockEmoji: true,
                       ),
                     ),
                   ),
