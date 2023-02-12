@@ -7,15 +7,15 @@ class HomeViewModel extends BaseViewModel {
   HomeViewModel({
     required super.context,
   }) {
-    initViewModel();
+    //initViewModel();
   }
 
-  @override
-  initViewModel() async {
-    setInventoryItem();
+  // @override
+  // initViewModel() async {
+  //   setInventoryItem();
 
-    super.initViewModel();
-  }
+  //   super.initViewModel();
+  // }
 
   add() {
     itemCacheManager.addValue(
