@@ -40,6 +40,7 @@ class ReceiveViewModel extends BaseViewModel {
       InventoryItem(quantity: int.parse(quantity.text.trim()), name: selectedItem),
     );
     quantity.clear();
+    notifyListeners();
   }
 
   Future<void> finishReceive() async {
