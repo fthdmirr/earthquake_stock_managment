@@ -1,7 +1,6 @@
 import 'package:earhquake_stock_managment/core/common/models/app_images/app_images.dart';
 import 'package:earhquake_stock_managment/core/common/models/inventory_item/inventory_item_model.dart';
 import 'package:earhquake_stock_managment/core/common/provider/view_model_provider.dart';
-import 'package:earhquake_stock_managment/core/components/text/headline/headline5_text.dart';
 import 'package:earhquake_stock_managment/core/utils/constants/app_color.dart';
 import 'package:earhquake_stock_managment/view/home_page/view_model/home_viewmodel.dart';
 
@@ -21,18 +20,6 @@ class HomeView extends StatelessWidget {
         context: context,
       ),
       builder: (model) => Scaffold(
-        floatingActionButton: FloatingActionButton.extended(
-          onPressed: () {
-            model.getSepet();
-          },
-          icon: const Icon(
-            Icons.add,
-          ),
-          label: Headline5Text(
-            text: 'Kategori Ekle',
-            color: AppColors.white,
-          ),
-        ),
         body: Column(
           children: [
             Expanded(

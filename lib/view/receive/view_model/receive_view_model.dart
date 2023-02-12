@@ -11,6 +11,8 @@ import 'package:earhquake_stock_managment/main.dart';
 import 'package:earhquake_stock_managment/view/bottom_bar/view/bottom_bar_view.dart';
 import 'package:flutter/material.dart';
 
+import '../../../core/components/notification/flushbar_notification.dart';
+
 class ReceiveViewModel extends BaseViewModel {
   ReceiveViewModel({required super.context});
 
@@ -66,13 +68,20 @@ class ReceiveViewModel extends BaseViewModel {
     );
 
     for (var element in inventoryItems) {
-      itemAndQuantityCacheManager
-          .addValue(ItemAndQuantites(quantity: element.quantity, itemName: element.name));
+      itemAndQuantityCacheManager.addValue(
+          ItemAndQuantites(quantity: element.quantity, itemName: element.name));
     }
 
     _clearDatas();
-    Future.delayed(Duration.zero).then((value) => NavigationService.instance
-        .navigateToPageClear(path: BottomBarView.routeName));
+
+    if (context.mounted) {
+      NavigationService.instance
+          .navigateToPageClear(path: BottomBarView.routeName);
+      showFlushbarWidget(
+              'Ürün tıra eklendi. Alttaki bardan tır detayından düzenle ve gönder.',
+              Icons.check)
+          .show(context);
+    }
   }
 
   void _clearDatas() {
