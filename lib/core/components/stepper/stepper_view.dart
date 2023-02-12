@@ -77,7 +77,10 @@ class _StepperViewViewState extends State<StepperView> {
               ],
             ),
           ),
-          Expanded(flex: 8, child: widget.widgets[currentIndex]),
+          Expanded(
+            flex: 8,
+            child: widget.widgets[currentIndex],
+          ),
         ],
       ),
       bottomNavigationBar: currentIndex == 0
