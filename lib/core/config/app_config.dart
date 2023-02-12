@@ -1,4 +1,4 @@
-import 'package:earhquake_stock_managment/config/base64/base_64_images.dart';
+import 'package:earhquake_stock_managment/core/config/base64/base_64_images.dart';
 
 class AppConfig {
   static const String appName = 'Yardım Ağı';

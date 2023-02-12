@@ -8,6 +8,8 @@ class ButtonSmallText extends AutoSizeText {
           text,
           overflow: TextOverflow.ellipsis,
           textScaleFactor: 1,
+          textAlign: TextAlign.start,
+          maxLines: 2,
           style: TextStyle(
             color: color,
             fontSize: 14,

@@ -1,11 +1,16 @@
-import 'package:earhquake_stock_managment/core/common/models/app_images/app_images.dart';
-import 'package:earhquake_stock_managment/core/common/models/inventory_item/inventory_item_model.dart';
 import 'package:earhquake_stock_managment/core/common/provider/view_model_provider.dart';
-import 'package:earhquake_stock_managment/core/components/sheet/app_bottom_sheet.dart';
+import 'package:earhquake_stock_managment/core/components/text/body/body_medium_text.dart';
 import 'package:earhquake_stock_managment/core/utils/constants/app_color.dart';
 import 'package:earhquake_stock_managment/view/home_page/view_model/home_viewmodel.dart';
 
 import 'package:flutter/material.dart';
+
+import '../../../core/common/models/app_images/app_images.dart';
+import '../../../core/common/models/inventory_item/inventory_item_model.dart';
+import '../../../core/components/sheet/app_bottom_sheet.dart';
+
+part '../widget/product_info_card.dart';
+part '../widget/receive_page_item_widget.dart';
 
 class HomeView extends StatelessWidget {
   const HomeView({super.key});
@@ -17,18 +22,17 @@ class HomeView extends StatelessWidget {
         context: context,
       ),
       builder: (HomeViewModel model) => Scaffold(
-        resizeToAvoidBottomInset: false,
         body: Column(
           children: [
+            const _ProductInfoCard(),
             Expanded(
               child: GridView.builder(
                 gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                  crossAxisCount: 2,
-                  childAspectRatio: 1.5,
-                ),
+                    crossAxisCount: 2, childAspectRatio: 1.5),
                 shrinkWrap: true,
+                physics: const BouncingScrollPhysics(),
                 itemCount: model.inventoryItems.length,
-                itemBuilder: (context, index) => ReceivePageItemWidget(
+                itemBuilder: (context, index) => _ReceivePageItemWidget(
                   item: model.inventoryItems[index],
                   bottomSheetButton: () {},
                 ),
@@ -41,71 +45,6 @@ class HomeView extends StatelessWidget {
   }
 }
 
-class ReceivePageItemWidget extends StatelessWidget {
-  final InventoryItem item;
-  final Function()? bottomSheetButton;
-  const ReceivePageItemWidget({
-    super.key,
-    required this.item,
-    required this.bottomSheetButton,
-  });
-
-  @override
-  Widget build(BuildContext context) {
-    return GestureDetector(
-      onTap: () => AppBottomSheet().showBottomSheet(
-          context,
-          item.icon ?? 'empty_icon',
-          item.quantity,
-          item.name,
-          bottomSheetButton),
-      child: Container(
-        margin: const EdgeInsets.all(8),
-        decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(10),
-          color: AppColors.white,
-        ),
-        child: Wrap(
-          crossAxisAlignment: WrapCrossAlignment.center,
-          alignment: WrapAlignment.center,
-          runAlignment: WrapAlignment.center,
-          direction: Axis.vertical,
-          spacing: 4,
-          children: [
-            Container(
-              height: 44,
-              width: 44,
-              decoration: const BoxDecoration(
-                color: AppColors.systemBackground,
-                shape: BoxShape.circle,
-              ),
-              child: Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: Image(
-                  image: AppImages.memoryImage(item.icon ?? 'empty_icon'),
-                  color: AppColors.primaryColor,
-                ),
-              ),
-            ),
-            Text(
-              item.name,
-              style: Theme.of(context).textTheme.headlineMedium?.copyWith(
-                    fontWeight: FontWeight.w400,
-                    color: AppColors.textColor,
-                  ),
-            ),
-            Text(
-              '${item.quantity} ',
-              style: Theme.of(context).textTheme.displayMedium?.copyWith(
-                    color: AppColors.textColor,
-                  ),
-            )
-          ],
-        ),
-      ),
-    );
-  }
-}
 
 
 

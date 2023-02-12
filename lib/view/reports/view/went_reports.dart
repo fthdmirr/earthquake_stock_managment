@@ -60,9 +60,7 @@ class WentReports extends StatelessWidget {
         Expanded(
           child: ListView.builder(
             shrinkWrap: true,
-            itemCount: viewModel.wentReports.isNotNullOrEmpty
-                ? viewModel.wentReports.length
-                : 0,
+            itemCount: viewModel.wentReports.isNotNullOrEmpty ? viewModel.wentReports.length : 0,
             itemBuilder: (context, index) => ReportsCardWidget(
               report: viewModel.wentReports.isNotNullOrEmpty
                   ? viewModel.wentReports[index]
