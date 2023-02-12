@@ -2,17 +2,17 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
 class BaseInput extends StatelessWidget {
-  const BaseInput({
-    super.key,
-    required this.title,
-    this.hint,
-    required this.controller,
-    this.inputType,
-    this.isEnabled,
-    this.inputFormatter,
-    this.onChanged,
-    this.validator,
-  });
+  const BaseInput(
+      {super.key,
+      required this.title,
+      this.hint,
+      required this.controller,
+      this.inputType,
+      this.isEnabled,
+      this.inputFormatter,
+      this.onChanged,
+      this.validator,
+      this.textCapitalization = TextCapitalization.none});
 
   final String title;
   final TextInputType? inputType;
@@ -21,6 +21,7 @@ class BaseInput extends StatelessWidget {
   final List<TextInputFormatter>? inputFormatter;
   final bool? isEnabled;
   final void Function(String)? onChanged;
+  final TextCapitalization textCapitalization;
   final String? Function(String?)? validator;
   @override
   Widget build(BuildContext context) {
@@ -29,6 +30,7 @@ class BaseInput extends StatelessWidget {
       controller: controller,
       inputFormatters: inputFormatter,
       enabled: isEnabled,
+      textCapitalization: textCapitalization,
       decoration: InputDecoration(
         hintText: hint,
         labelText: title,

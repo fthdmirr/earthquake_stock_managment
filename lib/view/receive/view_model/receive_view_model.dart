@@ -35,9 +35,9 @@ class ReceiveViewModel extends BaseViewModel {
   void addedVehicleValue() {
     pickedVehicle = Vehicle(
         vehicleType: selectedVehicle,
-        driverName: name.text.trim(),
+        driverName: name.text.trim().toUpperCase(),
         driverPhone: telNo.text.trim(),
-        plate: plate.text.trim());
+        plate: plate.text.trim().toUpperCase());
   }
 
   void addInventoryItem() {

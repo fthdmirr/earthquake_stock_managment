@@ -27,12 +27,14 @@ class _StepperTruckInformation extends StatelessWidget {
           const SizedBox(height: 20),
           BaseInput(
             title: 'Araç Plakası',
+            textCapitalization: TextCapitalization.characters,
             inputType: TextInputType.name,
             controller: model.vehiclePlateController,
           ),
           const SizedBox(height: 20),
           BaseInput(
             title: 'Şoför İsim',
+            textCapitalization: TextCapitalization.characters,
             inputType: TextInputType.name,
             controller: model.driverNameController,
           ),
@@ -52,7 +54,8 @@ class _StepperTruckInformation extends StatelessWidget {
           const SizedBox(height: 20),
           DropdownInput(
             title: 'Gidecek Yer',
-            dropdownValues: EarthquakeCitiesAndDistricts.values.map((e) => e.name).toList(),
+            dropdownValues:
+                EarthquakeCitiesAndDistricts.values.map((e) => e.name).toList(),
             dropDownValue: model.toTheProvience,
             onChanged: (p0) {
               model.toTheProvience = p0 ?? 'Kamyon';
