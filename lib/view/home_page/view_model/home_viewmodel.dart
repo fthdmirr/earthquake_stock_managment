@@ -107,8 +107,13 @@ class HomeViewModel extends BaseViewModel {
                 height: context.dynamicHeight(0.045),
                 child: ElevatedButton(
                   onPressed: () {
-                    item.quantity = int.parse(unitController.text);
-                    addToSepet(item);
+                    addToSepet(
+                      InventoryItem(
+                        name: item.name,
+                        quantity: int.parse(unitController.text),
+                        icon: item.icon,
+                      ),
+                    );
                   },
                   child: const Text('Tıra Ekle'),
                 ),
