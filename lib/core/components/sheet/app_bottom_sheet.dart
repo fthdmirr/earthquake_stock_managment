@@ -9,7 +9,7 @@ class AppBottomSheet {
   Future showBottomSheet(
     BuildContext context,
     String icon,
-    TextEditingController currentQuantity,
+    int currentQuantity,
     String currentItem,
     Function(int) onPressed,
     List<String> dropdownValues,
@@ -83,14 +83,17 @@ class AppBottomSheet {
               ),
               BaseInput(
                 title: 'Miktar',
-                controller: currentQuantity,
+                controller:
+                    TextEditingController(text: currentQuantity.toString()),
               ),
               const SizedBox(height: 10),
               SizedBox(
                 width: double.infinity,
                 height: context.dynamicHeight(0.045),
                 child: ElevatedButton(
-                  onPressed: onPressed(int.parse(currentQuantity.text)),
+                  onPressed: onPressed(
+                    currentQuantity,
+                  ),
                   child: const Text('Tıra Ekle'),
                 ),
               )

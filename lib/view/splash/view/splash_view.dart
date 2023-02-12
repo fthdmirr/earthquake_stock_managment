@@ -1,7 +1,6 @@
-import '../../../core/components/text/headline/headline3_text.dart';
-import '../../../core/utils/constants/app_color.dart';
+import 'package:earhquake_stock_managment/core/utils/constants/app_color.dart';
 import 'package:flutter/material.dart';
-import 'package:lottie/lottie.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 import '../../../core/common/provider/view_model_provider.dart';
 import '../viewmodel/splash_view_model.dart';
@@ -12,25 +11,55 @@ class SplashView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ViewModelProvider<SplashViewModel>(
-      model: SplashViewModel(context: context)..navigateToBottomBar(),
+      model: SplashViewModel(context: context),
       builder: (model) => Scaffold(
+        backgroundColor: const Color(0xff1E1E1E),
         body: Center(
           child: Column(
+            crossAxisAlignment: CrossAxisAlignment.center,
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              Lottie.asset(
-                'assets/lottie/green_trucks.json',
-              ),
+              const Spacer(flex: 6),
               Column(
+                crossAxisAlignment: CrossAxisAlignment.center,
+                mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  Headline3Text(
-                    text: 'Loading',
-                    color: AppColors.black,
+                  Image.asset('assets/images/yas_logo.png'),
+                  Text(
+                    'Geçmiş Olsun',
+                    style: GoogleFonts.inter(
+                      color: AppColors.white,
+                      fontWeight: FontWeight.w300,
+                      fontSize: 25,
+                    ),
                   ),
-                  const SizedBox(height: 30),
-                  const CircularProgressIndicator.adaptive()
+                  const SizedBox(height: 12),
+                  Text(
+                    'Türkiye',
+                    style: GoogleFonts.inter(
+                      color: AppColors.white,
+                      fontWeight: FontWeight.w600,
+                      fontSize: 32,
+                    ),
+                  ),
                 ],
-              )
+              ),
+              const Spacer(flex: 2),
+              const CircularProgressIndicator.adaptive(
+                backgroundColor: Colors.white,
+              ),
+              const Spacer(flex: 2),
+              Text(
+                'Bu uygulama deprem bölgelerinde yardım alanları için yazılmıştır.',
+                maxLines: 2,
+                textAlign: TextAlign.center,
+                style: GoogleFonts.inter(
+                  color: AppColors.white,
+                  fontWeight: FontWeight.w400,
+                  fontSize: 16,
+                ),
+              ),
+              const Spacer(),
             ],
           ),
         ),

@@ -8,7 +8,7 @@ class SplashViewModel extends BaseViewModel {
 
   void navigateToBottomBar() {
     Future.delayed(
-      const Duration(seconds: 1),
+      const Duration(seconds: 3),
       () => NavigationService.instance
           .navigateToPageClear(path: BottomBarView.routeName),
     );

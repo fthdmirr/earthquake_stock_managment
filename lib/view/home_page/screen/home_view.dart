@@ -8,6 +8,8 @@ import 'package:earhquake_stock_managment/view/home_page/view_model/home_viewmod
 
 import 'package:flutter/material.dart';
 
+part '../widget/receive_page_item_widget.dart';
+
 class HomeView extends StatelessWidget {
   const HomeView({super.key});
 
