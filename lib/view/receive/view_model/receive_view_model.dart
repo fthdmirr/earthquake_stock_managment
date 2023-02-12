@@ -29,6 +29,15 @@ class ReceiveViewModel extends BaseViewModel {
   Vehicle? pickedVehicle;
   List<InventoryItem> inventoryItems = [];
 
+  bool validation(int index) {
+    if (index == 0) {
+      return formKeyStep1.currentState!.validate();
+    } else if (index == 1) {
+      return formKeyStep2.currentState!.validate();
+    }
+    return false;
+  }
+
   void addedVehicleValue() {
     if (formKeyStep1.currentState!.validate()) {
       pickedVehicle = Vehicle(

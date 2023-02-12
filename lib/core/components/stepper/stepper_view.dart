@@ -13,12 +13,18 @@ class StepperView extends StatefulWidget {
     required this.onPressed,
     required this.widgets,
     required this.singleButtontitle,
+    this.validation1 = true,
+    this.validation2 = true,
+    this.validation3 = true,
   }) : super(key: key);
 
   final List<StepperModel> steppers;
   final Function(int) onPressed;
   final List<Widget> widgets;
   final String singleButtontitle;
+  final bool validation1;
+  final bool validation2;
+  final bool validation3;
 
   @override
   State<StepperView> createState() => _StepperViewViewState();
@@ -33,10 +39,26 @@ class _StepperViewViewState extends State<StepperView> {
   }
 
   void buttonPressed() {
-    widget.onPressed(currentIndex);
+    if (currentIndex == 0 && widget.validation1) {
+      widget.onPressed(currentIndex);
 
-    if (currentIndex != widget.widgets.length - 1) {
-      changeCurrentIndex(currentIndex + 1);
+      if (currentIndex != widget.widgets.length - 1) {
+        changeCurrentIndex(currentIndex + 1);
+      }
+    }
+    if (currentIndex == 1 && widget.validation2) {
+      widget.onPressed(currentIndex);
+
+      if (currentIndex != widget.widgets.length - 1) {
+        changeCurrentIndex(currentIndex + 1);
+      }
+    }
+    if (currentIndex == 2 && widget.validation3) {
+      widget.onPressed(currentIndex);
+
+      if (currentIndex != widget.widgets.length - 1) {
+        changeCurrentIndex(currentIndex + 1);
+      }
     }
   }
 
@@ -98,7 +120,13 @@ class _StepperViewViewState extends State<StepperView> {
                 Expanded(
                   child: _SingleButton(
                     title: 'Devam Et',
-                    onPressed: buttonPressed,
+                    onPressed: () {
+                      if (currentIndex == 1) {
+                        return buttonPressed();
+                      } else if (currentIndex == 2) {
+                        return buttonPressed();
+                      }
+                    },
                   ),
                 )
               ],
