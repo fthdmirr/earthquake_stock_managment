@@ -19,12 +19,12 @@ class HomeViewModel extends BaseViewModel {
     //initViewModel();
   }
 
-  // @override
-  // initViewModel() async {
-  //   setInventoryItem();
+  @override
+  initViewModel() async {
+    getInventoryItemsFromHive();
 
-  //   super.initViewModel();
-  // }
+    super.initViewModel();
+  }
 
   showModal({
     required InventoryItem item,
@@ -114,6 +114,16 @@ class HomeViewModel extends BaseViewModel {
                         icon: item.icon,
                       ),
                     );
+                    //deleteFromInventory(item);
+                    itemCacheManager.putValue(
+                      InventoryItem(
+                        name: item.name,
+                        quantity:
+                            item.quantity - int.parse(unitController.text),
+                        icon: item.icon,
+                      ),
+                    );
+                    notifyListeners();
                   },
                   child: const Text('Tıra Ekle'),
                 ),
@@ -123,6 +133,23 @@ class HomeViewModel extends BaseViewModel {
         ),
       ),
     );
+  }
+
+  getInventoryItemsFromHive() {
+    inventoryItems.map(
+      (e) {
+        e.quantity = itemCacheManager
+                .getValues()
+                .any((element) => element.name == e.name)
+            ? itemCacheManager
+                .getValues()
+                .where((element) => element.name == e.name)
+                .map((e) => e.quantity)
+                .reduce((value, element) => value + element)
+            : 0;
+      },
+    ).toList();
+    notifyListeners();
   }
 
   add() {
