@@ -10,6 +10,14 @@ class ReportsDetailView extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: const Text('Rapor Detay', style: TextStyle(color: Colors.black)),
+        actions: [
+          IconButton(
+            onPressed: () {},
+            icon: const Icon(Icons.print),
+            iconSize: 32,
+          ),
+          const SizedBox(width: 8)
+        ],
       ),
       body: SingleChildScrollView(
         child: Column(
@@ -89,17 +97,11 @@ class ReportsDetailTextPart extends StatelessWidget {
             children: [
               Text(
                 keyText,
-                style: Theme.of(context)
-                    .textTheme
-                    .bodyMedium
-                    ?.copyWith(color: AppColors.black),
+                style: Theme.of(context).textTheme.bodyMedium?.copyWith(color: AppColors.black),
               ),
               Text(
                 valueText,
-                style: Theme.of(context)
-                    .textTheme
-                    .bodyMedium
-                    ?.copyWith(color: AppColors.black),
+                style: Theme.of(context).textTheme.bodyMedium?.copyWith(color: AppColors.black),
               ),
             ],
           ),
