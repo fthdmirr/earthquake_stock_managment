@@ -5,6 +5,7 @@ import 'package:earhquake_stock_managment/core/common/models/status/route_status
 import 'package:earhquake_stock_managment/core/common/models/vehicle/vehicle_model.dart';
 import 'package:earhquake_stock_managment/core/common/models/vehicle_info/vehicle_info_model.dart';
 import 'package:earhquake_stock_managment/core/init/hive_manager/inventory_item_cache_manager.dart';
+import 'package:earhquake_stock_managment/core/init/hive_manager/item_and_quantity_cache_manager.dart';
 import 'package:earhquake_stock_managment/core/init/hive_manager/report_cache_manager.dart';
 import 'package:earhquake_stock_managment/core/init/hive_manager/vehicle_cache_manager.dart';
 import 'package:earhquake_stock_managment/core/init/hive_manager/vehicle_info_cache_manager.dart';
@@ -14,10 +15,11 @@ import 'package:flutter/services.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 
 late final InventoryItemCacheManager itemCacheManager;
-
 late final ReportCacheManager reportCacheManager;
 late final VehicleCacheManager vehicleCacheManager;
 late final VehicleInfoCacheManager vehicleInfoCacheManager;
+late final ItemAndQuantityCacheManager itemAndQuantityCacheManager;
+
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await _init();
@@ -39,6 +41,7 @@ Future<void> _init() async {
   reportCacheManager = ReportCacheManager(HiveConstants.report);
   vehicleCacheManager = VehicleCacheManager(HiveConstants.vehicle);
   vehicleInfoCacheManager = VehicleInfoCacheManager(HiveConstants.vehicleInfo);
+  itemAndQuantityCacheManager = ItemAndQuantityCacheManager(HiveConstants.itemAndQuantity);
   await SystemChrome.setPreferredOrientations([
     DeviceOrientation.portraitUp,
     DeviceOrientation.landscapeLeft,

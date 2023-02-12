@@ -23,6 +23,10 @@ class VehicleBasket {
     sepet.remove(truck);
   }
 
+  void clearAll() {
+    sepet.clear();
+  }
+
   //create a method to get all trucks
   List<InventoryItem> getBasket() {
     return sepet;
