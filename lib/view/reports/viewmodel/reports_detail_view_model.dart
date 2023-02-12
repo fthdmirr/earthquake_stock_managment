@@ -64,6 +64,7 @@ class ReportsDetailViewModel extends BaseViewModel {
                     ),
                   ),
                 ),
+                pw.SizedBox(height: 12),
                 pw.Text(
                   'MALZEME ÇIKIŞ FORMU',
                   style: _style,
