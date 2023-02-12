@@ -10,7 +10,6 @@ import 'package:earhquake_stock_managment/core/utils/constants/enum/cities_of_tu
 import 'package:earhquake_stock_managment/main.dart';
 import 'package:earhquake_stock_managment/view/bottom_bar/view/bottom_bar_view.dart';
 import 'package:flutter/material.dart';
-import 'package:kartal/kartal.dart';
 
 class ReceiveViewModel extends BaseViewModel {
   ReceiveViewModel({required super.context});
@@ -40,21 +39,14 @@ class ReceiveViewModel extends BaseViewModel {
   }
 
   void addInventoryItem() {
-    print(formKey.currentState!.validate());
-    if (formKey.currentState!.validate()) {
-      inventoryItems.add(
-        InventoryItem(
-            quantity: int.parse(quantity.text.trim()), name: selectedItem),
-      );
-      itemCacheManager.addValue(
-        InventoryItem(
-            quantity: int.parse(quantity.text.trim()), name: selectedItem),
-      );
-      quantity.clear();
-      notifyListeners();
-    } else {
-      //show snackbar
-    }
+    inventoryItems.add(
+      InventoryItem(quantity: int.parse(quantity.text.trim()), name: selectedItem),
+    );
+    itemCacheManager.addValue(
+      InventoryItem(quantity: int.parse(quantity.text.trim()), name: selectedItem),
+    );
+    quantity.clear();
+    notifyListeners();
   }
 
   Future<void> finishReceive() async {
@@ -72,13 +64,13 @@ class ReceiveViewModel extends BaseViewModel {
     );
 
     for (var element in inventoryItems) {
-      itemAndQuantityCacheManager.addValue(
-          ItemAndQuantites(quantity: element.quantity, itemName: element.name));
+      itemAndQuantityCacheManager
+          .addValue(ItemAndQuantites(quantity: element.quantity, itemName: element.name));
     }
 
     _clearDatas();
-    Future.delayed(Duration.zero).then((value) => NavigationService.instance
-        .navigateToPageClear(path: BottomBarView.routeName));
+    Future.delayed(Duration.zero).then(
+        (value) => NavigationService.instance.navigateToPageClear(path: BottomBarView.routeName));
   }
 
   void _clearDatas() {

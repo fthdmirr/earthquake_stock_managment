@@ -13,8 +13,7 @@ enum InputFormatterType {
   DecimalTextInputFormatter,
 }
 
-TextInputFormatter getInputFormatter(InputFormatterType type,
-    {int decimalRange = -1}) {
+TextInputFormatter getInputFormatter(InputFormatterType type, {int decimalRange = -1}) {
   switch (type) {
     case InputFormatterType.BlockEmoji:
       return FilteringTextInputFormatter.deny(
@@ -39,13 +38,12 @@ TextInputFormatter getInputFormatter(InputFormatterType type,
       return FilteringTextInputFormatter.allow(RegExp(r'^[1-9][0-9]*$'));
 
     case InputFormatterType.DecimalFilter:
-      return FilteringTextInputFormatter.allow(
-          RegExp(r'^(\d+)?(\.|\,)?\d{0,2}'));
+      return FilteringTextInputFormatter.allow(RegExp(r'^(\d+)?(\.|\,)?\d{0,2}'));
 
     case InputFormatterType.DecimalTextInputFormatter:
-      if (decimalRange == -1)
-        debugPrint(
-            'U can change decimalRange value for DecimalTextInputFormatter');
+      if (decimalRange == -1) {
+        debugPrint('U can change decimalRange value for DecimalTextInputFormatter');
+      }
       return DecimalTextInputFormatter(decimalRange: decimalRange);
 
     default:
@@ -78,8 +76,7 @@ List<TextInputFormatter> getTextInputFormatters({
   }
 
   if (onlyNumberWithDotAndComma) {
-    formatters
-        .add(getInputFormatter(InputFormatterType.OnlyNumberWithDotAndComma));
+    formatters.add(getInputFormatter(InputFormatterType.OnlyNumberWithDotAndComma));
   }
 
   if (spaceFilter) {
@@ -95,8 +92,7 @@ List<TextInputFormatter> getTextInputFormatters({
   }
 
   if (decimalTextInputFormatter) {
-    formatters.add(getInputFormatter(
-        InputFormatterType.DecimalTextInputFormatter,
+    formatters.add(getInputFormatter(InputFormatterType.DecimalTextInputFormatter,
         decimalRange: decimalRange!));
   }
 
@@ -121,8 +117,7 @@ class DecimalTextInputFormatter extends TextInputFormatter {
     if (decimalRange > -1) {
       String value = newValue.text.replaceAll(",", ".");
 
-      if (value.contains(".") &&
-          value.substring(value.indexOf(".") + 1).length > decimalRange) {
+      if (value.contains(".") && value.substring(value.indexOf(".") + 1).length > decimalRange) {
         truncated = oldValue.text;
         newSelection = oldValue.selection;
       } else if (value == ".") {

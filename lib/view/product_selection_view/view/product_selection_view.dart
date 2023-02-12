@@ -1,5 +1,6 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:earhquake_stock_managment/core/utils/constants/app_color.dart';
+import 'package:earhquake_stock_managment/core/utils/constants/enum/earhquake_cities_and_districts.dart';
 import 'package:earhquake_stock_managment/view/product_selection_view/view/product_is_empty_view.dart';
 import 'package:earhquake_stock_managment/view/reports/view/reports_detail.view.dart';
 import 'package:flutter/material.dart';
@@ -13,7 +14,6 @@ import 'package:earhquake_stock_managment/view/product_selection_view/viewmodel/
 import '../../../core/components/card/product_selection_card.dart';
 import '../../../core/components/dropdown/dropdown_input.dart';
 import '../../../core/components/input/base_input.dart';
-import '../../../core/utils/constants/enum/cities_of_turkey.dart';
 
 part '../widget/stepper_driver_ınformation.dart';
 
@@ -68,6 +68,10 @@ class _SelectItemList extends StatelessWidget {
         //controller: TextEditingController(text: model.products[index].quantity.toString()),
         productNumber: model.products[index].quantity,
         inventoryItem: model.products[index],
+        itemType: '',
+        onDelete: () {
+          model.deleteSepet(model.products[index]);
+        },
       ),
     );
   }
@@ -90,25 +94,25 @@ class _OverViewPage extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.start,
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          const ReportsDetailTextPart(
+          ReportsDetailTextPart(
             keyText: 'Araç Tipi',
-            valueText: 'Kamyon',
+            valueText: model.selectedVehicle?.vehicleType ?? '',
           ),
-          const ReportsDetailTextPart(
+          ReportsDetailTextPart(
             keyText: 'Araç Plakası',
-            valueText: '34 AY 123',
+            valueText: model.selectedVehicle?.plate ?? '',
           ),
-          const ReportsDetailTextPart(
+          ReportsDetailTextPart(
             keyText: 'Araç Sürücüsü',
-            valueText: 'Ahmet Yılmaz',
+            valueText: model.selectedVehicle?.driverName ?? '',
           ),
-          const ReportsDetailTextPart(
+          ReportsDetailTextPart(
             keyText: 'Telefon Numarası',
-            valueText: '0532 123 45 67',
+            valueText: model.selectedVehicle?.driverPhone ?? '',
           ),
-          const ReportsDetailTextPart(
+          ReportsDetailTextPart(
             keyText: 'Gidilecek Yer',
-            valueText: 'Hatay',
+            valueText: model.toTheProvience,
           ),
           const SizedBox(height: 16),
           Padding(
@@ -133,6 +137,10 @@ class _OverViewPage extends StatelessWidget {
               //controller: TextEditingController(),
               productNumber: model.products[index].quantity,
               inventoryItem: model.products[index],
+              itemType: '',
+              onDelete: () {
+                model.deleteSepet(model.products[index]);
+              },
             ),
           ),
         ],
