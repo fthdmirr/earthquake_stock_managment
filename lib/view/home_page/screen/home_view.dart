@@ -2,6 +2,7 @@ import 'package:earhquake_stock_managment/core/common/models/app_images/app_imag
 import 'package:earhquake_stock_managment/core/common/models/inventory_item/inventory_item_model.dart';
 import 'package:earhquake_stock_managment/core/common/provider/view_model_provider.dart';
 import 'package:earhquake_stock_managment/core/components/sheet/app_bottom_sheet.dart';
+import 'package:earhquake_stock_managment/core/components/text/headline/headline5_text.dart';
 import 'package:earhquake_stock_managment/core/utils/constants/app_color.dart';
 import 'package:earhquake_stock_managment/view/home_page/view_model/home_viewmodel.dart';
 
@@ -16,7 +17,19 @@ class HomeView extends StatelessWidget {
       model: HomeViewModel(
         context: context,
       ),
-      builder: (HomeViewModel model) => Scaffold(
+      builder: (model) => Scaffold(
+        floatingActionButton: FloatingActionButton.extended(
+          onPressed: () {
+            model.getSepet();
+          },
+          icon: const Icon(
+            Icons.add,
+          ),
+          label: Headline5Text(
+            text: 'Kategori Ekle',
+            color: AppColors.white,
+          ),
+        ),
         body: Column(
           children: [
             Expanded(
@@ -29,7 +42,9 @@ class HomeView extends StatelessWidget {
                 itemCount: model.inventoryItems.length,
                 itemBuilder: (context, index) => ReceivePageItemWidget(
                   item: model.inventoryItems[index],
-                  bottomSheetButton: () {},
+                  bottomSheetButton: () => model.addToSepet(
+                    model.inventoryItems[index],
+                  ),
                 ),
               ),
             ),
@@ -52,8 +67,15 @@ class ReceivePageItemWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: () => AppBottomSheet().showBottomSheet(
-          context, item.icon ?? 'empty_icon', item.quantity, item.name, bottomSheetButton),
+      onTap: () {
+        AppBottomSheet().showBottomSheet(
+          context,
+          item.icon ?? 'empty_icon',
+          item.quantity,
+          item.name,
+          bottomSheetButton,
+        );
+      },
       child: Container(
         margin: const EdgeInsets.all(8),
         decoration: BoxDecoration(
