@@ -6,11 +6,10 @@ import 'package:flutter/material.dart';
 import '../../utils/constants/app_color.dart';
 import '../button/custom_bermuda_text_button.dart';
 import '../container/white_container.dart';
-import '../text/headline/headline2_text.dart';
 import '../text/headline/headline3_text.dart';
 import '../text/headline/headline4_text.dart';
 
-class ProductSelectionCard extends StatelessWidget {
+class ProductSelectionCard extends StatefulWidget {
   int productNumber;
   InventoryItem inventoryItem;
   ProductSelectionCard({
@@ -18,6 +17,18 @@ class ProductSelectionCard extends StatelessWidget {
     required this.productNumber,
     required this.inventoryItem,
   }) : super(key: key);
+
+  @override
+  State<ProductSelectionCard> createState() => _ProductSelectionCardState();
+}
+
+class _ProductSelectionCardState extends State<ProductSelectionCard> {
+  final TextEditingController _textEditingController = TextEditingController();
+  @override
+  void initState() {
+    _textEditingController.text = widget.productNumber.toString();
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -35,10 +46,10 @@ class ProductSelectionCard extends StatelessWidget {
                 backgroundColor: AppColors.wildSand,
                 child: Image(
                     image: AppImages.memoryImage(
-                        inventoryItem.icon ?? 'empty_icon')),
+                        widget.inventoryItem.icon ?? 'empty_icon')),
               ),
               Headline3Text(
-                text: inventoryItem.name,
+                text: widget.inventoryItem.name,
                 color: AppColors.dark,
               ),
               Headline4Text(
@@ -64,19 +75,30 @@ class ProductSelectionCard extends StatelessWidget {
                 children: [
                   CustomBermudaTextButton(
                     onPressed: () {
-                      //decrementPrees();
+                      _textEditingController.text =
+                          (int.parse(_textEditingController.text) - 1)
+                              .toString();
                     },
                     text: '-',
                   ),
-                  const SizedBox(width: 20),
-                  Headline2Text(
-                    text: productNumber.toString(),
-                    color: AppColors.black,
+                  SizedBox(
+                    width: 100,
+                    height: 50,
+                    child: TextFormField(
+                      controller: _textEditingController,
+                      textAlign: TextAlign.center,
+                      decoration: InputDecoration(
+                        border: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(10),
+                        ),
+                      ),
+                    ),
                   ),
-                  const SizedBox(width: 20),
                   CustomBermudaTextButton(
                     onPressed: () {
-                      //incrementPrees();
+                      _textEditingController.text =
+                          (int.parse(_textEditingController.text) + 1)
+                              .toString();
                     },
                     text: '+',
                   ),
