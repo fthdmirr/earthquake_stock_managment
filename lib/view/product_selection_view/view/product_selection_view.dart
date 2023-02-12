@@ -14,7 +14,6 @@ import 'package:earhquake_stock_managment/view/product_selection_view/viewmodel/
 import '../../../core/components/card/product_selection_card.dart';
 import '../../../core/components/dropdown/dropdown_input.dart';
 import '../../../core/components/input/base_input.dart';
-import '../../../core/utils/constants/enum/cities_of_turkey.dart';
 
 part '../widget/stepper_driver_ınformation.dart';
 
@@ -69,6 +68,10 @@ class _SelectItemList extends StatelessWidget {
         //controller: TextEditingController(text: model.products[index].quantity.toString()),
         productNumber: model.products[index].quantity,
         inventoryItem: model.products[index],
+        itemType: '',
+        onDelete: () {
+          model.deleteSepet(model.products[index]);
+        },
       ),
     );
   }
@@ -91,23 +94,23 @@ class _OverViewPage extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.start,
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-           ReportsDetailTextPart(
+          ReportsDetailTextPart(
             keyText: 'Araç Tipi',
             valueText: model.selectedVehicle?.vehicleType ?? '',
           ),
-           ReportsDetailTextPart(
+          ReportsDetailTextPart(
             keyText: 'Araç Plakası',
             valueText: model.selectedVehicle?.plate ?? '',
           ),
-           ReportsDetailTextPart(
+          ReportsDetailTextPart(
             keyText: 'Araç Sürücüsü',
             valueText: model.selectedVehicle?.driverName ?? '',
           ),
-           ReportsDetailTextPart(
+          ReportsDetailTextPart(
             keyText: 'Telefon Numarası',
             valueText: model.selectedVehicle?.driverPhone ?? '',
           ),
-           ReportsDetailTextPart(
+          ReportsDetailTextPart(
             keyText: 'Gidilecek Yer',
             valueText: model.toTheProvience,
           ),
@@ -134,6 +137,10 @@ class _OverViewPage extends StatelessWidget {
               //controller: TextEditingController(),
               productNumber: model.products[index].quantity,
               inventoryItem: model.products[index],
+              itemType: '',
+              onDelete: () {
+                model.deleteSepet(model.products[index]);
+              },
             ),
           ),
         ],

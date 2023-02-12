@@ -14,8 +14,6 @@ import 'package:earhquake_stock_managment/main.dart';
 import 'package:earhquake_stock_managment/view/bottom_bar/view/bottom_bar_view.dart';
 import 'package:flutter/material.dart';
 
-import '../../../core/utils/constants/enum/cities_of_turkey.dart';
-
 class ProductSelectionViewModel extends BaseViewModel {
   ProductSelectionViewModel({required super.context});
 
@@ -27,9 +25,6 @@ class ProductSelectionViewModel extends BaseViewModel {
 
   String selectedVehicleType = 'Kamyon';
   String toTheProvience = EarthquakeCitiesAndDistricts.adana.name;
-
-  final String selectedItem = 'Meyve';
-  final String selectedItemType = 'Koli';
 
   Vehicle? selectedVehicle;
 
@@ -91,6 +86,11 @@ class ProductSelectionViewModel extends BaseViewModel {
     phoneNoController.clear();
     quantity.clear();
     selectedVehicle = null;
+    notifyListeners();
+  }
+
+  void deleteSepet(InventoryItem truck) {
+    super.sepet.removeFromBasket(truck);
     notifyListeners();
   }
 }

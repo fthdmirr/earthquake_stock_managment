@@ -11,17 +11,21 @@ import '../text/headline/headline3_text.dart';
 import '../text/headline/headline4_text.dart';
 
 class ProductSelectionCard extends StatefulWidget {
-  ProductSelectionCard({
+  const ProductSelectionCard({
     Key? key,
     required this.productNumber,
     required this.inventoryItem,
     required this.onIncrease,
     required this.onDicrise,
+    required this.itemType,
+    required this.onDelete
   }) : super(key: key);
-  int productNumber;
-  InventoryItem inventoryItem;
+  final int productNumber;
+  final InventoryItem inventoryItem;
+  final String itemType;
   final void Function() onIncrease;
   final void Function() onDicrise;
+  final void Function()? onDelete;
 
   @override
   State<ProductSelectionCard> createState() => _ProductSelectionCardState();
@@ -49,16 +53,15 @@ class _ProductSelectionCardState extends State<ProductSelectionCard> {
               CircleAvatar(
                 radius: 30,
                 backgroundColor: AppColors.wildSand,
-                child: Image(
-                    image: AppImages.memoryImage(
-                        widget.inventoryItem.icon ?? 'empty_icon')),
+                child:
+                    Image(image: AppImages.memoryImage(widget.inventoryItem.icon ?? 'empty_icon')),
               ),
               Headline3Text(
                 text: widget.inventoryItem.name,
                 color: AppColors.dark,
               ),
               Headline4Text(
-                text: 'Kutu',
+                text: widget.itemType,
                 color: AppColors.darkGrey,
               ),
             ],
@@ -67,13 +70,16 @@ class _ProductSelectionCardState extends State<ProductSelectionCard> {
             crossAxisAlignment: CrossAxisAlignment.end,
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              CircleAvatar(
-                radius: 30,
-                backgroundColor: AppColors.pippin,
-                child: Image(
-                  image: AppImages.memoryImage('trash_icon'),
-                  width: 30,
-                  height: 30,
+              InkWell(
+                onTap: widget.onDelete,
+                child: CircleAvatar(
+                  radius: 30,
+                  backgroundColor: AppColors.pippin,
+                  child: Image(
+                    image: AppImages.memoryImage('trash_icon'),
+                    width: 30,
+                    height: 30,
+                  ),
                 ),
               ),
               Row(
@@ -82,8 +88,7 @@ class _ProductSelectionCardState extends State<ProductSelectionCard> {
                     onPressed: () {
                       widget.onDicrise();
                       _textEditingController.text =
-                          (int.parse(_textEditingController.text) - 1)
-                              .toString();
+                          (int.parse(_textEditingController.text) - 1).toString();
                     },
                     text: '-',
                   ),
@@ -110,8 +115,7 @@ class _ProductSelectionCardState extends State<ProductSelectionCard> {
                     onPressed: () {
                       widget.onIncrease();
                       _textEditingController.text =
-                          (int.parse(_textEditingController.text) + 1)
-                              .toString();
+                          (int.parse(_textEditingController.text) + 1).toString();
                     },
                     text: '+',
                   ),
