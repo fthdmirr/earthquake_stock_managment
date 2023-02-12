@@ -29,7 +29,7 @@ class ProductSelectionView extends StatelessWidget {
           StepperModel(title: 'Tır Bilgileri', index: 1),
           StepperModel(title: 'Genel Bakış', index: 2),
         ],
-        onPressed: () {
+        onPressed: (index) {
           // model.driverInformationController.text.isEmpty
           //     ? NavigationService.instance
           //         .navigateToPage(ProductIsEmptyView.routeName)

@@ -19,7 +19,7 @@ class VehicleInfoAdapter extends TypeAdapter<VehicleInfo> {
     return VehicleInfo(
       destinationCity: fields[0] as String,
       vehicle: fields[1] as Vehicle,
-      routeStatus: fields[2] as String,
+      routeStatus: fields[2] as RouteStatus,
       inventoryItems: (fields[3] as List).cast<InventoryItem>(),
     );
   }

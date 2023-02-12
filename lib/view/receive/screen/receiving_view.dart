@@ -30,7 +30,10 @@ class ReceivingView extends StatelessWidget {
                 _ItemInfoPage(model),
                 _OverViewPage(model),
               ],
-              onPressed: () {},
+              onPressed: (index) {
+                if (index == 0) model.addedVehicleValue();
+                if (index == 2) model.finishReceive();
+              },
             ));
   }
 }
@@ -57,6 +60,10 @@ class _VehicleInfoPage extends StatelessWidget {
           firstValue: model.fromTheProvience,
           title: 'Gelen İl',
         ),
+        BaseInput(title: 'Şoför Adı', controller: model.name),
+        const SizedBox(height: 12),
+        BaseInput(title: 'Şoför Tel', controller: model.telNo),
+        const SizedBox(height: 12),
       ],
     );
   }
@@ -90,6 +97,17 @@ class _ItemInfoPage extends StatelessWidget {
             LengthLimitingTextInputFormatter(10),
           ],
         ),
+        const SizedBox(height: 12),
+        Align(
+          alignment: Alignment.bottomLeft,
+          child: TextButton.icon(
+            onPressed: () {
+              model.addInventoryItem();
+            },
+            icon: const Icon(Icons.add),
+            label: const Text('Ürün Eklemeye Devam Et'),
+          ),
+        )
       ],
     );
   }
@@ -119,23 +137,26 @@ class _OverViewPage extends StatelessWidget {
           dropdownValues: CitiesOfTurkey.values.map((e) => e.name).toList(),
           firstValue: model.fromTheProvience,
           title: 'Gelen İl',
+          enable: false,
         ),
         const SizedBox(height: 12),
         DropdownInput(
           dropdownValues: const ['Kadın Kıyafet', 'Kuru Gıda', 'Meyve'],
           firstValue: model.selectedItem,
           title: 'Ürün',
+          enable: false,
         ),
         const SizedBox(height: 12),
         DropdownInput(
           dropdownValues: const ['Koli', 'Adet'],
           firstValue: model.selectedItemType,
           title: 'Ürün Tipi',
+          enable: false,
         ),
         const SizedBox(height: 12),
         BaseInput(
           title: 'Araç Plakası',
-          controller: model.quantity,
+          controller: model.vehiclePlate,
           isEnabled: false,
           inputFormatter: <TextInputFormatter>[
             FilteringTextInputFormatter.digitsOnly,

@@ -18,7 +18,7 @@ class ReportAdapter extends TypeAdapter<Report> {
     };
     return Report(
       dateTime: fields[0] as String,
-      quantity: (fields[1] as List).cast<VehicleInfo>(),
+      vehicleInfo: fields[1] as VehicleInfo,
     );
   }
 
@@ -29,7 +29,7 @@ class ReportAdapter extends TypeAdapter<Report> {
       ..writeByte(0)
       ..write(obj.dateTime)
       ..writeByte(1)
-      ..write(obj.quantity);
+      ..write(obj.vehicleInfo);
   }
 
   @override

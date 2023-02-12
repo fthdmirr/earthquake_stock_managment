@@ -27,8 +27,9 @@ class ReportCacheManager {
     return box?.get(key);
   }
 
-  Future<void> addValue(Report value) async {
+  Future<Report> addValue(Report value) async {
     await box?.add(value);
+    return value;
   }
 
   // Future<void> putValue(Report value) async {

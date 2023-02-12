@@ -27,8 +27,9 @@ class VehicleCacheManager {
     return box?.get(key);
   }
 
-  Future<void> addValue(Vehicle value) async {
+  Future<Vehicle> addValue(Vehicle value) async {
     await box?.add(value);
+    return value;
   }
 
   // Future<void> putValue(Vehicle value) async {

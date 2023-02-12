@@ -17,24 +17,21 @@ class InventoryItemAdapter extends TypeAdapter<InventoryItem> {
       for (int i = 0; i < numOfFields; i++) reader.readByte(): reader.read(),
     };
     return InventoryItem(
-      id: fields[0] as String,
-      quantity: fields[1] as int,
-      name: fields[2] as String,
-      icon: fields[3] as String,
+      quantity: fields[0] as int,
+      name: fields[1] as String,
+      icon: fields[2] as String?,
     );
   }
 
   @override
   void write(BinaryWriter writer, InventoryItem obj) {
     writer
-      ..writeByte(4)
-      ..writeByte(0)
-      ..write(obj.id)
-      ..writeByte(1)
-      ..write(obj.quantity)
-      ..writeByte(2)
-      ..write(obj.name)
       ..writeByte(3)
+      ..writeByte(0)
+      ..write(obj.quantity)
+      ..writeByte(1)
+      ..write(obj.name)
+      ..writeByte(2)
       ..write(obj.icon);
   }
 

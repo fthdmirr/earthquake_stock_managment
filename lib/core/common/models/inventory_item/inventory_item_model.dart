@@ -6,17 +6,14 @@ part 'inventory_item_model.g.dart';
 @HiveType(typeId: HiveConstants.inventoryItemId)
 class InventoryItem {
   InventoryItem({
-    required this.id,
     required this.quantity,
     required this.name,
-    required this.icon,
+    this.icon,
   });
   @HiveField(0)
-  String id;
-  @HiveField(1)
   int quantity;
-  @HiveField(2)
+  @HiveField(1)
   String name;
-  @HiveField(3)
-  String icon;
+  @HiveField(2)
+  String? icon;
 }

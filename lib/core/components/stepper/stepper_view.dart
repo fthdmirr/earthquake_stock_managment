@@ -12,7 +12,7 @@ class StepperView extends StatefulWidget {
   });
 
   final List<StepperModel> steppers;
-  final Function onPressed;
+  final Function(int) onPressed;
   final List<Widget> widgets;
 
   @override
@@ -28,10 +28,11 @@ class _StepperViewViewState extends State<StepperView> {
   }
 
   void buttonPressed() {
+    widget.onPressed(currentIndex);
+
     if (currentIndex != widget.widgets.length - 1) {
       changeCurrentIndex(currentIndex + 1);
     }
-    widget.onPressed();
   }
 
   void backButton() {
@@ -79,21 +80,16 @@ class _StepperViewViewState extends State<StepperView> {
                 children: [
                   Expanded(
                       child: _SingleButton(
-                          title: 'Geri Dön',
-                          color: AppColors.greyapp,
-                          onPressed: backButton)),
+                          title: 'Geri Dön', color: AppColors.greyapp, onPressed: backButton)),
                   const SizedBox(width: 10),
-                  Expanded(
-                      child: _SingleButton(
-                          title: 'Devam Et', onPressed: buttonPressed))
+                  Expanded(child: _SingleButton(title: 'Devam Et', onPressed: buttonPressed))
                 ],
               ));
   }
 }
 
 class _SingleButton extends StatelessWidget {
-  const _SingleButton(
-      {required this.title, required this.onPressed, this.color});
+  const _SingleButton({required this.title, required this.onPressed, this.color});
   final String title;
   final Function() onPressed;
   final Color? color;
@@ -102,10 +98,9 @@ class _SingleButton extends StatelessWidget {
     return ElevatedButton(
       onPressed: onPressed,
       style: ButtonStyle(
-          backgroundColor:
-              color != null ? MaterialStateProperty.all<Color>(color!) : null,
-          minimumSize: MaterialStateProperty.all<Size>(
-              Size(double.infinity, context.dynamicHeight(0.06)))),
+          backgroundColor: color != null ? MaterialStateProperty.all<Color>(color!) : null,
+          minimumSize:
+              MaterialStateProperty.all<Size>(Size(double.infinity, context.dynamicHeight(0.06)))),
       child: Text(title),
     );
   }
