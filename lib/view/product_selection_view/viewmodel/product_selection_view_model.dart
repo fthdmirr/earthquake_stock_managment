@@ -1,6 +1,7 @@
 import 'dart:math';
 
 import 'package:earhquake_stock_managment/core/common/models/inventory_item/inventory_item_model.dart';
+import 'package:earhquake_stock_managment/core/common/models/item_and_quantities/item_and_quantities_model.dart';
 import 'package:earhquake_stock_managment/core/common/models/report/report_model.dart';
 import 'package:earhquake_stock_managment/core/common/models/status/route_status.dart';
 import 'package:earhquake_stock_managment/core/common/models/vehicle/vehicle_model.dart';
@@ -43,8 +44,6 @@ class ProductSelectionViewModel extends BaseViewModel {
     notifyListeners();
   }
 
-  getProducts() {}
-
   addVehicle() {
     selectedVehicle = Vehicle(
         vehicleType: selectedVehicleType,
@@ -67,13 +66,18 @@ class ProductSelectionViewModel extends BaseViewModel {
       ),
     );
 
-    for (var i = 0; i < products.length; i++) {
-      itemCacheManager.addValue(InventoryItem(
-        name: products[i].name,
-        quantity: -products[i].quantity,
-        icon: products[i].icon,
-      ));
+    for (var element in products) {
+      itemAndQuantityCacheManager.addValue(ItemAndQuantites(
+          quantity: -element.quantity, itemName: element.name));
     }
+
+    // for (var i = 0; i < products.length; i++) {
+    //   itemCacheManager.addValue(InventoryItem(
+    //     name: products[i].name,
+    //     quantity: -products[i].quantity,
+    //     icon: products[i].icon,
+    //   ));
+    // }
 
     _clearDatas();
 
@@ -87,7 +91,7 @@ class ProductSelectionViewModel extends BaseViewModel {
   }
 
   void _clearDatas() {
-    super.basket.clear();
+    super.sepet.clearAll();
     quantity.clear();
     vehicleTypeController.clear();
     vehiclePlateController.clear();
@@ -95,5 +99,6 @@ class ProductSelectionViewModel extends BaseViewModel {
     phoneNoController.clear();
     quantity.clear();
     selectedVehicle = null;
+    notifyListeners();
   }
 }

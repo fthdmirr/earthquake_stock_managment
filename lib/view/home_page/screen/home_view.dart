@@ -1,12 +1,14 @@
 import 'package:earhquake_stock_managment/core/common/models/app_images/app_images.dart';
 import 'package:earhquake_stock_managment/core/common/models/inventory_item/inventory_item_model.dart';
 import 'package:earhquake_stock_managment/core/common/provider/view_model_provider.dart';
-import 'package:earhquake_stock_managment/core/components/sheet/app_bottom_sheet.dart';
+import 'package:earhquake_stock_managment/core/components/notification/flushbar_notification.dart';
 import 'package:earhquake_stock_managment/core/components/text/headline/headline5_text.dart';
 import 'package:earhquake_stock_managment/core/utils/constants/app_color.dart';
 import 'package:earhquake_stock_managment/view/home_page/view_model/home_viewmodel.dart';
 
 import 'package:flutter/material.dart';
+
+import '../../../core/components/sheet/app_bottom_sheet.dart';
 
 part '../widget/receive_page_item_widget.dart';
 
@@ -34,6 +36,13 @@ class HomeView extends StatelessWidget {
         ),
         body: Column(
           children: [
+            ElevatedButton(
+              onPressed: () => showFlushbarWidget(
+                      ' Ürün tıra eklendi. Alttaki bardan tır detayından düzenle ve gönder.',
+                      Icons.check)
+                  .show(context),
+              child: const Text('data'),
+            ),
             Expanded(
               child: GridView.builder(
                 gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(

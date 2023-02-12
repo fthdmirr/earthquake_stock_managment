@@ -1,4 +1,5 @@
 import 'package:earhquake_stock_managment/core/common/models/inventory_item/inventory_item_model.dart';
+import 'package:earhquake_stock_managment/core/common/models/item_and_quantities/item_and_quantities_model.dart';
 import 'package:earhquake_stock_managment/core/common/models/report/report_model.dart';
 import 'package:earhquake_stock_managment/core/common/models/status/route_status.dart';
 import 'package:earhquake_stock_managment/core/common/models/vehicle/vehicle_model.dart';
@@ -61,6 +62,12 @@ class ReceiveViewModel extends BaseViewModel {
         ),
       ),
     );
+
+    for (var element in inventoryItems) {
+      itemAndQuantityCacheManager.addValue(
+          ItemAndQuantites(quantity: element.quantity, itemName: element.name));
+    }
+
     _clearDatas();
     Future.delayed(Duration.zero).then((value) => NavigationService.instance
         .navigateToPageClear(path: BottomBarView.routeName));

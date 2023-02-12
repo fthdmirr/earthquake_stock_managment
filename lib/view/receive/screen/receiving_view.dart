@@ -3,8 +3,9 @@ import 'package:earhquake_stock_managment/core/components/input/base_input.dart'
 import 'package:earhquake_stock_managment/core/components/stepper/stepper_model.dart';
 import 'package:earhquake_stock_managment/core/components/stepper/stepper_view.dart';
 import 'package:earhquake_stock_managment/core/utils/constants/enum/cities_of_turkey.dart';
+import 'package:earhquake_stock_managment/core/utils/input_field_generator.dart';
 import 'package:earhquake_stock_managment/view/receive/view_model/receive_view_model.dart';
-import 'package:flutter/services.dart';
+import 'package:mask_text_input_formatter/mask_text_input_formatter.dart';
 
 import '../../../core/common/provider/view_model_provider.dart';
 
@@ -12,6 +13,7 @@ import 'package:flutter/material.dart';
 
 import '../../../core/components/text/headline/headline5_text.dart';
 import '../../../core/utils/constants/app_color.dart';
+import '../../reports/view/reports_detail.view.dart';
 
 class ReceivingView extends StatelessWidget {
   const ReceivingView({super.key});
@@ -56,7 +58,8 @@ class _VehicleInfoPage extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.start,
           children: [
             Headline5Text(
-              text: 'Kabul edeceğiniz tırın ve tır içerisindeki malzeme bilgisini giriniz.',
+              text:
+                  'Kabul edeceğiniz tırın ve tır içerisindeki malzeme bilgisini giriniz.',
               color: AppColors.dark,
             ),
             const SizedBox(height: 40),
@@ -68,9 +71,12 @@ class _VehicleInfoPage extends StatelessWidget {
               },
               title: 'Araç Tipi',
             ),
-            const SizedBox(height: 12),
-            BaseInput(title: 'Araç Plakası', controller: model.vehiclePlate),
-            const SizedBox(height: 12),
+            const SizedBox(height: 20),
+            BaseInput(
+              title: 'Araç Plakası',
+              controller: model.vehiclePlate,
+            ),
+            const SizedBox(height: 20),
             DropdownInput(
               dropdownValues: CitiesOfTurkey.values.map((e) => e.name).toList(),
               dropDownValue: model.fromTheProvience,
@@ -80,9 +86,19 @@ class _VehicleInfoPage extends StatelessWidget {
               },
             ),
             BaseInput(title: 'Şoför Adı', controller: model.name),
-            const SizedBox(height: 12),
-            BaseInput(title: 'Şoför Tel', controller: model.telNo),
-            const SizedBox(height: 12),
+            const SizedBox(height: 20),
+            BaseInput(
+              title: 'Şoför Telefon',
+              controller: model.telNo,
+              inputFormatter: [
+                MaskTextInputFormatter(
+                  initialText: "(XXX) XXX-XX-XX",
+                  mask: '(###) ###-##-##',
+                  filter: {"#": RegExp(r'^[0-9]*$')},
+                ),
+              ],
+            ),
+            const SizedBox(height: 20),
           ],
         ),
       ),
@@ -109,7 +125,7 @@ class _ItemInfoPage extends StatelessWidget {
                 model.selectedItem = p0 ?? 'Kamyon';
               },
             ),
-            const SizedBox(height: 12),
+            const SizedBox(height: 20),
             DropdownInput(
               dropdownValues: const ['Koli', 'Adet'],
               dropDownValue: model.selectedItemType,
@@ -118,23 +134,24 @@ class _ItemInfoPage extends StatelessWidget {
                 model.selectedItemType = p0 ?? 'Koli';
               },
             ),
-            const SizedBox(height: 12),
+            const SizedBox(height: 20),
             BaseInput(
-              title: 'Adet',
-              controller: model.quantity,
-              inputFormatter: <TextInputFormatter>[
-                FilteringTextInputFormatter.digitsOnly,
-                LengthLimitingTextInputFormatter(10),
-              ],
-            ),
-            const SizedBox(height: 12),
+                title: 'Adet',
+                controller: model.quantity,
+                inputFormatter: getTextInputFormatters(
+                  onlyNumber: true,
+                  spaceFilter: true,
+                  positiveIntegerFilter: true,
+                )),
+            const SizedBox(height: 20),
             Align(
               alignment: Alignment.bottomLeft,
               child: TextButton.icon(
                 onPressed: () => model.addInventoryItem(),
                 icon: const Icon(Icons.add),
-                label:
-                    Text(model.inventoryItems.isEmpty ? ' Ürünü Ekle' : 'Ürün Eklemeye Devam Et'),
+                label: Text(model.inventoryItems.isEmpty
+                    ? ' Ürünü Ekle'
+                    : 'Ürün Eklemeye Devam Et'),
               ),
             )
           ],
@@ -155,59 +172,37 @@ class _OverViewPage extends StatelessWidget {
         padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 15),
         child: Column(
           children: [
-            DropdownInput(
-              dropdownValues: const ['Kamyon', 'Tır', 'Kamyonet'],
-              dropDownValue: model.selectedVehicle,
-              title: 'Araç Tipi',
-              onChanged: (p0) {
-                model.selectedVehicle = p0 ?? 'KoKamyonli';
-              },
+            Headline5Text(
+              text: 'Kontrol et ve Tamamla!',
+              color: AppColors.dark,
             ),
-            const SizedBox(height: 12),
-            BaseInput(
-              title: 'Araç Plakası',
-              controller: model.vehiclePlate,
-              isEnabled: false,
+            const ReportsDetailTextPart(
+              keyText: 'Araç Tipi',
+              valueText: 'Kamyon',
             ),
-            const SizedBox(height: 12),
-            DropdownInput(
-              dropdownValues: CitiesOfTurkey.values.map((e) => e.name).toList(),
-              dropDownValue: model.fromTheProvience,
-              title: 'Gelen İl',
-              enable: false,
-              onChanged: (p0) {
-                model.fromTheProvience = p0 ?? 'KoKamyonli';
-              },
+            const ReportsDetailTextPart(
+              keyText: 'Araç Plakası',
+              valueText: '34 AY 123',
             ),
-            const SizedBox(height: 12),
-            DropdownInput(
-              dropdownValues: const ['Kadın Kıyafet', 'Kuru Gıda', 'Meyve'],
-              dropDownValue: model.selectedItem,
-              title: 'Ürün',
-              enable: false,
-              onChanged: (p0) {
-                model.selectedItem = p0 ?? 'KoKamyonli';
-              },
+            const ReportsDetailTextPart(
+              keyText: 'Gelen İl',
+              valueText: 'Ahmet Yılmaz',
             ),
-            const SizedBox(height: 12),
-            DropdownInput(
-              dropdownValues: const ['Koli', 'Adet'],
-              dropDownValue: model.selectedItemType,
-              title: 'Ürün Tipi',
-              enable: false,
-              onChanged: (p0) {
-                model.selectedItemType = p0 ?? 'KoKamyonli';
-              },
+            const ReportsDetailTextPart(
+              keyText: 'Gidecek İl',
+              valueText: 'Ahmet Yılmaz',
             ),
-            const SizedBox(height: 12),
-            BaseInput(
-              title: 'Araç Plakası',
-              controller: model.vehiclePlate,
-              isEnabled: false,
-              inputFormatter: <TextInputFormatter>[
-                FilteringTextInputFormatter.digitsOnly,
-                LengthLimitingTextInputFormatter(10),
-              ],
+            const ReportsDetailTextPart(
+              keyText: 'Ürün',
+              valueText: 'Ahmet Yılmaz',
+            ),
+            const ReportsDetailTextPart(
+              keyText: 'Ürün Tipi',
+              valueText: 'Ahmet Yılmaz',
+            ),
+            const ReportsDetailTextPart(
+              keyText: 'Miktar',
+              valueText: '50',
             ),
           ],
         ),

@@ -4,7 +4,7 @@ import 'package:google_fonts/google_fonts.dart';
 import '../constants/app_color.dart';
 
 final ThemeData myTheme = ThemeData(
-  scaffoldBackgroundColor: AppColors.mercury,
+  scaffoldBackgroundColor: AppColors.systemBackground,
   appBarTheme: const AppBarTheme(
     backgroundColor: AppColors.white,
     centerTitle: true,

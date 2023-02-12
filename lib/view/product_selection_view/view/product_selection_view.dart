@@ -63,8 +63,8 @@ class _SelectItemList extends StatelessWidget {
       itemCount: model.products.length,
       physics: const BouncingScrollPhysics(),
       itemBuilder: (context, index) => ProductSelectionCard(
-        //decrementPrees: () => model.decrement(model.products[index]),
-        //incrementPrees: () => model.increment(model.products[index]),
+        onDicrise: () => model.decrement(model.products[index]),
+        onIncrease: () => model.increment(model.products[index]),
         //controller: TextEditingController(text: model.products[index].quantity.toString()),
         productNumber: model.products[index].quantity,
         inventoryItem: model.products[index],
@@ -128,8 +128,8 @@ class _OverViewPage extends StatelessWidget {
             itemCount: model.products.length,
             physics: const BouncingScrollPhysics(),
             itemBuilder: (context, index) => ProductSelectionCard(
-              //decrementPrees: () => model.decrement(model.products[index]),
-              //incrementPrees: () => model.increment(model.products[index]),
+              onDicrise: () => model.decrement(model.products[index]),
+              onIncrease: () => model.increment(model.products[index]),
               //controller: TextEditingController(),
               productNumber: model.products[index].quantity,
               inventoryItem: model.products[index],
