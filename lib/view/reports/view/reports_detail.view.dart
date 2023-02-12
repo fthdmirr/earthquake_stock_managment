@@ -19,7 +19,7 @@ class ReportsDetailView extends StatelessWidget {
           title: 'Rapor Detay',
           actions: [
             IconButton(
-              onPressed: model.printReport,
+              onPressed: () => model.printReport(report),
               icon: const Icon(Icons.print),
             )
           ],
