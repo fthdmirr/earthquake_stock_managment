@@ -1,4 +1,6 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
+import 'package:earhquake_stock_managment/core/init/navigation/navigation_service.dart';
+import 'package:earhquake_stock_managment/view/bottom_bar/view/bottom_bar_view.dart';
 import 'package:flutter/material.dart';
 import 'package:mask_text_input_formatter/mask_text_input_formatter.dart';
 
@@ -8,6 +10,7 @@ import 'package:earhquake_stock_managment/core/components/stepper/stepper_view.d
 import 'package:earhquake_stock_managment/view/product_selection_view/viewmodel/product_selection_view_model.dart';
 
 import '../../../core/components/card/product_selection_card.dart';
+import '../../../core/components/dialog/custom_show_dialog.dart';
 import '../../../core/components/dropdown/dropdown_input.dart';
 import '../../../core/components/input/base_input.dart';
 import '../../../core/utils/constants/app_color.dart';
@@ -30,11 +33,16 @@ class ProductSelectionView extends StatelessWidget {
           StepperModel(title: 'Tır Bilgileri', index: 1),
           StepperModel(title: 'Genel Bakış', index: 2),
         ],
-        onPressed: (index) {
-          // model.driverInformationController.text.isEmpty
-          //     ? NavigationService.instance
-          //         .navigateToPage(ProductIsEmptyView.routeName)
-          //     : null;
+        onPressed: (index) async {
+          if (index == 2) {
+            NavigationService.instance
+                .navigateToPageClear(path: BottomBarView.routeName);
+            await customMyDialog(context);
+          }
+          //else if (model.driverInformationController.text.isEmpty) {
+          //   NavigationService.instance
+          //       .navigateToPage(ProductIsEmptyView.routeName);
+          // }
         },
         widgets: [
           ListView.builder(
