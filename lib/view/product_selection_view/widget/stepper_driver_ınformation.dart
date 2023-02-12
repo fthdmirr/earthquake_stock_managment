@@ -50,7 +50,7 @@ class _StepperTruckInformation extends StatelessWidget {
           DropdownInput(
             title: 'Gidecek Yer',
             dropdownValues: CitiesOfTurkey.values.map((e) => e.name).toList(),
-            firstValue: model.fromTheProvience,
+            firstValue: model.toTheProvience,
           ),
         ],
       ),

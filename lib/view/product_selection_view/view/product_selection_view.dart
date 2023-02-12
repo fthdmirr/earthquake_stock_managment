@@ -39,6 +39,7 @@ class ProductSelectionView extends StatelessWidget {
                 StepperModel(title: 'Genel Bakış', index: 2),
               ],
               onPressed: (index) async {
+                if (index == 1) model.addVehicle();
                 if (index == 2) {
                   NavigationService.instance.navigateToPageClear(path: BottomBarView.routeName);
                   await customMyDialog(context);
