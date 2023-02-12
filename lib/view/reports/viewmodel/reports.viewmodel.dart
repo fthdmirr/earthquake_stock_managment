@@ -1,4 +1,3 @@
-import 'dart:developer';
 import 'package:earhquake_stock_managment/core/common/models/report/report_model.dart';
 import 'package:earhquake_stock_managment/core/common/models/sheetlistmodel/sheetlistmodel.dart';
 import 'package:earhquake_stock_managment/core/common/models/status/route_status.dart';
@@ -17,8 +16,8 @@ class ReportsViewModel extends BaseViewModel {
 
   @override
   initViewModel() async {
-    getReportsFromHive();
     super.initViewModel();
+    getReportsFromHive();
   }
 
   List<SheetListModel<Widget>> get reportsTabs => [
@@ -52,7 +51,6 @@ class ReportsViewModel extends BaseViewModel {
         .toList();
 
     notifyListeners();
-    inspect(cameReports);
   }
 
   searchCameReports(String value) {

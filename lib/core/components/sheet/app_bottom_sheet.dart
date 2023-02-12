@@ -38,10 +38,8 @@ class AppBottomSheet {
             children: [
               const Text(
                 'Seçilen Ürünün Detayını Giriniz.',
-                style: TextStyle(
-                    fontWeight: FontWeight.w700,
-                    fontSize: 14,
-                    color: AppColors.greyapp),
+                style:
+                    TextStyle(fontWeight: FontWeight.w700, fontSize: 14, color: AppColors.greyapp),
               ),
               const SizedBox(height: 12),
               Container(
@@ -61,13 +59,11 @@ class AppBottomSheet {
                     ),
                     Text(
                       currentItem,
-                      style: const TextStyle(
-                          fontWeight: FontWeight.w400, fontSize: 18),
+                      style: const TextStyle(fontWeight: FontWeight.w400, fontSize: 18),
                     ),
                     Text(
                       '$currentQuantity',
-                      style: const TextStyle(
-                          fontWeight: FontWeight.w600, fontSize: 25),
+                      style: const TextStyle(fontWeight: FontWeight.w600, fontSize: 25),
                     ),
                   ],
                 ),
@@ -83,17 +79,14 @@ class AppBottomSheet {
               ),
               BaseInput(
                 title: 'Miktar',
-                controller:
-                    TextEditingController(text: currentQuantity.toString()),
+                controller: TextEditingController(text: currentQuantity.toString()),
               ),
               const SizedBox(height: 10),
               SizedBox(
                 width: double.infinity,
                 height: context.dynamicHeight(0.045),
                 child: ElevatedButton(
-                  onPressed: onPressed(
-                    currentQuantity,
-                  ),
+                  onPressed: onPressed(currentQuantity),
                   child: const Text('Tıra Ekle'),
                 ),
               )
