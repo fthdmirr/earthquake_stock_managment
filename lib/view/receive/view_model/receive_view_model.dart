@@ -23,13 +23,14 @@ class ReceiveViewModel extends BaseViewModel {
   final TextEditingController name = TextEditingController();
   final TextEditingController telNo = TextEditingController();
   final TextEditingController plate = TextEditingController();
-  final formKey = GlobalKey<FormState>();
+  final formKeyStep1 = GlobalKey<FormState>();
+  final formKeyStep2 = GlobalKey<FormState>();
 
   Vehicle? pickedVehicle;
   List<InventoryItem> inventoryItems = [];
 
   void addedVehicleValue() {
-    if (formKey.currentState!.validate()) {
+    if (formKeyStep1.currentState!.validate()) {
       pickedVehicle = Vehicle(
           vehicleType: selectedVehicle,
           driverName: name.text.trim(),
@@ -48,7 +49,7 @@ class ReceiveViewModel extends BaseViewModel {
   }
 
   Future<void> finishReceive() async {
-    if (formKey.currentState!.validate()) {
+    if (formKeyStep2.currentState!.validate()) {
       if (pickedVehicle == null) return;
       await reportCacheManager.addValue(
         Report(

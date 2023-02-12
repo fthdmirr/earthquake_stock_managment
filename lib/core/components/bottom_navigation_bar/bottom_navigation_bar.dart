@@ -1,6 +1,3 @@
-import 'package:earhquake_stock_managment/core/common/models/app_images/app_images.dart';
-import 'package:earhquake_stock_managment/core/components/text/body/body_medium_text.dart';
-
 import '../../../view/bottom_bar/viewmodel/bottom_bar_view_model.dart';
 import 'package:flutter/material.dart';
 

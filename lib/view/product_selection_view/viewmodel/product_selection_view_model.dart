@@ -67,7 +67,8 @@ class ProductSelectionViewModel extends BaseViewModel {
 
     Future.delayed(Duration.zero).then(
       (value) async {
-        NavigationService.instance.navigateToPageClear(path: BottomBarView.routeName);
+        NavigationService.instance
+            .navigateToPageClear(path: BottomBarView.routeName);
         await customMyDialog(context);
       },
     );

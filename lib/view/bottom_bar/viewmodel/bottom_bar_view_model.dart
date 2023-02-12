@@ -56,7 +56,7 @@ class BottomBarViewModel extends BaseViewModel {
                 bottom: 8,
                 child: CircleAvatar(
                   radius: 10,
-                  backgroundColor: AppColors.red,
+                  backgroundColor: AppColors.red.withOpacity(0.6),
                   child: BodyMediumText(
                     text: '$basketLength',
                     color: AppColors.white,
@@ -78,5 +78,6 @@ class BottomBarViewModel extends BaseViewModel {
         ),
       ];
 
-  Color getIconColor(int index) => index == currentIndex ? AppColors.black : AppColors.greyapp;
+  Color getIconColor(int index) =>
+      index == currentIndex ? AppColors.black : AppColors.greyapp;
 }

@@ -13,7 +13,7 @@ class BaseInput extends StatelessWidget {
     required this.controller,
     this.inputType,
     this.isEnabled,
-    required this.validator,
+    this.validator,
     this.inputFormatter,
   });
 

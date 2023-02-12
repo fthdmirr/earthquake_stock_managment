@@ -12,6 +12,7 @@ import 'package:flutter/material.dart';
 
 import '../../../core/components/text/headline/headline5_text.dart';
 import '../../../core/utils/constants/app_color.dart';
+import '../../reports/view/reports_detail.view.dart';
 
 class ReceivingView extends StatelessWidget {
   const ReceivingView({super.key});
@@ -33,7 +34,9 @@ class ReceivingView extends StatelessWidget {
           _OverViewPage(model),
         ],
         onPressed: (index) {
-          if (index == 0) model.addedVehicleValue();
+          if (index == 0 && model.formKeyStep1.currentState!.validate()) {
+            model.addedVehicleValue();
+          }
           if (index == 2) model.finishReceive();
         },
       ),
@@ -52,7 +55,7 @@ class _VehicleInfoPage extends StatelessWidget {
       child: Padding(
         padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 15),
         child: Form(
-          key: model.formKey,
+          key: model.formKeyStep1,
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.center,
             mainAxisAlignment: MainAxisAlignment.start,
@@ -73,7 +76,7 @@ class _VehicleInfoPage extends StatelessWidget {
                 title: 'Araç Plakası',
                 controller: model.vehiclePlate,
                 validator: (value) =>
-                    model.vehiclePlate.text.isEmpty ? 'Boş Bırakalımaz' : '',
+                    value?.isEmpty ?? false ? 'Boş Bırakalımaz' : '',
               ),
               const SizedBox(height: 12),
               DropdownInput(
@@ -86,14 +89,14 @@ class _VehicleInfoPage extends StatelessWidget {
                 title: 'Şoför Adı',
                 controller: model.name,
                 validator: (value) =>
-                    model.name.text.isEmpty ? 'Boş Bırakalımaz' : '',
+                    value?.isEmpty ?? false ? 'Boş Bırakalımaz' : '',
               ),
               const SizedBox(height: 12),
               BaseInput(
                 title: 'Şoför Tel',
                 controller: model.telNo,
                 validator: (value) =>
-                    model.telNo.text.isEmpty ? 'Boş Bırakalımaz' : '',
+                    value?.isEmpty ?? false ? 'Boş Bırakalımaz' : '',
               ),
               const SizedBox(height: 12),
             ],
@@ -113,45 +116,48 @@ class _ItemInfoPage extends StatelessWidget {
     return SingleChildScrollView(
       child: Padding(
         padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 15),
-        child: Column(
-          children: [
-            Headline5Text(
-              text:
-                  'Kabul edeceğiniz tırın ve tır içerisindeki malzeme bilgisini giriniz.',
-              color: AppColors.dark,
-            ),
-            DropdownInput(
-              dropdownValues: const ['Kadın Kıyafet', 'Kuru Gıda', 'Meyve'],
-              firstValue: model.selectedItem,
-              title: 'Ürün',
-            ),
-            const SizedBox(height: 12),
-            DropdownInput(
-              dropdownValues: const ['Koli', 'Adet'],
-              firstValue: model.selectedItemType,
-              title: 'Ürün Tipi',
-            ),
-            const SizedBox(height: 12),
-            BaseInput(
-              title: 'Adet',
-              controller: model.quantity,
-              validator: (value) =>
-                  model.quantity.text.isEmpty ? 'Boş Bırakalımaz' : '',
-              inputFormatter: <TextInputFormatter>[
-                FilteringTextInputFormatter.digitsOnly,
-                LengthLimitingTextInputFormatter(10),
-              ],
-            ),
-            const SizedBox(height: 12),
-            Align(
-              alignment: Alignment.bottomLeft,
-              child: TextButton.icon(
-                onPressed: () => model.addInventoryItem(),
-                icon: const Icon(Icons.add),
-                label: const Text('Ürün Eklemeye Devam Et'),
+        child: Form(
+          key: model.formKeyStep2,
+          child: Column(
+            children: [
+              Headline5Text(
+                text:
+                    'Kabul edeceğiniz tırın ve tır içerisindeki malzeme bilgisini giriniz.',
+                color: AppColors.dark,
               ),
-            )
-          ],
+              DropdownInput(
+                dropdownValues: const ['Kadın Kıyafet', 'Kuru Gıda', 'Meyve'],
+                firstValue: model.selectedItem,
+                title: 'Ürün',
+              ),
+              const SizedBox(height: 12),
+              DropdownInput(
+                dropdownValues: const ['Koli', 'Adet'],
+                firstValue: model.selectedItemType,
+                title: 'Ürün Tipi',
+              ),
+              const SizedBox(height: 12),
+              BaseInput(
+                title: 'Adet',
+                controller: model.quantity,
+                validator: (value) =>
+                    model.quantity.text.isEmpty ? 'Boş Bırakalımaz' : '',
+                inputFormatter: <TextInputFormatter>[
+                  FilteringTextInputFormatter.digitsOnly,
+                  LengthLimitingTextInputFormatter(10),
+                ],
+              ),
+              const SizedBox(height: 12),
+              Align(
+                alignment: Alignment.bottomLeft,
+                child: TextButton.icon(
+                  onPressed: () => model.addInventoryItem(),
+                  icon: const Icon(Icons.add),
+                  label: const Text('Ürün Eklemeye Devam Et'),
+                ),
+              )
+            ],
+          ),
         ),
       ),
     );
@@ -167,64 +173,33 @@ class _OverViewPage extends StatelessWidget {
     return SingleChildScrollView(
       child: Padding(
         padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 15),
-        child: Form(
-          key: model.formKey,
-          child: Column(
-            children: [
-              Headline5Text(
-                text:
-                    'Kabul edeceğiniz tırın ve tır içerisindeki malzeme bilgisini giriniz.',
-                color: AppColors.dark,
-              ),
-              DropdownInput(
-                dropdownValues: const ['Kamyon', 'Tır', 'Kamyonet'],
-                firstValue: model.selectedVehicle,
-                title: 'Araç Tipi',
-              ),
-              const SizedBox(height: 12),
-              BaseInput(
-                title: 'Araç Plakası',
-                controller: model.vehiclePlate,
-                validator: (value) =>
-                    model.vehiclePlate.text.isEmpty ? 'Boş Bırakalımaz' : '',
-                isEnabled: false,
-              ),
-              const SizedBox(height: 12),
-              DropdownInput(
-                dropdownValues:
-                    CitiesOfTurkey.values.map((e) => e.name).toList(),
-                firstValue: model.fromTheProvience,
-                title: 'Gelen İl',
-                enable: false,
-              ),
-              const SizedBox(height: 12),
-              DropdownInput(
-                dropdownValues: const ['Kadın Kıyafet', 'Kuru Gıda', 'Meyve'],
-                firstValue: model.selectedItem,
-                title: 'Ürün',
-                enable: false,
-              ),
-              const SizedBox(height: 12),
-              DropdownInput(
-                dropdownValues: const ['Koli', 'Adet'],
-                firstValue: model.selectedItemType,
-                title: 'Ürün Tipi',
-                enable: false,
-              ),
-              const SizedBox(height: 12),
-              BaseInput(
-                title: 'Araç Plakası',
-                controller: model.vehiclePlate,
-                isEnabled: false,
-                validator: (value) =>
-                    model.vehiclePlate.text.isEmpty ? 'Boş Bırakalımaz' : '',
-                inputFormatter: <TextInputFormatter>[
-                  FilteringTextInputFormatter.digitsOnly,
-                  LengthLimitingTextInputFormatter(10),
-                ],
-              ),
-            ],
-          ),
+        child: Column(
+          children: [
+            Headline5Text(
+              text: 'Kontrol et ve tamamla!',
+              color: AppColors.dark,
+            ),
+            const ReportsDetailTextPart(
+              keyText: 'Araç Tipi',
+              valueText: 'Kamyon',
+            ),
+            const ReportsDetailTextPart(
+              keyText: 'Araç Plakası',
+              valueText: '34 AY 123',
+            ),
+            const ReportsDetailTextPart(
+              keyText: 'Araç Sürücüsü',
+              valueText: 'Ahmet Yılmaz',
+            ),
+            const ReportsDetailTextPart(
+              keyText: 'Telefon Numarası',
+              valueText: '0532 123 45 67',
+            ),
+            const ReportsDetailTextPart(
+              keyText: 'Gidilecek Yer',
+              valueText: 'Hatay',
+            ),
+          ],
         ),
       ),
     );
