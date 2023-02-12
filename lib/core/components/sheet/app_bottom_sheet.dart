@@ -6,26 +6,40 @@ import 'package:flutter/material.dart';
 import 'package:kartal/kartal.dart';
 
 class AppBottomSheet {
-  Future showBottomSheet(BuildContext context, String icon, int currentQuantity,
-      String currentItem, Function()? onPressed) async {
-    return await showModalBottomSheet(
+  Future showBottomSheet(
+    BuildContext context,
+    String icon,
+    int currentQuantity,
+    String currentItem,
+    Function()? onPressed,
+  ) async {
+    return showModalBottomSheet(
       backgroundColor: AppColors.white,
+      isScrollControlled: true,
       context: context,
       shape: const RoundedRectangleBorder(
-          borderRadius: BorderRadius.vertical(top: Radius.circular(12))),
-      builder: (BuildContext _) => Container(
-        height: context.dynamicHeight(0.4),
-        padding: EdgeInsets.only(bottom: MediaQuery.of(context).viewInsets.bottom),
+        borderRadius: BorderRadius.only(
+          topLeft: Radius.circular(12),
+          topRight: Radius.circular(12),
+        ),
+      ),
+      builder: (BuildContext ctx) => SafeArea(
         child: Padding(
-          padding: const EdgeInsets.only(left: 24, right: 24, top: 24, bottom: 18),
+          padding: EdgeInsets.only(
+            bottom: MediaQuery.of(ctx).viewInsets.bottom + 10,
+            left: context.dynamicWidth(0.05),
+            right: context.dynamicWidth(0.05),
+            top: context.dynamicHeight(0.02),
+          ),
           child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            crossAxisAlignment: CrossAxisAlignment.center,
+            mainAxisSize: MainAxisSize.min,
             children: [
               const Text(
                 'Seçilen Ürünün Detayını Giriniz.',
-                style:
-                    TextStyle(fontWeight: FontWeight.w700, fontSize: 14, color: AppColors.greyapp),
+                style: TextStyle(
+                    fontWeight: FontWeight.w700,
+                    fontSize: 14,
+                    color: AppColors.greyapp),
               ),
               const SizedBox(height: 12),
               Container(
@@ -45,11 +59,13 @@ class AppBottomSheet {
                     ),
                     Text(
                       currentItem,
-                      style: const TextStyle(fontWeight: FontWeight.w400, fontSize: 18),
+                      style: const TextStyle(
+                          fontWeight: FontWeight.w400, fontSize: 18),
                     ),
                     Text(
                       '$currentQuantity',
-                      style: const TextStyle(fontWeight: FontWeight.w600, fontSize: 25),
+                      style: const TextStyle(
+                          fontWeight: FontWeight.w600, fontSize: 25),
                     ),
                   ],
                 ),
@@ -66,7 +82,7 @@ class AppBottomSheet {
                 width: double.infinity,
                 height: context.dynamicHeight(0.045),
                 child: ElevatedButton(
-                  onPressed: () {},
+                  onPressed: onPressed,
                   child: const Text('Tıra Ekle'),
                 ),
               )

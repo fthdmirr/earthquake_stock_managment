@@ -17,20 +17,17 @@ class HomeView extends StatelessWidget {
       model: HomeViewModel(
         context: context,
       ),
-      builder: (HomeViewModel model) => Scaffold(
-        resizeToAvoidBottomInset: false,
-        floatingActionButton: Visibility(
-          child: FloatingActionButton.extended(
-            onPressed: () {
-              model.add();
-            },
-            icon: const Icon(
-              Icons.add,
-            ),
-            label: Headline5Text(
-              text: 'Kategori Ekle',
-              color: AppColors.white,
-            ),
+      builder: (model) => Scaffold(
+        floatingActionButton: FloatingActionButton.extended(
+          onPressed: () {
+            model.getSepet();
+          },
+          icon: const Icon(
+            Icons.add,
+          ),
+          label: Headline5Text(
+            text: 'Kategori Ekle',
+            color: AppColors.white,
           ),
         ),
         body: Column(
@@ -45,7 +42,9 @@ class HomeView extends StatelessWidget {
                 itemCount: model.inventoryItems.length,
                 itemBuilder: (context, index) => ReceivePageItemWidget(
                   item: model.inventoryItems[index],
-                  bottomSheetButton: () {},
+                  bottomSheetButton: () => model.addToSepet(
+                    model.inventoryItems[index],
+                  ),
                 ),
               ),
             ),
@@ -70,7 +69,12 @@ class ReceivePageItemWidget extends StatelessWidget {
     return GestureDetector(
       onTap: () {
         AppBottomSheet().showBottomSheet(
-            context, item.icon ?? 'empty_icon', item.quantity, item.name, bottomSheetButton);
+          context,
+          item.icon ?? 'empty_icon',
+          item.quantity,
+          item.name,
+          bottomSheetButton,
+        );
       },
       child: Container(
         margin: const EdgeInsets.all(8),

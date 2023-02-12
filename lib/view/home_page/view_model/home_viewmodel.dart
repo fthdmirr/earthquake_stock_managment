@@ -1,5 +1,8 @@
+import 'dart:developer';
+
 import 'package:earhquake_stock_managment/core/common/models/inventory_item/inventory_item_model.dart';
 import 'package:earhquake_stock_managment/main.dart';
+import 'package:flutter/material.dart';
 
 import '../../../core/common/provider/base_provider.dart';
 
@@ -80,4 +83,17 @@ class HomeViewModel extends BaseViewModel {
       icon: 'tent_icon',
     ),
   ];
+
+  addToSepet(InventoryItem item) {
+    print('item: ${item.name}');
+    sepet.addToBasket(item);
+    notifyListeners();
+    Future.delayed(const Duration(seconds: 0), () {
+      Navigator.of(context).pop(true);
+    });
+  }
+
+  getSepet() {
+    inspect(sepet.getBasket());
+  }
 }

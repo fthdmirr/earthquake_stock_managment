@@ -1,9 +1,11 @@
+import 'package:earhquake_stock_managment/core/common/provider/truck_box.singleton.dart';
 import 'package:flutter/material.dart';
 
 abstract class BaseViewModel extends ChangeNotifier {
   BaseViewModel({required this.context}) {
     initViewModel();
   }
+  VehicleBasket sepet = VehicleBasket();
 
   BuildContext context;
 
