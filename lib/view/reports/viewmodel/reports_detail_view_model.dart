@@ -23,9 +23,9 @@ class ReportsDetailViewModel extends BaseViewModel {
 
   final doc = pw.Document();
 
-  _image(String image) async => await imageFromAssetBundle('assets/images/$image');
-
   Future<void> printReport() async {
+    final afadLogo = await imageFromAssetBundle('assets/images/afad_logo.png');
+
     doc.addPage(
       pw.Page(
         pageFormat: PdfPageFormat.a4,
@@ -38,8 +38,7 @@ class ReportsDetailViewModel extends BaseViewModel {
                 pw.Row(
                   mainAxisAlignment: pw.MainAxisAlignment.spaceEvenly,
                   children: [
-                    pw.Image(_image('afad_logo.png'), height: 42),
-                    pw.Image(_image('afad_logo.png'), height: 42),
+                    pw.Image(afadLogo, height: 42),
                   ],
                 ),
                 pw.SizedBox(height: 12),
@@ -88,8 +87,7 @@ class ReportsDetailViewModel extends BaseViewModel {
         },
       ),
     );
-    await Printing.layoutPdf(
-      onLayout: (PdfPageFormat format) async => doc.save());
+    await Printing.layoutPdf(onLayout: (PdfPageFormat format) async => doc.save());
   }
 
   _dataRow({required String dataKey, required String dataValue}) => pw.Column(
