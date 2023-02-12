@@ -33,8 +33,6 @@ class ReceivingView extends StatelessWidget {
           _ItemInfoPage(model),
           _OverViewPage(model),
         ],
-        validation1: model.formKeyStep1.currentState?.validate() ?? false,
-        validation2: model.formKeyStep2.currentState?.validate() ?? false,
         onPressed: (index) {
           if (index == 0) {
             model.addedVehicleValue();
