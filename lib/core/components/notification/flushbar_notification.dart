@@ -11,23 +11,24 @@ Flushbar<dynamic> showFlushbarWidget(String message, IconData? icon) {
     margin: const EdgeInsets.all(8),
     duration: const Duration(seconds: 2),
     messageText: Row(
+      crossAxisAlignment: CrossAxisAlignment.center,
+      mainAxisAlignment: MainAxisAlignment.spaceAround,
       children: [
-        BodySmallText(
-          text: message,
-          color: AppColors.dark,
+        Expanded(
+          child: BodySmallText(
+            text: message,
+            maxLines: 2,
+            textAlign: TextAlign.start,
+            color: AppColors.dark,
+          ),
         ),
         CircleAvatar(
-          radius: 40,
-          child: Icon(
-            icon,
-            size: 28.0,
-            color: Colors.white,
-          ),
+          radius: 30,
+          backgroundColor: AppColors.green.withOpacity(0.12),
+          child: Icon(icon, size: 30, color: AppColors.green),
         ),
       ],
     ),
-    messageSize: 14,
     borderRadius: BorderRadius.circular(20),
-    message: message,
   );
 }
