@@ -1,4 +1,5 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
+import 'package:earhquake_stock_managment/core/common/models/inventory_item/inventory_item_model.dart';
 import 'package:flutter/material.dart';
 import 'package:mask_text_input_formatter/mask_text_input_formatter.dart';
 
@@ -41,8 +42,12 @@ class ProductSelectionView extends StatelessWidget {
             itemCount: 5,
             physics: const BouncingScrollPhysics(),
             itemBuilder: (context, index) => ProductSelectionCard(
-              decrementPrees: () => model.decrement(),
-              incrementPrees: () => model.increment(),
+              //decrementPrees: () => model.decrement(),
+              //incrementPrees: () => model.increment(),
+              inventoryItem: InventoryItem(
+                name: 'Kalem',
+                quantity: 10,
+              ),
               productNumber: model.productNumber,
             ),
           ),
@@ -107,8 +112,12 @@ class ProductSelectionView extends StatelessWidget {
                   itemCount: 5,
                   physics: const BouncingScrollPhysics(),
                   itemBuilder: (context, index) => ProductSelectionCard(
-                    decrementPrees: () => model.decrement(),
-                    incrementPrees: () => model.increment(),
+                    //decrementPrees: () => model.decrement(),
+                    //incrementPrees: () => model.increment(),
+                    inventoryItem: InventoryItem(
+                      name: 'Kalem',
+                      quantity: 10,
+                    ),
                     productNumber: model.productNumber,
                   ),
                 ),
