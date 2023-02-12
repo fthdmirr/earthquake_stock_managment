@@ -25,7 +25,7 @@ class ReportsDetailViewModel extends BaseViewModel {
 
   _image(String image) async => await imageFromAssetBundle('assets/images/$image');
 
-  void printReport() {
+  Future<void> printReport() async {
     doc.addPage(
       pw.Page(
         pageFormat: PdfPageFormat.a4,
@@ -88,6 +88,8 @@ class ReportsDetailViewModel extends BaseViewModel {
         },
       ),
     );
+    await Printing.layoutPdf(
+      onLayout: (PdfPageFormat format) async => doc.save());
   }
 
   _dataRow({required String dataKey, required String dataValue}) => pw.Column(
