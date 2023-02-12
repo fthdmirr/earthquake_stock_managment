@@ -26,7 +26,10 @@ class BottomBarView extends StatelessWidget {
             topLeft: Radius.circular(40),
             topRight: Radius.circular(40),
           ),
-          child: CustomBottomNavigationBar(model: model),
+          child: CustomBottomNavigationBar(
+            model: model,
+            barItems: model.items,
+          ),
         ),
       ),
     );

@@ -5,6 +5,7 @@ abstract class BaseViewModel extends ChangeNotifier {
   BaseViewModel({required this.context}) {
     initViewModel();
   }
+  List<VehicleBasket> basket = [];
   VehicleBasket sepet = VehicleBasket();
 
   BuildContext context;
