@@ -127,7 +127,7 @@ class _OverViewPage extends StatelessWidget {
           const SizedBox(height: 20),
           ListView.builder(
             shrinkWrap: true,
-            itemCount: 5,
+            itemCount: model.products.length,
             physics: const BouncingScrollPhysics(),
             itemBuilder: (context, index) => ProductSelectionCard(
               decrementPrees: () => model.decrement(model.products[index]),
