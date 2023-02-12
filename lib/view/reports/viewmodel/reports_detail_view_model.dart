@@ -68,9 +68,9 @@ class ReportsDetailViewModel extends BaseViewModel {
                         _dataRow(dataKey: 'Tarih', dataValue: currentTime(report.dateTime)),
                         _dataRow(
                             dataKey: 'Gittiği Yer', dataValue: report.vehicleInfo.destinationCity),
-                        _dataRow(dataKey: 'Gittiği Yer Kişi', dataValue: 'CEMIL BOZ'),
+                        _dataRow(dataKey: 'Gittiği Yer Kişi', dataValue: report.vehicleInfo.destinationCity),
                         _dataRow(dataKey: 'GÖREV DURUMU', dataValue: 'GÖNÜLLÜ'),
-                        _dataRow(dataKey: 'PLAKA', dataValue: '38 AGE 127'),
+                        _dataRow(dataKey: 'PLAKA', dataValue: report.vehicleInfo.vehicle.plate),
                         _dataRow(
                             dataKey: 'ŞOFÖR ADI', dataValue: report.vehicleInfo.vehicle.driverName),
                         _dataRow(
