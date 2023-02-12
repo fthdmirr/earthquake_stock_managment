@@ -2,18 +2,25 @@ import '../text/body/body_medium_text.dart';
 import '../../utils/constants/app_color.dart';
 import 'package:flutter/material.dart';
 
+// ignore: must_be_immutable
 class DropdownInput<T> extends StatelessWidget {
-  const DropdownInput(
-      {super.key, required this.dropdownValues, this.firstValue, required this.title, this.enable});
+  DropdownInput({
+    super.key,
+    required this.dropdownValues,
+    required this.title,
+    this.enable,
+    required this.dropDownValue,
+    required this.onChanged,
+  });
 
   final List<T> dropdownValues;
-  final T? firstValue;
   final String title;
   final bool? enable;
+  final Function(T?)? onChanged;
+  T dropDownValue;
 
   @override
   Widget build(BuildContext context) {
-    T dropDownValue = firstValue ?? dropdownValues.first;
     return StatefulBuilder(
       builder: (context, setState) => DropdownButtonFormField<T>(
         icon: const FittedBox(
@@ -29,6 +36,7 @@ class DropdownInput<T> extends StatelessWidget {
         onChanged: (T? value) {
           setState(() {
             dropDownValue = value as T;
+            onChanged!(value);
           });
         },
         items: dropdownValues.map<DropdownMenuItem<T>>((T value) {

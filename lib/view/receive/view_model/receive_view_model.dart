@@ -13,11 +13,11 @@ import 'package:flutter/material.dart';
 class ReceiveViewModel extends BaseViewModel {
   ReceiveViewModel({required super.context});
 
-  final String selectedVehicle = 'Kamyon';
-  final String fromTheProvience = CitiesOfTurkey.kayseri.name;
+  String selectedVehicle = 'Kamyon';
+  String fromTheProvience = CitiesOfTurkey.kayseri.name;
 
-  final String selectedItem = 'Meyve';
-  final String selectedItemType = 'Koli';
+  String selectedItem = 'Meyve';
+  String selectedItemType = 'Koli';
   final TextEditingController vehiclePlate = TextEditingController();
   final TextEditingController quantity = TextEditingController();
   final TextEditingController name = TextEditingController();
@@ -37,25 +37,27 @@ class ReceiveViewModel extends BaseViewModel {
 
   void addInventoryItem() {
     inventoryItems.add(
-      InventoryItem(
-          quantity: int.parse(quantity.text.trim()), name: selectedItem),
+      InventoryItem(quantity: int.parse(quantity.text.trim()), name: selectedItem),
     );
     quantity.clear();
   }
 
   Future<void> finishReceive() async {
     if (pickedVehicle == null) return;
-    await reportCacheManager.addValue(Report(
+    await reportCacheManager.addValue(
+      Report(
         dateTime: DateTime.now().toIso8601String(),
         vehicleInfo: VehicleInfo(
           destinationCity: fromTheProvience,
           vehicle: pickedVehicle!,
           routeStatus: RouteStatus.came,
           inventoryItems: inventoryItems,
-        )));
+        ),
+      ),
+    );
     _clearDatas();
-    Future.delayed(Duration.zero).then((value) => NavigationService.instance
-        .navigateToPageClear(path: BottomBarView.routeName));
+    Future.delayed(Duration.zero).then(
+        (value) => NavigationService.instance.navigateToPageClear(path: BottomBarView.routeName));
   }
 
   void _clearDatas() {

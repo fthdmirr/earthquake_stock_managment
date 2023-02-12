@@ -56,14 +56,16 @@ class _VehicleInfoPage extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.start,
           children: [
             Headline5Text(
-              text:
-                  'Kabul edeceğiniz tırın ve tır içerisindeki malzeme bilgisini giriniz.',
+              text: 'Kabul edeceğiniz tırın ve tır içerisindeki malzeme bilgisini giriniz.',
               color: AppColors.dark,
             ),
             const SizedBox(height: 40),
             DropdownInput(
               dropdownValues: const ['Kamyon', 'Tır', 'Kamyonet'],
-              firstValue: model.selectedVehicle,
+              dropDownValue: model.selectedVehicle,
+              onChanged: (p0) {
+                model.selectedVehicle = p0 ?? 'Kamyon';
+              },
               title: 'Araç Tipi',
             ),
             const SizedBox(height: 12),
@@ -71,8 +73,11 @@ class _VehicleInfoPage extends StatelessWidget {
             const SizedBox(height: 12),
             DropdownInput(
               dropdownValues: CitiesOfTurkey.values.map((e) => e.name).toList(),
-              firstValue: model.fromTheProvience,
+              dropDownValue: model.fromTheProvience,
               title: 'Gelen İl',
+              onChanged: (p0) {
+                model.fromTheProvience = p0 ?? 'Kamyon';
+              },
             ),
             BaseInput(title: 'Şoför Adı', controller: model.name),
             const SizedBox(height: 12),
@@ -98,14 +103,20 @@ class _ItemInfoPage extends StatelessWidget {
           children: [
             DropdownInput(
               dropdownValues: const ['Kadın Kıyafet', 'Kuru Gıda', 'Meyve'],
-              firstValue: model.selectedItem,
+              dropDownValue: model.selectedItem,
               title: 'Ürün',
+              onChanged: (p0) {
+                model.selectedItem = p0 ?? 'Kamyon';
+              },
             ),
             const SizedBox(height: 12),
             DropdownInput(
               dropdownValues: const ['Koli', 'Adet'],
-              firstValue: model.selectedItemType,
+              dropDownValue: model.selectedItemType,
               title: 'Ürün Tipi',
+              onChanged: (p0) {
+                model.selectedItemType = p0 ?? 'Koli';
+              },
             ),
             const SizedBox(height: 12),
             BaseInput(
@@ -145,8 +156,11 @@ class _OverViewPage extends StatelessWidget {
           children: [
             DropdownInput(
               dropdownValues: const ['Kamyon', 'Tır', 'Kamyonet'],
-              firstValue: model.selectedVehicle,
+              dropDownValue: model.selectedVehicle,
               title: 'Araç Tipi',
+              onChanged: (p0) {
+                model.selectedVehicle = p0 ?? 'KoKamyonli';
+              },
             ),
             const SizedBox(height: 12),
             BaseInput(
@@ -157,23 +171,32 @@ class _OverViewPage extends StatelessWidget {
             const SizedBox(height: 12),
             DropdownInput(
               dropdownValues: CitiesOfTurkey.values.map((e) => e.name).toList(),
-              firstValue: model.fromTheProvience,
+              dropDownValue: model.fromTheProvience,
               title: 'Gelen İl',
               enable: false,
+              onChanged: (p0) {
+                model.fromTheProvience = p0 ?? 'KoKamyonli';
+              },
             ),
             const SizedBox(height: 12),
             DropdownInput(
               dropdownValues: const ['Kadın Kıyafet', 'Kuru Gıda', 'Meyve'],
-              firstValue: model.selectedItem,
+              dropDownValue: model.selectedItem,
               title: 'Ürün',
               enable: false,
+              onChanged: (p0) {
+                model.selectedItem = p0 ?? 'KoKamyonli';
+              },
             ),
             const SizedBox(height: 12),
             DropdownInput(
               dropdownValues: const ['Koli', 'Adet'],
-              firstValue: model.selectedItemType,
+              dropDownValue: model.selectedItemType,
               title: 'Ürün Tipi',
               enable: false,
+              onChanged: (p0) {
+                model.selectedItemType = p0 ?? 'KoKamyonli';
+              },
             ),
             const SizedBox(height: 12),
             BaseInput(

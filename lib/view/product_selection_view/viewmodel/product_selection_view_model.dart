@@ -23,8 +23,8 @@ class ProductSelectionViewModel extends BaseViewModel {
   final TextEditingController phoneNoController = TextEditingController();
   final TextEditingController quantity = TextEditingController();
 
-  final String selectedVehicleType = 'Kamyon';
-  final String toTheProvience = CitiesOfTurkey.kayseri.name;
+  String selectedVehicleType = 'Kamyon';
+  String toTheProvience = CitiesOfTurkey.kayseri.name;
 
   final String selectedItem = 'Meyve';
   final String selectedItemType = 'Koli';

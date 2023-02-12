@@ -1,7 +1,5 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
-import 'package:earhquake_stock_managment/core/init/navigation/navigation_service.dart';
 import 'package:earhquake_stock_managment/core/utils/constants/app_color.dart';
-import 'package:earhquake_stock_managment/view/bottom_bar/view/bottom_bar_view.dart';
 import 'package:earhquake_stock_managment/view/product_selection_view/view/product_is_empty_view.dart';
 import 'package:earhquake_stock_managment/view/reports/view/reports_detail.view.dart';
 import 'package:flutter/material.dart';
@@ -13,7 +11,6 @@ import 'package:earhquake_stock_managment/core/components/stepper/stepper_view.d
 import 'package:earhquake_stock_managment/view/product_selection_view/viewmodel/product_selection_view_model.dart';
 
 import '../../../core/components/card/product_selection_card.dart';
-import '../../../core/components/dialog/custom_show_dialog.dart';
 import '../../../core/components/dropdown/dropdown_input.dart';
 import '../../../core/components/input/base_input.dart';
 import '../../../core/utils/constants/enum/cities_of_turkey.dart';
@@ -43,8 +40,6 @@ class ProductSelectionView extends StatelessWidget {
                 if (index == 2) {
                   await model.sendVehicle();
                 }
-
-              
               },
               widgets: [
                 _SelectItemList(model: model),

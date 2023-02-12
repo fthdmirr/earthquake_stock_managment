@@ -14,6 +14,7 @@ import 'package:flutter/services.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 
 late final InventoryItemCacheManager itemCacheManager;
+
 late final ReportCacheManager reportCacheManager;
 late final VehicleCacheManager vehicleCacheManager;
 late final VehicleInfoCacheManager vehicleInfoCacheManager;
@@ -41,6 +42,6 @@ Future<void> _init() async {
   await SystemChrome.setPreferredOrientations([
     DeviceOrientation.portraitUp,
     DeviceOrientation.landscapeLeft,
-    DeviceOrientation.landscapeRight,
+    DeviceOrientation.landscapeRight
   ]);
 }

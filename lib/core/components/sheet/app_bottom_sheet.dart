@@ -12,6 +12,8 @@ class AppBottomSheet {
     int currentQuantity,
     String currentItem,
     Function()? onPressed,
+    List<String> dropdownValues,
+    String dropdownValue,
   ) async {
     return showModalBottomSheet(
       backgroundColor: AppColors.white,
@@ -67,10 +69,13 @@ class AppBottomSheet {
                 ),
               ),
               const SizedBox(height: 12),
-              const DropdownInput(
-                dropdownValues: ['Koli'],
+              DropdownInput(
+                dropdownValues: dropdownValues,
                 title: 'Ürün Tipi',
-                firstValue: 'Koli',
+                dropDownValue: dropdownValue,
+                onChanged: (p0) {
+                  dropdownValue = p0 ?? dropdownValues.first;
+                },
               ),
               BaseInput(title: 'Miktar', controller: TextEditingController()),
               const SizedBox(height: 10),
