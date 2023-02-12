@@ -16,10 +16,8 @@ class HomeViewModel extends BaseViewModel {
   final TextEditingController unitController = TextEditingController();
   HomeViewModel({
     required super.context,
-  }) {
-    initViewModel();
-  }
-
+  });
+  
   @override
   initViewModel() async {
     getInventoryItemsFromHive();
@@ -55,10 +53,8 @@ class HomeViewModel extends BaseViewModel {
             children: [
               const Text(
                 'Seçilen Ürünün Detayını Giriniz.',
-                style: TextStyle(
-                    fontWeight: FontWeight.w700,
-                    fontSize: 14,
-                    color: AppColors.greyapp),
+                style:
+                    TextStyle(fontWeight: FontWeight.w700, fontSize: 14, color: AppColors.greyapp),
               ),
               const SizedBox(height: 12),
               Container(
@@ -78,13 +74,11 @@ class HomeViewModel extends BaseViewModel {
                     ),
                     Text(
                       item.name,
-                      style: const TextStyle(
-                          fontWeight: FontWeight.w400, fontSize: 18),
+                      style: const TextStyle(fontWeight: FontWeight.w400, fontSize: 18),
                     ),
                     Text(
                       '${item.quantity}',
-                      style: const TextStyle(
-                          fontWeight: FontWeight.w600, fontSize: 25),
+                      style: const TextStyle(fontWeight: FontWeight.w600, fontSize: 25),
                     ),
                   ],
                 ),
@@ -132,8 +126,7 @@ class HomeViewModel extends BaseViewModel {
                     itemCacheManager.putValue(
                       InventoryItem(
                         name: item.name,
-                        quantity:
-                            item.quantity - int.parse(unitController.text),
+                        quantity: item.quantity - int.parse(unitController.text),
                         icon: item.icon,
                       ),
                     );
@@ -152,13 +145,11 @@ class HomeViewModel extends BaseViewModel {
   getInventoryItemsFromHive() {
     inventoryItems.map(
       (value) {
-        itemAndQuantityCacheManager
-                .getValues()
-                .any((element) => element.itemName == value.name)
+        itemAndQuantityCacheManager.getValues().any((element) => element.itemName == value.name)
             ? itemAndQuantityCacheManager
                 .getValues()
                 .where((element) => element.itemName == value.name)
-                .map((value) => value.quantity)
+                .map((value2) => value2.quantity)
                 .forEach((element) => value.quantity = value.quantity + element)
             : 0;
       },
