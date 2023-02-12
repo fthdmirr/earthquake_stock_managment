@@ -9,6 +9,7 @@ import 'package:earhquake_stock_managment/core/common/models/vehicle_info/vehicl
 import 'package:earhquake_stock_managment/core/common/provider/base_provider.dart';
 import 'package:earhquake_stock_managment/core/components/dialog/custom_show_dialog.dart';
 import 'package:earhquake_stock_managment/core/init/navigation/navigation_service.dart';
+import 'package:earhquake_stock_managment/core/utils/constants/enum/earhquake_cities_and_districts.dart';
 import 'package:earhquake_stock_managment/main.dart';
 import 'package:earhquake_stock_managment/view/bottom_bar/view/bottom_bar_view.dart';
 import 'package:flutter/material.dart';
@@ -25,7 +26,7 @@ class ProductSelectionViewModel extends BaseViewModel {
   final TextEditingController quantity = TextEditingController();
 
   String selectedVehicleType = 'Kamyon';
-  String toTheProvience = CitiesOfTurkey.kayseri.name;
+  String toTheProvience = EarthquakeCitiesAndDistricts.adana.name;
 
   final String selectedItem = 'Meyve';
   final String selectedItemType = 'Koli';
@@ -70,14 +71,6 @@ class ProductSelectionViewModel extends BaseViewModel {
       itemAndQuantityCacheManager
           .addValue(ItemAndQuantites(quantity: -element.quantity, itemName: element.name));
     }
-
-    // for (var i = 0; i < products.length; i++) {
-    //   itemCacheManager.addValue(InventoryItem(
-    //     name: products[i].name,
-    //     quantity: -products[i].quantity,
-    //     icon: products[i].icon,
-    //   ));
-    // }
 
     _clearDatas();
 
