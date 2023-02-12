@@ -17,7 +17,6 @@ class HomeView extends StatelessWidget {
         context: context,
       ),
       builder: (HomeViewModel model) => Scaffold(
-        resizeToAvoidBottomInset: false,
         body: Column(
           children: [
             Expanded(
@@ -54,11 +53,7 @@ class ReceivePageItemWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () => AppBottomSheet().showBottomSheet(
-          context,
-          item.icon ?? 'empty_icon',
-          item.quantity,
-          item.name,
-          bottomSheetButton),
+          context, item.icon ?? 'empty_icon', item.quantity, item.name, bottomSheetButton),
       child: Container(
         margin: const EdgeInsets.all(8),
         decoration: BoxDecoration(
