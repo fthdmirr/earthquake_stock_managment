@@ -62,7 +62,8 @@ class _VehicleInfoPage extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.start,
             children: [
               Headline5Text(
-                text: 'Kabul edeceğiniz tırın ve tır içerisindeki malzeme bilgisini giriniz.',
+                text:
+                    'Kabul edeceğiniz tırın ve tır içerisindeki malzeme bilgisini giriniz.',
                 color: AppColors.dark,
               ),
               const SizedBox(height: 40),
@@ -75,21 +76,32 @@ class _VehicleInfoPage extends StatelessWidget {
                 title: 'Araç Tipi',
               ),
               const SizedBox(height: 12),
-              BaseInput(title: 'Araç Plakası', controller: model.vehiclePlate),
+              BaseInput(
+                title: 'Araç Plakası',
+                inputFormatter: const [],
+                textCapitalization: TextCapitalization.characters,
+                controller: model.vehiclePlate,
+              ),
               const SizedBox(height: 12),
               DropdownInput(
-                dropdownValues: CitiesOfTurkey.values.map((e) => e.name).toList(),
+                dropdownValues:
+                    CitiesOfTurkey.values.map((e) => e.name).toList(),
                 dropDownValue: model.fromTheProvience,
                 title: 'Gelen İl',
                 onChanged: (p0) {
                   model.fromTheProvience = p0 ?? 'Kamyon';
                 },
               ),
-              BaseInput(title: 'Şoför Adı', controller: model.name),
+              BaseInput(
+                title: 'Şoför Adı',
+                textCapitalization: TextCapitalization.characters,
+                controller: model.name,
+              ),
               const SizedBox(height: 12),
               BaseInput(
-                title: 'Şoför Tel',
+                title: 'Şoför Telefon',
                 controller: model.telNo,
+                inputType: TextInputType.number,
                 inputFormatter: [
                   MaskTextInputFormatter(
                     initialText: "(XXX) XXX-XX-XX",
@@ -141,6 +153,7 @@ class _ItemInfoPage extends StatelessWidget {
               BaseInput(
                   title: 'Adet',
                   controller: model.quantity,
+                  inputType: TextInputType.number,
                   inputFormatter: getTextInputFormatters(
                     onlyNumber: true,
                     spaceFilter: true,
@@ -152,8 +165,9 @@ class _ItemInfoPage extends StatelessWidget {
                 child: TextButton.icon(
                   onPressed: () => model.addInventoryItem(),
                   icon: const Icon(Icons.add),
-                  label:
-                      Text(model.inventoryItems.isEmpty ? ' Ürünü Ekle' : 'Ürün Eklemeye Devam Et'),
+                  label: Text(model.inventoryItems.isEmpty
+                      ? ' Ürünü Ekle'
+                      : 'Ürün Eklemeye Devam Et'),
                 ),
               )
             ],
@@ -179,18 +193,7 @@ class _OverViewPage extends StatelessWidget {
               text: 'Kontrol et ve Tamamla!',
               color: AppColors.dark,
             ),
-            const SizedBox(height: 12),
-            BaseInput(
-              title: 'Araç Plakası',
-              controller: model.vehiclePlate,
-              isEnabled: false,
-              validator: (p0) {
-                if (p0 == null || p0.isEmpty) {
-                  return 'Araç plakası boş olamaz';
-                }
-                return null;
-              },
-            ),
+            const SizedBox(height: 20),
             ReportsDetailTextPart(
               keyText: 'Araç Plakası',
               valueText: model.pickedVehicle?.plate ?? '',
