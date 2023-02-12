@@ -10,13 +10,17 @@ import '../text/headline/headline3_text.dart';
 import '../text/headline/headline4_text.dart';
 
 class ProductSelectionCard extends StatefulWidget {
-  int productNumber;
-  InventoryItem inventoryItem;
   ProductSelectionCard({
     Key? key,
     required this.productNumber,
     required this.inventoryItem,
+    required this.onIncrease,
+    required this.onDicrise,
   }) : super(key: key);
+  int productNumber;
+  InventoryItem inventoryItem;
+  final void Function() onIncrease;
+  final void Function() onDicrise;
 
   @override
   State<ProductSelectionCard> createState() => _ProductSelectionCardState();
@@ -44,9 +48,8 @@ class _ProductSelectionCardState extends State<ProductSelectionCard> {
               CircleAvatar(
                 radius: 30,
                 backgroundColor: AppColors.wildSand,
-                child: Image(
-                    image: AppImages.memoryImage(
-                        widget.inventoryItem.icon ?? 'empty_icon')),
+                child:
+                    Image(image: AppImages.memoryImage(widget.inventoryItem.icon ?? 'empty_icon')),
               ),
               Headline3Text(
                 text: widget.inventoryItem.name,
@@ -75,9 +78,9 @@ class _ProductSelectionCardState extends State<ProductSelectionCard> {
                 children: [
                   CustomBermudaTextButton(
                     onPressed: () {
+                      widget.onDicrise();
                       _textEditingController.text =
-                          (int.parse(_textEditingController.text) - 1)
-                              .toString();
+                          (int.parse(_textEditingController.text) - 1).toString();
                     },
                     text: '-',
                   ),
@@ -96,9 +99,9 @@ class _ProductSelectionCardState extends State<ProductSelectionCard> {
                   ),
                   CustomBermudaTextButton(
                     onPressed: () {
+                      widget.onIncrease();
                       _textEditingController.text =
-                          (int.parse(_textEditingController.text) + 1)
-                              .toString();
+                          (int.parse(_textEditingController.text) + 1).toString();
                     },
                     text: '+',
                   ),
