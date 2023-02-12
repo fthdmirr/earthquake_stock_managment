@@ -30,6 +30,12 @@ class AddedCategory extends StatelessWidget {
                     child: BaseInput(
                       title: 'Ürün Ekle',
                       hint: 'Kuru gida - Kiyafet - Su vb.',
+                      validator: (value) {
+                        if (value!.isEmpty) {
+                          return 'Please enter some text';
+                        }
+                        return '';
+                      },
                       controller: TextEditingController(),
                     ),
                   ),
@@ -50,6 +56,12 @@ class AddedCategory extends StatelessWidget {
                     child: BaseInput(
                       title: 'Ürün Tipi Ekle',
                       hint: 'Adet - Çuval - Koli',
+                      validator: (value) {
+                        if (value!.isEmpty) {
+                          return 'Please enter some text';
+                        }
+                        return '';
+                      },
                       controller: TextEditingController(),
                     ),
                   ),

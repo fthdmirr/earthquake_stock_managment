@@ -14,7 +14,8 @@ class ReportsDetailViewModel extends BaseViewModel {
   String get currentTime {
     final DateFormat displayFormater = DateFormat('yyyy-MM-dd HH:mm:ss.SSS');
     final DateFormat serverFormater = DateFormat('dd.MM.yyyy');
-    final DateTime displayDate = displayFormater.parse(DateTime.now().toString());
+    final DateTime displayDate =
+        displayFormater.parse(DateTime.now().toString());
     final String formatted = serverFormater.format(displayDate);
     return formatted;
   }
@@ -23,7 +24,8 @@ class ReportsDetailViewModel extends BaseViewModel {
 
   final doc = pw.Document();
 
-  _image(String image) async => await imageFromAssetBundle('assets/images/$image');
+  _image(String image) async =>
+      await imageFromAssetBundle('assets/images/$image');
 
   void printReport() {
     doc.addPage(
@@ -53,12 +55,19 @@ class ReportsDetailViewModel extends BaseViewModel {
                     child: pw.Column(
                       children: [
                         _dataRow(dataKey: 'Tarih', dataValue: currentTime),
-                        _dataRow(dataKey: 'Gittiği Yer', dataValue: 'KAHRAMANMARAS'),
-                        _dataRow(dataKey: 'Gittiği Yer Kişi', dataValue: 'CEMIL BOZ'),
+                        _dataRow(
+                            dataKey: 'Gittiği Yer', dataValue: 'KAHRAMANMARAS'),
+                        _dataRow(
+                            dataKey: 'Gittiği Yer Kişi',
+                            dataValue: 'CEMIL BOZ'),
                         _dataRow(dataKey: 'GÖREV DURUMU', dataValue: 'GÖNÜLLÜ'),
                         _dataRow(dataKey: 'PLAKA', dataValue: '38 AGE 127'),
-                        _dataRow(dataKey: 'ŞOFÖR ADI', dataValue: 'YAHYA KEMAL ULUTOPÇU'),
-                        _dataRow(dataKey: 'ŞOFÖR İLETİŞİM', dataValue: '507 899 48 00'),
+                        _dataRow(
+                            dataKey: 'ŞOFÖR ADI',
+                            dataValue: 'YAHYA KEMAL ULUTOPÇU'),
+                        _dataRow(
+                            dataKey: 'ŞOFÖR İLETİŞİM',
+                            dataValue: '507 899 48 00'),
                         _dataRow(dataKey: 'MALZEME CİNSİ', dataValue: 'TON'),
                         _dataRow(dataKey: 'ODUN', dataValue: '5'),
                       ],
@@ -88,6 +97,7 @@ class ReportsDetailViewModel extends BaseViewModel {
         },
       ),
     );
+    notifyListeners();
   }
 
   _dataRow({required String dataKey, required String dataValue}) => pw.Column(
@@ -96,10 +106,15 @@ class ReportsDetailViewModel extends BaseViewModel {
             pw.Row(
               mainAxisAlignment: pw.MainAxisAlignment.spaceBetween,
               children: [
-                pw.Text(dataKey, style: pw.TextStyle(fontSize: 18, fontWeight: pw.FontWeight.bold)),
-                pw.Text('-', style: pw.TextStyle(fontSize: 18, fontWeight: pw.FontWeight.bold)),
+                pw.Text(dataKey,
+                    style: pw.TextStyle(
+                        fontSize: 18, fontWeight: pw.FontWeight.bold)),
+                pw.Text('-',
+                    style: pw.TextStyle(
+                        fontSize: 18, fontWeight: pw.FontWeight.bold)),
                 pw.Text(dataValue,
-                    style: pw.TextStyle(fontSize: 18, fontWeight: pw.FontWeight.bold)),
+                    style: pw.TextStyle(
+                        fontSize: 18, fontWeight: pw.FontWeight.bold)),
               ],
             ),
             pw.Divider(thickness: 4, color: PdfColor.fromHex('#000000')),

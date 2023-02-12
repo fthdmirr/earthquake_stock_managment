@@ -26,18 +26,25 @@ class _StepperTruckInformation extends StatelessWidget {
             title: 'Araç Plakası',
             inputType: TextInputType.name,
             controller: model.vehicleNoController,
+            validator: (value) =>
+                model.vehicleNoController.text.isEmpty ? 'Boş Bırakalımaz' : '',
           ),
           const SizedBox(height: 20),
           BaseInput(
             title: 'Şoför Bilgisi',
             inputType: TextInputType.name,
             controller: model.driverInformationController,
+            validator: (value) => model.driverInformationController.text.isEmpty
+                ? 'Boş Bırakalımaz'
+                : '',
           ),
           const SizedBox(height: 20),
           BaseInput(
             title: 'Telefon Numarası',
             inputType: TextInputType.phone,
             controller: model.phoneNoController,
+            validator: (value) =>
+                model.phoneNoController.text.isEmpty ? 'Boş Bırakalımaz' : '',
             inputFormatter: [
               MaskTextInputFormatter(
                 initialText: "(XXX) XXX-XX-XX",

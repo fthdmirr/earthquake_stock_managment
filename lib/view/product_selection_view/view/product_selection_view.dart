@@ -39,10 +39,6 @@ class ProductSelectionView extends StatelessWidget {
                 .navigateToPageClear(path: BottomBarView.routeName);
             await customMyDialog(context);
           }
-          //else if (model.driverInformationController.text.isEmpty) {
-          //   NavigationService.instance
-          //       .navigateToPage(ProductIsEmptyView.routeName);
-          // }
         },
         widgets: [
           ListView.builder(

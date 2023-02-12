@@ -51,34 +51,53 @@ class _VehicleInfoPage extends StatelessWidget {
     return SingleChildScrollView(
       child: Padding(
         padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 15),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.center,
-          mainAxisAlignment: MainAxisAlignment.start,
-          children: [
-            Headline5Text(
-              text:
-                  'Kabul edeceğiniz tırın ve tır içerisindeki malzeme bilgisini giriniz.',
-              color: AppColors.dark,
-            ),
-            const SizedBox(height: 40),
-            DropdownInput(
-              dropdownValues: const ['Kamyon', 'Tır', 'Kamyonet'],
-              firstValue: model.selectedVehicle,
-              title: 'Araç Tipi',
-            ),
-            const SizedBox(height: 12),
-            BaseInput(title: 'Araç Plakası', controller: model.vehiclePlate),
-            const SizedBox(height: 12),
-            DropdownInput(
-              dropdownValues: CitiesOfTurkey.values.map((e) => e.name).toList(),
-              firstValue: model.fromTheProvience,
-              title: 'Gelen İl',
-            ),
-            BaseInput(title: 'Şoför Adı', controller: model.name),
-            const SizedBox(height: 12),
-            BaseInput(title: 'Şoför Tel', controller: model.telNo),
-            const SizedBox(height: 12),
-          ],
+        child: Form(
+          key: model.formKey,
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.center,
+            mainAxisAlignment: MainAxisAlignment.start,
+            children: [
+              Headline5Text(
+                text:
+                    'Kabul edeceğiniz tırın ve tır içerisindeki malzeme bilgisini giriniz.',
+                color: AppColors.dark,
+              ),
+              const SizedBox(height: 40),
+              DropdownInput(
+                dropdownValues: const ['Kamyon', 'Tır', 'Kamyonet'],
+                firstValue: model.selectedVehicle,
+                title: 'Araç Tipi',
+              ),
+              const SizedBox(height: 12),
+              BaseInput(
+                title: 'Araç Plakası',
+                controller: model.vehiclePlate,
+                validator: (value) =>
+                    model.vehiclePlate.text.isEmpty ? 'Boş Bırakalımaz' : '',
+              ),
+              const SizedBox(height: 12),
+              DropdownInput(
+                dropdownValues:
+                    CitiesOfTurkey.values.map((e) => e.name).toList(),
+                firstValue: model.fromTheProvience,
+                title: 'Gelen İl',
+              ),
+              BaseInput(
+                title: 'Şoför Adı',
+                controller: model.name,
+                validator: (value) =>
+                    model.name.text.isEmpty ? 'Boş Bırakalımaz' : '',
+              ),
+              const SizedBox(height: 12),
+              BaseInput(
+                title: 'Şoför Tel',
+                controller: model.telNo,
+                validator: (value) =>
+                    model.telNo.text.isEmpty ? 'Boş Bırakalımaz' : '',
+              ),
+              const SizedBox(height: 12),
+            ],
+          ),
         ),
       ),
     );
@@ -96,6 +115,11 @@ class _ItemInfoPage extends StatelessWidget {
         padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 15),
         child: Column(
           children: [
+            Headline5Text(
+              text:
+                  'Kabul edeceğiniz tırın ve tır içerisindeki malzeme bilgisini giriniz.',
+              color: AppColors.dark,
+            ),
             DropdownInput(
               dropdownValues: const ['Kadın Kıyafet', 'Kuru Gıda', 'Meyve'],
               firstValue: model.selectedItem,
@@ -111,6 +135,8 @@ class _ItemInfoPage extends StatelessWidget {
             BaseInput(
               title: 'Adet',
               controller: model.quantity,
+              validator: (value) =>
+                  model.quantity.text.isEmpty ? 'Boş Bırakalımaz' : '',
               inputFormatter: <TextInputFormatter>[
                 FilteringTextInputFormatter.digitsOnly,
                 LengthLimitingTextInputFormatter(10),
@@ -141,51 +167,64 @@ class _OverViewPage extends StatelessWidget {
     return SingleChildScrollView(
       child: Padding(
         padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 15),
-        child: Column(
-          children: [
-            DropdownInput(
-              dropdownValues: const ['Kamyon', 'Tır', 'Kamyonet'],
-              firstValue: model.selectedVehicle,
-              title: 'Araç Tipi',
-            ),
-            const SizedBox(height: 12),
-            BaseInput(
-              title: 'Araç Plakası',
-              controller: model.vehiclePlate,
-              isEnabled: false,
-            ),
-            const SizedBox(height: 12),
-            DropdownInput(
-              dropdownValues: CitiesOfTurkey.values.map((e) => e.name).toList(),
-              firstValue: model.fromTheProvience,
-              title: 'Gelen İl',
-              enable: false,
-            ),
-            const SizedBox(height: 12),
-            DropdownInput(
-              dropdownValues: const ['Kadın Kıyafet', 'Kuru Gıda', 'Meyve'],
-              firstValue: model.selectedItem,
-              title: 'Ürün',
-              enable: false,
-            ),
-            const SizedBox(height: 12),
-            DropdownInput(
-              dropdownValues: const ['Koli', 'Adet'],
-              firstValue: model.selectedItemType,
-              title: 'Ürün Tipi',
-              enable: false,
-            ),
-            const SizedBox(height: 12),
-            BaseInput(
-              title: 'Araç Plakası',
-              controller: model.vehiclePlate,
-              isEnabled: false,
-              inputFormatter: <TextInputFormatter>[
-                FilteringTextInputFormatter.digitsOnly,
-                LengthLimitingTextInputFormatter(10),
-              ],
-            ),
-          ],
+        child: Form(
+          key: model.formKey,
+          child: Column(
+            children: [
+              Headline5Text(
+                text:
+                    'Kabul edeceğiniz tırın ve tır içerisindeki malzeme bilgisini giriniz.',
+                color: AppColors.dark,
+              ),
+              DropdownInput(
+                dropdownValues: const ['Kamyon', 'Tır', 'Kamyonet'],
+                firstValue: model.selectedVehicle,
+                title: 'Araç Tipi',
+              ),
+              const SizedBox(height: 12),
+              BaseInput(
+                title: 'Araç Plakası',
+                controller: model.vehiclePlate,
+                validator: (value) =>
+                    model.vehiclePlate.text.isEmpty ? 'Boş Bırakalımaz' : '',
+                isEnabled: false,
+              ),
+              const SizedBox(height: 12),
+              DropdownInput(
+                dropdownValues:
+                    CitiesOfTurkey.values.map((e) => e.name).toList(),
+                firstValue: model.fromTheProvience,
+                title: 'Gelen İl',
+                enable: false,
+              ),
+              const SizedBox(height: 12),
+              DropdownInput(
+                dropdownValues: const ['Kadın Kıyafet', 'Kuru Gıda', 'Meyve'],
+                firstValue: model.selectedItem,
+                title: 'Ürün',
+                enable: false,
+              ),
+              const SizedBox(height: 12),
+              DropdownInput(
+                dropdownValues: const ['Koli', 'Adet'],
+                firstValue: model.selectedItemType,
+                title: 'Ürün Tipi',
+                enable: false,
+              ),
+              const SizedBox(height: 12),
+              BaseInput(
+                title: 'Araç Plakası',
+                controller: model.vehiclePlate,
+                isEnabled: false,
+                validator: (value) =>
+                    model.vehiclePlate.text.isEmpty ? 'Boş Bırakalımaz' : '',
+                inputFormatter: <TextInputFormatter>[
+                  FilteringTextInputFormatter.digitsOnly,
+                  LengthLimitingTextInputFormatter(10),
+                ],
+              ),
+            ],
+          ),
         ),
       ),
     );

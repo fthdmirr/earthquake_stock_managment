@@ -4,7 +4,6 @@ import 'package:earhquake_stock_managment/core/common/models/status/route_status
 import 'package:earhquake_stock_managment/core/common/models/vehicle/vehicle_model.dart';
 import 'package:earhquake_stock_managment/core/common/models/vehicle_info/vehicle_info_model.dart';
 import 'package:earhquake_stock_managment/core/common/provider/base_provider.dart';
-import 'package:earhquake_stock_managment/core/components/flushbar/flushbar_notification.dart';
 import 'package:earhquake_stock_managment/core/init/navigation/navigation_service.dart';
 import 'package:earhquake_stock_managment/core/utils/constants/enum/cities_of_turkey.dart';
 import 'package:earhquake_stock_managment/main.dart';
@@ -24,16 +23,20 @@ class ReceiveViewModel extends BaseViewModel {
   final TextEditingController name = TextEditingController();
   final TextEditingController telNo = TextEditingController();
   final TextEditingController plate = TextEditingController();
+  final formKey = GlobalKey<FormState>();
 
   Vehicle? pickedVehicle;
   List<InventoryItem> inventoryItems = [];
 
   void addedVehicleValue() {
-    pickedVehicle = Vehicle(
-        vehicleType: selectedVehicle,
-        driverName: name.text.trim(),
-        driverPhone: telNo.text.trim(),
-        plate: plate.text.trim());
+    if (formKey.currentState!.validate()) {
+      pickedVehicle = Vehicle(
+          vehicleType: selectedVehicle,
+          driverName: name.text.trim(),
+          driverPhone: telNo.text.trim(),
+          plate: plate.text.trim());
+    }
+    notifyListeners();
   }
 
   void addInventoryItem() {
@@ -45,19 +48,23 @@ class ReceiveViewModel extends BaseViewModel {
   }
 
   Future<void> finishReceive() async {
-    if (pickedVehicle == null) return;
-    await reportCacheManager.addValue(Report(
-        dateTime: DateTime.now().toIso8601String(),
-        vehicleInfo: VehicleInfo(
-          destinationCity: fromTheProvience,
-          vehicle: pickedVehicle!,
-          routeStatus: RouteStatus.came,
-          inventoryItems: inventoryItems,
-        )));
-    _clearDatas();
-    NavigationService.instance
-        .navigateToPageClear(path: BottomBarView.routeName);
-    showFlushbarWidget('message', Icons.check).show(context);
+    if (formKey.currentState!.validate()) {
+      if (pickedVehicle == null) return;
+      await reportCacheManager.addValue(
+        Report(
+          dateTime: DateTime.now().toIso8601String(),
+          vehicleInfo: VehicleInfo(
+            destinationCity: fromTheProvience,
+            vehicle: pickedVehicle!,
+            routeStatus: RouteStatus.came,
+            inventoryItems: inventoryItems,
+          ),
+        ),
+      );
+      _clearDatas();
+      NavigationService.instance
+          .navigateToPageClear(path: BottomBarView.routeName);
+    }
   }
 
   void _clearDatas() {

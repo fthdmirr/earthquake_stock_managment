@@ -6,8 +6,8 @@ import 'package:flutter/material.dart';
 import 'package:kartal/kartal.dart';
 
 class AppBottomSheet {
-  Future showBottomSheet(BuildContext context, String icon, int currentQuantity, String currentItem,
-      Function()? onPressed) async {
+  Future showBottomSheet(BuildContext context, String icon, int currentQuantity,
+      String currentItem, Function()? onPressed) async {
     return await showModalBottomSheet(
       isScrollControlled: true,
       backgroundColor: AppColors.white,
@@ -16,14 +16,18 @@ class AppBottomSheet {
           borderRadius: BorderRadius.vertical(top: Radius.circular(12))),
       builder: (BuildContext _) => Container(
         height: context.dynamicHeight(0.4),
-        padding: EdgeInsets.only(bottom: MediaQuery.of(context).viewInsets.bottom),
+        padding:
+            EdgeInsets.only(bottom: MediaQuery.of(context).viewInsets.bottom),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             const Text(
               'Seçilen Ürünün Detayını Giriniz.',
-              style: TextStyle(fontWeight: FontWeight.w700, fontSize: 14, color: AppColors.greyapp),
+              style: TextStyle(
+                  fontWeight: FontWeight.w700,
+                  fontSize: 14,
+                  color: AppColors.greyapp),
             ),
             const SizedBox(height: 12),
             Container(
@@ -43,11 +47,13 @@ class AppBottomSheet {
                   ),
                   Text(
                     currentItem,
-                    style: const TextStyle(fontWeight: FontWeight.w400, fontSize: 18),
+                    style: const TextStyle(
+                        fontWeight: FontWeight.w400, fontSize: 18),
                   ),
                   Text(
                     '$currentQuantity',
-                    style: const TextStyle(fontWeight: FontWeight.w600, fontSize: 25),
+                    style: const TextStyle(
+                        fontWeight: FontWeight.w600, fontSize: 25),
                   ),
                 ],
               ),
@@ -58,7 +64,11 @@ class AppBottomSheet {
               title: 'Ürün Tipi',
               firstValue: 'Koli',
             ),
-            BaseInput(title: 'Miktar', controller: TextEditingController()),
+            BaseInput(
+              title: 'Miktar',
+              validator: null,
+              controller: TextEditingController(),
+            ),
             const SizedBox(height: 10),
             SizedBox(
               width: double.infinity,
