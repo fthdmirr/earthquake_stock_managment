@@ -34,7 +34,7 @@ class ReceivingView extends StatelessWidget {
           _OverViewPage(model),
         ],
         onPressed: (index) {
-          if (index == 0 && model.formKey.currentState!.validate()) {
+          if (index == 0 && (model.formKey.currentState?.validate() ?? false)) {
             model.addedVehicleValue();
           }
           if (index == 2) model.finishReceive();
@@ -54,49 +54,52 @@ class _VehicleInfoPage extends StatelessWidget {
     return SingleChildScrollView(
       child: Padding(
         padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 15),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.center,
-          mainAxisAlignment: MainAxisAlignment.start,
-          children: [
-            Headline5Text(
-              text: 'Kabul edeceğiniz tırın ve tır içerisindeki malzeme bilgisini giriniz.',
-              color: AppColors.dark,
-            ),
-            const SizedBox(height: 40),
-            DropdownInput(
-              dropdownValues: const ['Kamyon', 'Tır', 'Kamyonet'],
-              dropDownValue: model.selectedVehicle,
-              onChanged: (p0) {
-                model.selectedVehicle = p0 ?? 'Kamyon';
-              },
-              title: 'Araç Tipi',
-            ),
-            const SizedBox(height: 12),
-            BaseInput(title: 'Araç Plakası', controller: model.vehiclePlate),
-            const SizedBox(height: 12),
-            DropdownInput(
-              dropdownValues: CitiesOfTurkey.values.map((e) => e.name).toList(),
-              dropDownValue: model.fromTheProvience,
-              title: 'Gelen İl',
-              onChanged: (p0) {
-                model.fromTheProvience = p0 ?? 'Kamyon';
-              },
-            ),
-            BaseInput(title: 'Şoför Adı', controller: model.name),
-            const SizedBox(height: 12),
-            BaseInput(
-              title: 'Şoför Tel',
-              controller: model.telNo,
-              inputFormatter: [
-                MaskTextInputFormatter(
-                  initialText: "(XXX) XXX-XX-XX",
-                  mask: '(###) ###-##-##',
-                  filter: {"#": RegExp(r'^[0-9]*$')},
-                ),
-              ],
-            ),
-            const SizedBox(height: 12),
-          ],
+        child: Form(
+          key: model.formKey,
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.center,
+            mainAxisAlignment: MainAxisAlignment.start,
+            children: [
+              Headline5Text(
+                text: 'Kabul edeceğiniz tırın ve tır içerisindeki malzeme bilgisini giriniz.',
+                color: AppColors.dark,
+              ),
+              const SizedBox(height: 40),
+              DropdownInput(
+                dropdownValues: const ['Kamyon', 'Tır', 'Kamyonet'],
+                dropDownValue: model.selectedVehicle,
+                onChanged: (p0) {
+                  model.selectedVehicle = p0 ?? 'Kamyon';
+                },
+                title: 'Araç Tipi',
+              ),
+              const SizedBox(height: 12),
+              BaseInput(title: 'Araç Plakası', controller: model.vehiclePlate),
+              const SizedBox(height: 12),
+              DropdownInput(
+                dropdownValues: CitiesOfTurkey.values.map((e) => e.name).toList(),
+                dropDownValue: model.fromTheProvience,
+                title: 'Gelen İl',
+                onChanged: (p0) {
+                  model.fromTheProvience = p0 ?? 'Kamyon';
+                },
+              ),
+              BaseInput(title: 'Şoför Adı', controller: model.name),
+              const SizedBox(height: 12),
+              BaseInput(
+                title: 'Şoför Tel',
+                controller: model.telNo,
+                inputFormatter: [
+                  MaskTextInputFormatter(
+                    initialText: "(XXX) XXX-XX-XX",
+                    mask: '(###) ###-##-##',
+                    filter: {"#": RegExp(r'^[0-9]*$')},
+                  ),
+                ],
+              ),
+              const SizedBox(height: 12),
+            ],
+          ),
         ),
       ),
     );

@@ -39,18 +39,14 @@ class ReceiveViewModel extends BaseViewModel {
   }
 
   void addInventoryItem() {
-    if (formKey.currentState!.validate()) {
-      inventoryItems.add(
-        InventoryItem(quantity: int.parse(quantity.text.trim()), name: selectedItem),
-      );
-      itemCacheManager.addValue(
-        InventoryItem(quantity: int.parse(quantity.text.trim()), name: selectedItem),
-      );
-      quantity.clear();
-      notifyListeners();
-    } else {
-      //show snackbar
-    }
+    inventoryItems.add(
+      InventoryItem(quantity: int.parse(quantity.text.trim()), name: selectedItem),
+    );
+    itemCacheManager.addValue(
+      InventoryItem(quantity: int.parse(quantity.text.trim()), name: selectedItem),
+    );
+    quantity.clear();
+    notifyListeners();
   }
 
   Future<void> finishReceive() async {

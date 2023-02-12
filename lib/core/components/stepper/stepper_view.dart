@@ -36,9 +36,8 @@ class _StepperViewViewState extends State<StepperView> {
   void buttonPressed() {
     if (widget.validated == false) return;
     widget.onPressed(currentIndex);
-    if (currentIndex != widget.widgets.length - 1) {
-      changeCurrentIndex(currentIndex + 1);
-    }
+    if (currentIndex == widget.widgets.length - 1) return;
+    changeCurrentIndex(currentIndex + 1);
   }
 
   void backButton() {
@@ -109,8 +108,7 @@ class _StepperViewViewState extends State<StepperView> {
 }
 
 class _SingleButton extends StatelessWidget {
-  const _SingleButton(
-      {required this.title, required this.onPressed, this.color});
+  const _SingleButton({required this.title, required this.onPressed, this.color});
   final String title;
   final Function() onPressed;
   final Color? color;
@@ -121,8 +119,7 @@ class _SingleButton extends StatelessWidget {
       child: ElevatedButton(
         onPressed: onPressed,
         style: ButtonStyle(
-          backgroundColor:
-              color != null ? MaterialStateProperty.all<Color>(color!) : null,
+          backgroundColor: color != null ? MaterialStateProperty.all<Color>(color!) : null,
           minimumSize: MaterialStateProperty.all<Size>(
             Size(
               double.infinity,
