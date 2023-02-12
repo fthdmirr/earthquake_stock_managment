@@ -8,8 +8,8 @@ import 'package:intl/intl.dart';
 import 'package:pdf/widgets.dart' as pw;
 import 'package:printing/printing.dart';
 
-class ReportsViewModel extends BaseViewModel {
-  ReportsViewModel(BuildContext context) : super(context: context);
+class ReportsDetailViewModel extends BaseViewModel {
+  ReportsDetailViewModel(BuildContext context) : super(context: context);
 
   String get currentTime {
     final DateFormat displayFormater = DateFormat('yyyy-MM-dd HH:mm:ss.SSS');
@@ -23,7 +23,7 @@ class ReportsViewModel extends BaseViewModel {
 
   final doc = pw.Document();
 
-  image(String image) async => await imageFromAssetBundle('assets/images/$image');
+  _image(String image) async => await imageFromAssetBundle('assets/images/$image');
 
   void printReport() {
     doc.addPage(
@@ -38,8 +38,8 @@ class ReportsViewModel extends BaseViewModel {
                 pw.Row(
                   mainAxisAlignment: pw.MainAxisAlignment.spaceEvenly,
                   children: [
-                    pw.Image(image('afad_logo.png'), height: 42),
-                    pw.Image(image('afad_logo.png'), height: 42),
+                    pw.Image(_image('afad_logo.png'), height: 42),
+                    pw.Image(_image('afad_logo.png'), height: 42),
                   ],
                 ),
                 pw.SizedBox(height: 12),
@@ -52,15 +52,15 @@ class ReportsViewModel extends BaseViewModel {
                     )),
                     child: pw.Column(
                       children: [
-                        dataRow(dataKey: 'Tarih', dataValue: currentTime),
-                        dataRow(dataKey: 'Gittiği Yer', dataValue: 'KAHRAMANMARAS'),
-                        dataRow(dataKey: 'Gittiği Yer Kişi', dataValue: 'CEMIL BOZ'),
-                        dataRow(dataKey: 'GÖREV DURUMU', dataValue: 'GÖNÜLLÜ'),
-                        dataRow(dataKey: 'PLAKA', dataValue: '38 AGE 127'),
-                        dataRow(dataKey: 'ŞOFÖR ADI', dataValue: 'YAHYA KEMAL ULUTOPÇU'),
-                        dataRow(dataKey: 'ŞOFÖR İLETİŞİM', dataValue: '507 899 48 00'),
-                        dataRow(dataKey: 'MALZEME CİNSİ', dataValue: 'TON'),
-                        dataRow(dataKey: 'ODUN', dataValue: '5'),
+                        _dataRow(dataKey: 'Tarih', dataValue: currentTime),
+                        _dataRow(dataKey: 'Gittiği Yer', dataValue: 'KAHRAMANMARAS'),
+                        _dataRow(dataKey: 'Gittiği Yer Kişi', dataValue: 'CEMIL BOZ'),
+                        _dataRow(dataKey: 'GÖREV DURUMU', dataValue: 'GÖNÜLLÜ'),
+                        _dataRow(dataKey: 'PLAKA', dataValue: '38 AGE 127'),
+                        _dataRow(dataKey: 'ŞOFÖR ADI', dataValue: 'YAHYA KEMAL ULUTOPÇU'),
+                        _dataRow(dataKey: 'ŞOFÖR İLETİŞİM', dataValue: '507 899 48 00'),
+                        _dataRow(dataKey: 'MALZEME CİNSİ', dataValue: 'TON'),
+                        _dataRow(dataKey: 'ODUN', dataValue: '5'),
                       ],
                     ),
                   ),
@@ -90,7 +90,7 @@ class ReportsViewModel extends BaseViewModel {
     );
   }
 
-  dataRow({required String dataKey, required String dataValue}) => pw.Column(
+  _dataRow({required String dataKey, required String dataValue}) => pw.Column(
         children: [
           pw.Column(children: [
             pw.Row(

@@ -1,8 +1,9 @@
-
 import 'package:earhquake_stock_managment/core/common/models/report/report_model.dart';
+import 'package:earhquake_stock_managment/core/common/provider/view_model_provider.dart';
 import 'package:earhquake_stock_managment/core/components/appbar/base_app_bar.dart';
 import 'package:earhquake_stock_managment/core/components/card/product_detail_card.dart';
 import 'package:earhquake_stock_managment/core/utils/constants/app_color.dart';
+import 'package:earhquake_stock_managment/view/reports/viewmodel/reports_detail_view_model.dart';
 import 'package:flutter/material.dart';
 
 class ReportsDetailView extends StatelessWidget {
@@ -11,56 +12,67 @@ class ReportsDetailView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: BaseAppBar(title: 'Rapor Detay'),
-      body: SingleChildScrollView(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.start,
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            ReportsDetailTextPart(
-              keyText: 'Araç Tipi',
-              valueText: report.vehicleInfo.vehicle.vehicleType,
-            ),
-            ReportsDetailTextPart(
-              keyText: 'Araç Plakası',
-              valueText: report.vehicleInfo.vehicle.plate,
-            ),
-            ReportsDetailTextPart(
-              keyText: 'Araç Sürücüsü',
-              valueText: report.vehicleInfo.vehicle.driverName,
-            ),
-            ReportsDetailTextPart(
-              keyText: 'Telefon Numarası',
-              valueText: report.vehicleInfo.vehicle.driverPhone,
-            ),
-            ReportsDetailTextPart(
-              keyText: 'Gidilecek Yer',
-              valueText: report.vehicleInfo.destinationCity,
-            ),
-            const SizedBox(
-              height: 16,
-            ),
-            Padding(
-              padding: const EdgeInsets.all(16.0),
-              child: Text(
-                'Ürünler',
-                style: Theme.of(context).textTheme.bodyLarge?.copyWith(
-                      color: AppColors.black,
-                      fontWeight: FontWeight.bold,
-                    ),
-                textAlign: TextAlign.left,
-              ),
-            ),
-            const SizedBox(
-              height: 16,
-            ),
-            ...report.vehicleInfo.inventoryItems.map(
-              (e) => ProductDetailCard(
-                item: e,
-              ),
-            ),
+    return ViewModelProvider<ReportsDetailViewModel>(
+      model: ReportsDetailViewModel(context),
+      builder: (model) => Scaffold(
+        appBar: BaseAppBar(
+          title: 'Rapor Detay',
+          actions: [
+            IconButton(
+              onPressed: model.printReport,
+              icon: const Icon(Icons.print),
+            )
           ],
+        ),
+        body: SingleChildScrollView(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.start,
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              ReportsDetailTextPart(
+                keyText: 'Araç Tipi',
+                valueText: report.vehicleInfo.vehicle.vehicleType,
+              ),
+              ReportsDetailTextPart(
+                keyText: 'Araç Plakası',
+                valueText: report.vehicleInfo.vehicle.plate,
+              ),
+              ReportsDetailTextPart(
+                keyText: 'Araç Sürücüsü',
+                valueText: report.vehicleInfo.vehicle.driverName,
+              ),
+              ReportsDetailTextPart(
+                keyText: 'Telefon Numarası',
+                valueText: report.vehicleInfo.vehicle.driverPhone,
+              ),
+              ReportsDetailTextPart(
+                keyText: 'Gidilecek Yer',
+                valueText: report.vehicleInfo.destinationCity,
+              ),
+              const SizedBox(
+                height: 16,
+              ),
+              Padding(
+                padding: const EdgeInsets.all(16.0),
+                child: Text(
+                  'Ürünler',
+                  style: Theme.of(context).textTheme.bodyLarge?.copyWith(
+                        color: AppColors.black,
+                        fontWeight: FontWeight.bold,
+                      ),
+                  textAlign: TextAlign.left,
+                ),
+              ),
+              const SizedBox(
+                height: 16,
+              ),
+              ...report.vehicleInfo.inventoryItems.map(
+                (e) => ProductDetailCard(
+                  item: e,
+                ),
+              ),
+            ],
+          ),
         ),
       ),
     );
