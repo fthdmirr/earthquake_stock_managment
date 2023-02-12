@@ -31,16 +31,7 @@ class ProductSelectionViewModel extends BaseViewModel {
 
   Vehicle? selectedVehicle;
 
-  final List<InventoryItem> products = [
-    InventoryItem(
-      name: 'Pantulon',
-      quantity: 10,
-    ),
-    InventoryItem(
-      name: 'Pantulon',
-      quantity: 10,
-    ),
-  ];
+  List<InventoryItem> get products => super.sepet.getBasket();
 
   increment(InventoryItem item) {
     item.quantity++;
