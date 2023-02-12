@@ -9,9 +9,9 @@ class AppBottomSheet {
   Future showBottomSheet(
     BuildContext context,
     String icon,
-    int currentQuantity,
+    TextEditingController currentQuantity,
     String currentItem,
-    Function()? onPressed,
+    Function(int) onPressed,
     List<String> dropdownValues,
     String dropdownValue,
   ) async {
@@ -38,8 +38,10 @@ class AppBottomSheet {
             children: [
               const Text(
                 'Seçilen Ürünün Detayını Giriniz.',
-                style:
-                    TextStyle(fontWeight: FontWeight.w700, fontSize: 14, color: AppColors.greyapp),
+                style: TextStyle(
+                    fontWeight: FontWeight.w700,
+                    fontSize: 14,
+                    color: AppColors.greyapp),
               ),
               const SizedBox(height: 12),
               Container(
@@ -59,11 +61,13 @@ class AppBottomSheet {
                     ),
                     Text(
                       currentItem,
-                      style: const TextStyle(fontWeight: FontWeight.w400, fontSize: 18),
+                      style: const TextStyle(
+                          fontWeight: FontWeight.w400, fontSize: 18),
                     ),
                     Text(
                       '$currentQuantity',
-                      style: const TextStyle(fontWeight: FontWeight.w600, fontSize: 25),
+                      style: const TextStyle(
+                          fontWeight: FontWeight.w600, fontSize: 25),
                     ),
                   ],
                 ),
@@ -77,13 +81,16 @@ class AppBottomSheet {
                   dropdownValue = p0 ?? dropdownValues.first;
                 },
               ),
-              BaseInput(title: 'Miktar', controller: TextEditingController()),
+              BaseInput(
+                title: 'Miktar',
+                controller: currentQuantity,
+              ),
               const SizedBox(height: 10),
               SizedBox(
                 width: double.infinity,
                 height: context.dynamicHeight(0.045),
                 child: ElevatedButton(
-                  onPressed: onPressed,
+                  onPressed: onPressed(int.parse(currentQuantity.text)),
                   child: const Text('Tıra Ekle'),
                 ),
               )

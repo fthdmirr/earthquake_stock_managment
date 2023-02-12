@@ -42,9 +42,8 @@ class HomeView extends StatelessWidget {
                 itemCount: model.inventoryItems.length,
                 itemBuilder: (context, index) => ReceivePageItemWidget(
                   item: model.inventoryItems[index],
-                  bottomSheetButton: () => model.addToSepet(
-                    model.inventoryItems[index],
-                  ),
+                  textEditingController: model.unitController,
+                  model: model,
                 ),
               ),
             ),
@@ -57,26 +56,25 @@ class HomeView extends StatelessWidget {
 
 class ReceivePageItemWidget extends StatelessWidget {
   final InventoryItem item;
-  final Function()? bottomSheetButton;
+  final TextEditingController textEditingController;
+  final HomeViewModel model;
   const ReceivePageItemWidget({
     super.key,
     required this.item,
-    required this.bottomSheetButton,
+    required this.textEditingController,
+    required this.model,
   });
 
   @override
   Widget build(BuildContext context) {
+    int quantity = 0;
     return GestureDetector(
       onTap: () {
-        AppBottomSheet().showBottomSheet(
-            context,
-            item.icon ?? 'empty_icon',
-            item.quantity,
-            item.name,
-            //TODO: item type elkelecek
-            bottomSheetButton,
-            ['Koli', 'Adet'],
-            'Koli');
+        model.showModal(
+          dropdownValue: 'Koli',
+          dropdownValues: ['Koli', 'Adet'],
+          item: item,
+        );
       },
       child: Container(
         margin: const EdgeInsets.all(8),
