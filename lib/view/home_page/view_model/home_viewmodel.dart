@@ -17,7 +17,7 @@ class HomeViewModel extends BaseViewModel {
   HomeViewModel({
     required super.context,
   }) {
-    //initViewModel();
+    initViewModel();
   }
 
   @override
