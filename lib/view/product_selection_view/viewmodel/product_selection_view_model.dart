@@ -62,7 +62,7 @@ class ProductSelectionViewModel extends BaseViewModel {
           routeStatus: RouteStatus.sending,
           inventoryItems: products,
         ),
-        dateTime: DateTime.now().toIso8601String()));
+        dateTime: DateTime.now().toString()));
     _clearDatas();
 
     Future.delayed(Duration.zero).then(

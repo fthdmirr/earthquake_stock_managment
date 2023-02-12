@@ -1,3 +1,4 @@
+import 'package:earhquake_stock_managment/core/common/models/report/report_model.dart';
 import 'package:earhquake_stock_managment/core/common/provider/base_provider.dart';
 import 'package:flutter/material.dart';
 // ignore: depend_on_referenced_packages
@@ -11,10 +12,10 @@ import 'package:printing/printing.dart';
 class ReportsDetailViewModel extends BaseViewModel {
   ReportsDetailViewModel(BuildContext context) : super(context: context);
 
-  String get currentTime {
+  String currentTime(String time) {
     final DateFormat displayFormater = DateFormat('yyyy-MM-dd HH:mm:ss.SSS');
     final DateFormat serverFormater = DateFormat('dd.MM.yyyy');
-    final DateTime displayDate = displayFormater.parse(DateTime.now().toString());
+    final DateTime displayDate = displayFormater.parse(time);
     final String formatted = serverFormater.format(displayDate);
     return formatted;
   }
@@ -23,8 +24,21 @@ class ReportsDetailViewModel extends BaseViewModel {
 
   final doc = pw.Document();
 
-  Future<void> printReport() async {
+  Future<void> printReport(Report report) async {
     final afadLogo = await imageFromAssetBundle('assets/images/afad_logo.png');
+
+    getItems() {
+      List items = [];
+      for (var i = 0; i < report.vehicleInfo.inventoryItems.length; i++) {
+        items.addAll([
+          _dataRow(dataKey: 'MALZEME CİNSİ', dataValue: ''),
+          _dataRow(
+              dataKey: report.vehicleInfo.inventoryItems[i].name,
+              dataValue: report.vehicleInfo.inventoryItems[i].quantity.toString()),
+        ]);
+      }
+      return items;
+    }
 
     doc.addPage(
       pw.Page(
@@ -51,15 +65,18 @@ class ReportsDetailViewModel extends BaseViewModel {
                     )),
                     child: pw.Column(
                       children: [
-                        _dataRow(dataKey: 'Tarih', dataValue: currentTime),
-                        _dataRow(dataKey: 'Gittiği Yer', dataValue: 'KAHRAMANMARAS'),
+                        _dataRow(dataKey: 'Tarih', dataValue: currentTime(report.dateTime)),
+                        _dataRow(
+                            dataKey: 'Gittiği Yer', dataValue: report.vehicleInfo.destinationCity),
                         _dataRow(dataKey: 'Gittiği Yer Kişi', dataValue: 'CEMIL BOZ'),
                         _dataRow(dataKey: 'GÖREV DURUMU', dataValue: 'GÖNÜLLÜ'),
                         _dataRow(dataKey: 'PLAKA', dataValue: '38 AGE 127'),
-                        _dataRow(dataKey: 'ŞOFÖR ADI', dataValue: 'YAHYA KEMAL ULUTOPÇU'),
-                        _dataRow(dataKey: 'ŞOFÖR İLETİŞİM', dataValue: '507 899 48 00'),
-                        _dataRow(dataKey: 'MALZEME CİNSİ', dataValue: 'TON'),
-                        _dataRow(dataKey: 'ODUN', dataValue: '5'),
+                        _dataRow(
+                            dataKey: 'ŞOFÖR ADI', dataValue: report.vehicleInfo.vehicle.driverName),
+                        _dataRow(
+                            dataKey: 'ŞOFÖR İLETİŞİM',
+                            dataValue: report.vehicleInfo.vehicle.driverPhone),
+                        ...getItems()
                       ],
                     ),
                   ),

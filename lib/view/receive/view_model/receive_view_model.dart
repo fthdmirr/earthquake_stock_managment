@@ -46,7 +46,7 @@ class ReceiveViewModel extends BaseViewModel {
     if (pickedVehicle == null) return;
     await reportCacheManager.addValue(
       Report(
-        dateTime: DateTime.now().toIso8601String(),
+        dateTime: DateTime.now().toString(),
         vehicleInfo: VehicleInfo(
           destinationCity: fromTheProvience,
           vehicle: pickedVehicle!,
