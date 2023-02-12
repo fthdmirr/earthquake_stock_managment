@@ -62,8 +62,7 @@ class _VehicleInfoPage extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.start,
             children: [
               Headline5Text(
-                text:
-                    'Kabul edeceğiniz tırın ve tır içerisindeki malzeme bilgisini giriniz.',
+                text: 'Kabul edeceğiniz tırın ve tır içerisindeki malzeme bilgisini giriniz.',
                 color: AppColors.dark,
               ),
               const SizedBox(height: 40),
@@ -79,8 +78,7 @@ class _VehicleInfoPage extends StatelessWidget {
               BaseInput(title: 'Araç Plakası', controller: model.vehiclePlate),
               const SizedBox(height: 12),
               DropdownInput(
-                dropdownValues:
-                    CitiesOfTurkey.values.map((e) => e.name).toList(),
+                dropdownValues: CitiesOfTurkey.values.map((e) => e.name).toList(),
                 dropDownValue: model.fromTheProvience,
                 title: 'Gelen İl',
                 onChanged: (p0) {
@@ -154,9 +152,8 @@ class _ItemInfoPage extends StatelessWidget {
                 child: TextButton.icon(
                   onPressed: () => model.addInventoryItem(),
                   icon: const Icon(Icons.add),
-                  label: Text(model.inventoryItems.isEmpty
-                      ? ' Ürünü Ekle'
-                      : 'Ürün Eklemeye Devam Et'),
+                  label:
+                      Text(model.inventoryItems.isEmpty ? ' Ürünü Ekle' : 'Ürün Eklemeye Devam Et'),
                 ),
               )
             ],
@@ -194,17 +191,21 @@ class _OverViewPage extends StatelessWidget {
                 return null;
               },
             ),
-            const ReportsDetailTextPart(
+            ReportsDetailTextPart(
               keyText: 'Araç Plakası',
-              valueText: '34 AY 123',
+              valueText: model.pickedVehicle?.plate ?? '',
             ),
-            const ReportsDetailTextPart(
+            ReportsDetailTextPart(
+              keyText: 'Araç Sürücüsü',
+              valueText: model.pickedVehicle?.driverName ?? '',
+            ),
+            ReportsDetailTextPart(
+              keyText: 'Sürücü Numarası',
+              valueText: model.pickedVehicle?.driverPhone ?? '',
+            ),
+            ReportsDetailTextPart(
               keyText: 'Gelen İl',
-              valueText: 'Ahmet Yılmaz',
-            ),
-            const ReportsDetailTextPart(
-              keyText: 'Gidecek İl',
-              valueText: 'Ahmet Yılmaz',
+              valueText: model.fromTheProvience,
             ),
             const SizedBox(height: 12),
           ],
