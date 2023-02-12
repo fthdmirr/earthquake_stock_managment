@@ -98,7 +98,7 @@ class ReportsDetailViewModel extends BaseViewModel {
                   'Yukarıda detay bilgileri yer alan araç belirtilen ile yardım amacıyla gitmesine izin verilmiştir',
                   style: _style,
                   textAlign: pw.TextAlign.center,
-                )
+                ),
               ],
             ),
           ); // Center
@@ -111,14 +111,18 @@ class ReportsDetailViewModel extends BaseViewModel {
   _dataRow({required String dataKey, required String dataValue}) => pw.Column(
         children: [
           pw.Column(children: [
-            pw.Row(
-              mainAxisAlignment: pw.MainAxisAlignment.spaceBetween,
-              children: [
-                pw.Text(dataKey, style: pw.TextStyle(fontSize: 18, fontWeight: pw.FontWeight.bold)),
-                pw.Text('-', style: pw.TextStyle(fontSize: 18, fontWeight: pw.FontWeight.bold)),
-                pw.Text(dataValue,
-                    style: pw.TextStyle(fontSize: 18, fontWeight: pw.FontWeight.bold)),
-              ],
+            pw.Padding(
+              padding: const pw.EdgeInsets.all(3),
+              child: pw.Row(
+                mainAxisAlignment: pw.MainAxisAlignment.spaceBetween,
+                children: [
+                  pw.Text(dataKey,
+                      style: pw.TextStyle(fontSize: 18, fontWeight: pw.FontWeight.bold)),
+                  pw.Text('-', style: pw.TextStyle(fontSize: 18, fontWeight: pw.FontWeight.bold)),
+                  pw.Text(dataValue,
+                      style: pw.TextStyle(fontSize: 18, fontWeight: pw.FontWeight.bold)),
+                ],
+              ),
             ),
             pw.Divider(thickness: 4, color: PdfColor.fromHex('#000000')),
           ])
