@@ -2,6 +2,7 @@ import 'package:earhquake_stock_managment/core/common/models/app_images/app_imag
 import 'package:earhquake_stock_managment/core/components/dropdown/dropdown_input.dart';
 import 'package:earhquake_stock_managment/core/components/input/base_input.dart';
 import 'package:earhquake_stock_managment/core/utils/constants/app_color.dart';
+import 'package:earhquake_stock_managment/core/utils/input_field_generator.dart';
 import 'package:flutter/material.dart';
 import 'package:kartal/kartal.dart';
 
@@ -84,6 +85,11 @@ class AppBottomSheet {
               BaseInput(
                 title: 'Miktar',
                 controller: currentQuantity,
+                inputFormatter: getTextInputFormatters(
+                  onlyNumber: true,
+                  spaceFilter: true,
+                  positiveIntegerFilter: true,
+                ),
               ),
               const SizedBox(height: 10),
               SizedBox(

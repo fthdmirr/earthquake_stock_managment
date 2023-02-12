@@ -5,6 +5,7 @@ import 'package:earhquake_stock_managment/core/common/models/inventory_item/inve
 import 'package:earhquake_stock_managment/core/components/dropdown/dropdown_input.dart';
 import 'package:earhquake_stock_managment/core/components/input/base_input.dart';
 import 'package:earhquake_stock_managment/core/utils/constants/app_color.dart';
+import 'package:earhquake_stock_managment/core/utils/input_field_generator.dart';
 import 'package:earhquake_stock_managment/main.dart';
 import 'package:flutter/material.dart';
 import 'package:kartal/kartal.dart';
@@ -100,6 +101,11 @@ class HomeViewModel extends BaseViewModel {
               BaseInput(
                 title: 'Miktar',
                 controller: unitController,
+                inputFormatter: getTextInputFormatters(
+                  onlyNumber: true,
+                  spaceFilter: true,
+                  positiveIntegerFilter: true,
+                ),
               ),
               const SizedBox(height: 10),
               SizedBox(

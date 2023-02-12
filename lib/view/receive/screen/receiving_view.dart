@@ -3,6 +3,7 @@ import 'package:earhquake_stock_managment/core/components/input/base_input.dart'
 import 'package:earhquake_stock_managment/core/components/stepper/stepper_model.dart';
 import 'package:earhquake_stock_managment/core/components/stepper/stepper_view.dart';
 import 'package:earhquake_stock_managment/core/utils/constants/enum/cities_of_turkey.dart';
+import 'package:earhquake_stock_managment/core/utils/input_field_generator.dart';
 import 'package:earhquake_stock_managment/view/receive/view_model/receive_view_model.dart';
 import 'package:flutter/services.dart';
 
@@ -56,7 +57,8 @@ class _VehicleInfoPage extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.start,
           children: [
             Headline5Text(
-              text: 'Kabul edeceğiniz tırın ve tır içerisindeki malzeme bilgisini giriniz.',
+              text:
+                  'Kabul edeceğiniz tırın ve tır içerisindeki malzeme bilgisini giriniz.',
               color: AppColors.dark,
             ),
             const SizedBox(height: 40),
@@ -120,21 +122,22 @@ class _ItemInfoPage extends StatelessWidget {
             ),
             const SizedBox(height: 12),
             BaseInput(
-              title: 'Adet',
-              controller: model.quantity,
-              inputFormatter: <TextInputFormatter>[
-                FilteringTextInputFormatter.digitsOnly,
-                LengthLimitingTextInputFormatter(10),
-              ],
-            ),
+                title: 'Adet',
+                controller: model.quantity,
+                inputFormatter: getTextInputFormatters(
+                  onlyNumber: true,
+                  spaceFilter: true,
+                  positiveIntegerFilter: true,
+                )),
             const SizedBox(height: 12),
             Align(
               alignment: Alignment.bottomLeft,
               child: TextButton.icon(
                 onPressed: () => model.addInventoryItem(),
                 icon: const Icon(Icons.add),
-                label:
-                    Text(model.inventoryItems.isEmpty ? ' Ürünü Ekle' : 'Ürün Eklemeye Devam Et'),
+                label: Text(model.inventoryItems.isEmpty
+                    ? ' Ürünü Ekle'
+                    : 'Ürün Eklemeye Devam Et'),
               ),
             )
           ],
