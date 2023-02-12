@@ -1,9 +1,11 @@
+import 'package:earhquake_stock_managment/core/common/models/report/report_model.dart';
 import 'package:earhquake_stock_managment/core/components/card/product_detail_card.dart';
 import 'package:earhquake_stock_managment/core/utils/constants/app_color.dart';
 import 'package:flutter/material.dart';
 
 class ReportsDetailView extends StatelessWidget {
-  const ReportsDetailView({super.key});
+  final Report report;
+  const ReportsDetailView({super.key, required this.report});
 
   @override
   Widget build(BuildContext context) {
@@ -16,25 +18,25 @@ class ReportsDetailView extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.start,
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            const ReportsDetailTextPart(
+            ReportsDetailTextPart(
               keyText: 'Araç Tipi',
-              valueText: 'Kamyon',
+              valueText: report.vehicleInfo.vehicle.vehicleType,
             ),
-            const ReportsDetailTextPart(
+            ReportsDetailTextPart(
               keyText: 'Araç Plakası',
-              valueText: '34 AY 123',
+              valueText: report.vehicleInfo.vehicle.plate,
             ),
-            const ReportsDetailTextPart(
+            ReportsDetailTextPart(
               keyText: 'Araç Sürücüsü',
-              valueText: 'Ahmet Yılmaz',
+              valueText: report.vehicleInfo.vehicle.driverName,
             ),
-            const ReportsDetailTextPart(
+            ReportsDetailTextPart(
               keyText: 'Telefon Numarası',
-              valueText: '0532 123 45 67',
+              valueText: report.vehicleInfo.vehicle.driverPhone,
             ),
-            const ReportsDetailTextPart(
+            ReportsDetailTextPart(
               keyText: 'Gidilecek Yer',
-              valueText: 'Hatay',
+              valueText: report.vehicleInfo.destinationCity,
             ),
             const SizedBox(
               height: 16,
@@ -53,14 +55,11 @@ class ReportsDetailView extends StatelessWidget {
             const SizedBox(
               height: 16,
             ),
-            const ProductDetailCard(),
-            const ProductDetailCard(),
-            const ProductDetailCard(),
-            const ProductDetailCard(),
-            const ProductDetailCard(),
-            const ProductDetailCard(),
-            const ProductDetailCard(),
-            const ProductDetailCard(),
+            ...report.vehicleInfo.inventoryItems.map(
+              (e) => ProductDetailCard(
+                item: e,
+              ),
+            ),
           ],
         ),
       ),

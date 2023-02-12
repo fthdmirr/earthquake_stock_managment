@@ -1,4 +1,5 @@
 import 'package:earhquake_stock_managment/core/common/models/app_images/app_images.dart';
+import 'package:earhquake_stock_managment/core/common/models/inventory_item/inventory_item_model.dart';
 import 'package:flutter/material.dart';
 
 import '../../utils/constants/app_color.dart';
@@ -8,8 +9,10 @@ import '../text/headline/headline3_text.dart';
 import '../text/headline/headline4_text.dart';
 
 class ProductDetailCard extends StatelessWidget {
+  final InventoryItem item;
   const ProductDetailCard({
     super.key,
+    required this.item,
   });
 
   @override
@@ -27,7 +30,7 @@ class ProductDetailCard extends StatelessWidget {
                 radius: 30,
                 backgroundColor: AppColors.wildSand,
                 child: Image(
-                  image: AppImages.memoryImage('empty_icon'),
+                  image: AppImages.memoryImage(item.icon ?? 'empty_icon'),
                   width: 25,
                   height: 25,
                   color: AppColors.primaryColor,
@@ -39,7 +42,7 @@ class ProductDetailCard extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Headline3Text(
-                    text: 'Erkek Kıyafet',
+                    text: item.name,
                     color: AppColors.dark,
                   ),
                   Headline4Text(
@@ -51,7 +54,7 @@ class ProductDetailCard extends StatelessWidget {
             ],
           ),
           Headline2Text(
-            text: '50',
+            text: item.quantity.toString(),
             color: AppColors.black,
           ),
         ],
