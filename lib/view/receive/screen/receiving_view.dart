@@ -10,31 +10,34 @@ import '../../../core/common/provider/view_model_provider.dart';
 
 import 'package:flutter/material.dart';
 
+import '../../../core/components/text/headline/headline5_text.dart';
+import '../../../core/utils/constants/app_color.dart';
+
 class ReceivingView extends StatelessWidget {
   const ReceivingView({super.key});
 
   @override
   Widget build(BuildContext context) {
     return ViewModelProvider<ReceiveViewModel>(
-        model: ReceiveViewModel(
-          context: context,
-        ),
-        builder: (ReceiveViewModel model) => StepperView(
-              steppers: [
-                StepperModel(title: 'Tır Bilgisi', index: 0),
-                StepperModel(title: 'Malzeme Bilgisi', index: 1),
-                StepperModel(title: 'Kontrol', index: 2),
-              ],
-              widgets: [
-                _VehicleInfoPage(model),
-                _ItemInfoPage(model),
-                _OverViewPage(model),
-              ],
-              onPressed: (index) {
-                if (index == 0) model.addedVehicleValue();
-                if (index == 2) model.finishReceive();
-              },
-            ));
+      model: ReceiveViewModel(context: context),
+      builder: (ReceiveViewModel model) => StepperView(
+        singleButtontitle: 'Devam Et',
+        steppers: [
+          StepperModel(title: 'Tır Bilgisi', index: 0),
+          StepperModel(title: 'Malzeme Bilgisi', index: 1),
+          StepperModel(title: 'Kontrol', index: 2),
+        ],
+        widgets: [
+          _VehicleInfoPage(model),
+          _ItemInfoPage(model),
+          _OverViewPage(model),
+        ],
+        onPressed: (index) {
+          if (index == 0) model.addedVehicleValue();
+          if (index == 2) model.finishReceive();
+        },
+      ),
+    );
   }
 }
 
@@ -45,26 +48,39 @@ class _VehicleInfoPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: [
-        DropdownInput(
-          dropdownValues: const ['Kamyon', 'Tır', 'Kamyonet'],
-          firstValue: model.selectedVehicle,
-          title: 'Araç Tipi',
+    return SingleChildScrollView(
+      child: Padding(
+        padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 15),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.center,
+          mainAxisAlignment: MainAxisAlignment.start,
+          children: [
+            Headline5Text(
+              text:
+                  'Kabul edeceğiniz tırın ve tır içerisindeki malzeme bilgisini giriniz.',
+              color: AppColors.dark,
+            ),
+            const SizedBox(height: 40),
+            DropdownInput(
+              dropdownValues: const ['Kamyon', 'Tır', 'Kamyonet'],
+              firstValue: model.selectedVehicle,
+              title: 'Araç Tipi',
+            ),
+            const SizedBox(height: 12),
+            BaseInput(title: 'Araç Plakası', controller: model.vehiclePlate),
+            const SizedBox(height: 12),
+            DropdownInput(
+              dropdownValues: CitiesOfTurkey.values.map((e) => e.name).toList(),
+              firstValue: model.fromTheProvience,
+              title: 'Gelen İl',
+            ),
+            BaseInput(title: 'Şoför Adı', controller: model.name),
+            const SizedBox(height: 12),
+            BaseInput(title: 'Şoför Tel', controller: model.telNo),
+            const SizedBox(height: 12),
+          ],
         ),
-        const SizedBox(height: 12),
-        BaseInput(title: 'Araç Plakası', controller: model.vehiclePlate),
-        const SizedBox(height: 12),
-        DropdownInput(
-          dropdownValues: CitiesOfTurkey.values.map((e) => e.name).toList(),
-          firstValue: model.fromTheProvience,
-          title: 'Gelen İl',
-        ),
-        BaseInput(title: 'Şoför Adı', controller: model.name),
-        const SizedBox(height: 12),
-        BaseInput(title: 'Şoför Tel', controller: model.telNo),
-        const SizedBox(height: 12),
-      ],
+      ),
     );
   }
 }
@@ -75,40 +91,43 @@ class _ItemInfoPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: [
-        DropdownInput(
-          dropdownValues: const ['Kadın Kıyafet', 'Kuru Gıda', 'Meyve'],
-          firstValue: model.selectedItem,
-          title: 'Ürün',
-        ),
-        const SizedBox(height: 12),
-        DropdownInput(
-          dropdownValues: const ['Koli', 'Adet'],
-          firstValue: model.selectedItemType,
-          title: 'Ürün Tipi',
-        ),
-        const SizedBox(height: 12),
-        BaseInput(
-          title: 'Adet',
-          controller: model.quantity,
-          inputFormatter: <TextInputFormatter>[
-            FilteringTextInputFormatter.digitsOnly,
-            LengthLimitingTextInputFormatter(10),
+    return SingleChildScrollView(
+      child: Padding(
+        padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 15),
+        child: Column(
+          children: [
+            DropdownInput(
+              dropdownValues: const ['Kadın Kıyafet', 'Kuru Gıda', 'Meyve'],
+              firstValue: model.selectedItem,
+              title: 'Ürün',
+            ),
+            const SizedBox(height: 12),
+            DropdownInput(
+              dropdownValues: const ['Koli', 'Adet'],
+              firstValue: model.selectedItemType,
+              title: 'Ürün Tipi',
+            ),
+            const SizedBox(height: 12),
+            BaseInput(
+              title: 'Adet',
+              controller: model.quantity,
+              inputFormatter: <TextInputFormatter>[
+                FilteringTextInputFormatter.digitsOnly,
+                LengthLimitingTextInputFormatter(10),
+              ],
+            ),
+            const SizedBox(height: 12),
+            Align(
+              alignment: Alignment.bottomLeft,
+              child: TextButton.icon(
+                onPressed: () => model.addInventoryItem(),
+                icon: const Icon(Icons.add),
+                label: const Text('Ürün Eklemeye Devam Et'),
+              ),
+            )
           ],
         ),
-        const SizedBox(height: 12),
-        Align(
-          alignment: Alignment.bottomLeft,
-          child: TextButton.icon(
-            onPressed: () {
-              model.addInventoryItem();
-            },
-            icon: const Icon(Icons.add),
-            label: const Text('Ürün Eklemeye Devam Et'),
-          ),
-        )
-      ],
+      ),
     );
   }
 }
@@ -119,51 +138,56 @@ class _OverViewPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: [
-        DropdownInput(
-          dropdownValues: const ['Kamyon', 'Tır', 'Kamyonet'],
-          firstValue: model.selectedVehicle,
-          title: 'Araç Tipi',
-        ),
-        const SizedBox(height: 12),
-        BaseInput(
-          title: 'Araç Plakası',
-          controller: model.vehiclePlate,
-          isEnabled: false,
-        ),
-        const SizedBox(height: 12),
-        DropdownInput(
-          dropdownValues: CitiesOfTurkey.values.map((e) => e.name).toList(),
-          firstValue: model.fromTheProvience,
-          title: 'Gelen İl',
-          enable: false,
-        ),
-        const SizedBox(height: 12),
-        DropdownInput(
-          dropdownValues: const ['Kadın Kıyafet', 'Kuru Gıda', 'Meyve'],
-          firstValue: model.selectedItem,
-          title: 'Ürün',
-          enable: false,
-        ),
-        const SizedBox(height: 12),
-        DropdownInput(
-          dropdownValues: const ['Koli', 'Adet'],
-          firstValue: model.selectedItemType,
-          title: 'Ürün Tipi',
-          enable: false,
-        ),
-        const SizedBox(height: 12),
-        BaseInput(
-          title: 'Araç Plakası',
-          controller: model.vehiclePlate,
-          isEnabled: false,
-          inputFormatter: <TextInputFormatter>[
-            FilteringTextInputFormatter.digitsOnly,
-            LengthLimitingTextInputFormatter(10),
+    return SingleChildScrollView(
+      child: Padding(
+        padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 15),
+        child: Column(
+          children: [
+            DropdownInput(
+              dropdownValues: const ['Kamyon', 'Tır', 'Kamyonet'],
+              firstValue: model.selectedVehicle,
+              title: 'Araç Tipi',
+            ),
+            const SizedBox(height: 12),
+            BaseInput(
+              title: 'Araç Plakası',
+              controller: model.vehiclePlate,
+              isEnabled: false,
+            ),
+            const SizedBox(height: 12),
+            DropdownInput(
+              dropdownValues: CitiesOfTurkey.values.map((e) => e.name).toList(),
+              firstValue: model.fromTheProvience,
+              title: 'Gelen İl',
+              enable: false,
+            ),
+            const SizedBox(height: 12),
+            DropdownInput(
+              dropdownValues: const ['Kadın Kıyafet', 'Kuru Gıda', 'Meyve'],
+              firstValue: model.selectedItem,
+              title: 'Ürün',
+              enable: false,
+            ),
+            const SizedBox(height: 12),
+            DropdownInput(
+              dropdownValues: const ['Koli', 'Adet'],
+              firstValue: model.selectedItemType,
+              title: 'Ürün Tipi',
+              enable: false,
+            ),
+            const SizedBox(height: 12),
+            BaseInput(
+              title: 'Araç Plakası',
+              controller: model.vehiclePlate,
+              isEnabled: false,
+              inputFormatter: <TextInputFormatter>[
+                FilteringTextInputFormatter.digitsOnly,
+                LengthLimitingTextInputFormatter(10),
+              ],
+            ),
           ],
         ),
-      ],
+      ),
     );
   }
 }

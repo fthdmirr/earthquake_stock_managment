@@ -15,17 +15,21 @@ class AppBottomSheet {
           borderRadius: BorderRadius.vertical(top: Radius.circular(12))),
       builder: (BuildContext _) => Container(
         height: context.dynamicHeight(0.4),
-        padding: EdgeInsets.only(bottom: MediaQuery.of(context).viewInsets.bottom),
+        padding:
+            EdgeInsets.only(bottom: MediaQuery.of(context).viewInsets.bottom),
         child: Padding(
-          padding: const EdgeInsets.only(left: 24, right: 24, top: 24, bottom: 18),
+          padding:
+              const EdgeInsets.only(left: 24, right: 24, top: 24, bottom: 18),
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               const Text(
                 'Seçilen Ürünün Detayını Giriniz.',
-                style:
-                    TextStyle(fontWeight: FontWeight.w700, fontSize: 14, color: AppColors.greyapp),
+                style: TextStyle(
+                    fontWeight: FontWeight.w700,
+                    fontSize: 14,
+                    color: AppColors.greyapp),
               ),
               const SizedBox(height: 12),
               Container(
@@ -45,11 +49,13 @@ class AppBottomSheet {
                     ),
                     Text(
                       currentItem,
-                      style: const TextStyle(fontWeight: FontWeight.w400, fontSize: 18),
+                      style: const TextStyle(
+                          fontWeight: FontWeight.w400, fontSize: 18),
                     ),
                     Text(
                       '$currentQuantity',
-                      style: const TextStyle(fontWeight: FontWeight.w600, fontSize: 25),
+                      style: const TextStyle(
+                          fontWeight: FontWeight.w600, fontSize: 25),
                     ),
                   ],
                 ),
