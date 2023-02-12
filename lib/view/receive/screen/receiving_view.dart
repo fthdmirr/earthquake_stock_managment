@@ -133,7 +133,8 @@ class _ItemInfoPage extends StatelessWidget {
               child: TextButton.icon(
                 onPressed: () => model.addInventoryItem(),
                 icon: const Icon(Icons.add),
-                label: const Text('Ürün Eklemeye Devam Et'),
+                label:
+                    Text(model.inventoryItems.isEmpty ? ' Ürünü Ekle' : 'Ürün Eklemeye Devam Et'),
               ),
             )
           ],
