@@ -44,6 +44,10 @@ class InventoryItemCacheManager {
     await box?.delete(key);
   }
 
+  Future<void> removeAtItem(int index) async {
+    await box?.deleteAt(index);
+  }
+
   List<InventoryItem> getValues() {
     return box?.values.toList() ?? [];
   }

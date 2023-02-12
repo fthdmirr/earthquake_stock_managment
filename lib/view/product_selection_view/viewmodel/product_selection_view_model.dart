@@ -55,25 +55,39 @@ class ProductSelectionViewModel extends BaseViewModel {
 
   sendVehicle() async {
     if (selectedVehicle == null) return;
-    await reportCacheManager.addValue(Report(
+    await reportCacheManager.addValue(
+      Report(
         vehicleInfo: VehicleInfo(
           destinationCity: toTheProvience,
           vehicle: selectedVehicle!,
           routeStatus: RouteStatus.sending,
           inventoryItems: products,
         ),
-        dateTime: DateTime.now().toString()));
+        dateTime: DateTime.now().toString(),
+      ),
+    );
+
+    for (var i = 0; i < products.length; i++) {
+      itemCacheManager.addValue(InventoryItem(
+        name: products[i].name,
+        quantity: -products[i].quantity,
+        icon: products[i].icon,
+      ));
+    }
+
     _clearDatas();
 
     Future.delayed(Duration.zero).then(
       (value) async {
-        NavigationService.instance.navigateToPageClear(path: BottomBarView.routeName);
+        NavigationService.instance
+            .navigateToPageClear(path: BottomBarView.routeName);
         await customMyDialog(context);
       },
     );
   }
 
   void _clearDatas() {
+    super.basket.clear();
     quantity.clear();
     vehicleTypeController.clear();
     vehiclePlateController.clear();

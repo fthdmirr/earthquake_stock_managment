@@ -37,7 +37,12 @@ class ReceiveViewModel extends BaseViewModel {
 
   void addInventoryItem() {
     inventoryItems.add(
-      InventoryItem(quantity: int.parse(quantity.text.trim()), name: selectedItem),
+      InventoryItem(
+          quantity: int.parse(quantity.text.trim()), name: selectedItem),
+    );
+    itemCacheManager.addValue(
+      InventoryItem(
+          quantity: int.parse(quantity.text.trim()), name: selectedItem),
     );
     quantity.clear();
     notifyListeners();
@@ -57,8 +62,8 @@ class ReceiveViewModel extends BaseViewModel {
       ),
     );
     _clearDatas();
-    Future.delayed(Duration.zero).then(
-        (value) => NavigationService.instance.navigateToPageClear(path: BottomBarView.routeName));
+    Future.delayed(Duration.zero).then((value) => NavigationService.instance
+        .navigateToPageClear(path: BottomBarView.routeName));
   }
 
   void _clearDatas() {
