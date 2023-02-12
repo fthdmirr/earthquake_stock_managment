@@ -6,6 +6,7 @@ import 'package:earhquake_stock_managment/core/common/models/status/route_status
 import 'package:earhquake_stock_managment/core/common/models/vehicle/vehicle_model.dart';
 import 'package:earhquake_stock_managment/core/common/models/vehicle_info/vehicle_info_model.dart';
 import 'package:earhquake_stock_managment/core/common/provider/base_provider.dart';
+import 'package:earhquake_stock_managment/core/components/dialog/custom_show_dialog.dart';
 import 'package:earhquake_stock_managment/core/init/navigation/navigation_service.dart';
 import 'package:earhquake_stock_managment/main.dart';
 import 'package:earhquake_stock_managment/view/bottom_bar/view/bottom_bar_view.dart';
@@ -72,8 +73,13 @@ class ProductSelectionViewModel extends BaseViewModel {
         ),
         dateTime: DateTime.now().toIso8601String()));
     _clearDatas();
+
     Future.delayed(Duration.zero).then(
-        (value) => NavigationService.instance.navigateToPageClear(path: BottomBarView.routeName));
+      (value) async {
+        NavigationService.instance.navigateToPageClear(path: BottomBarView.routeName);
+        await customMyDialog(context);
+      },
+    );
   }
 
   void _clearDatas() {

@@ -41,9 +41,10 @@ class ProductSelectionView extends StatelessWidget {
               onPressed: (index) async {
                 if (index == 1) model.addVehicle();
                 if (index == 2) {
-                  NavigationService.instance.navigateToPageClear(path: BottomBarView.routeName);
-                  await customMyDialog(context);
+                  await model.sendVehicle();
                 }
+
+              
               },
               widgets: [
                 _SelectItemList(model: model),
