@@ -10,7 +10,7 @@ import 'package:flutter/material.dart';
 
 class ReportsViewModel extends BaseViewModel {
   int currentIndex = 0;
-  ReportsViewModel(BuildContext context) : super(context: context) {}
+  ReportsViewModel(BuildContext context) : super(context: context);
   List<Report> cameReports = [];
   List<Report> wentReports = [];
   List<Report> tempReports = [];
@@ -48,8 +48,7 @@ class ReportsViewModel extends BaseViewModel {
         .toList();
 
     wentReports = tempReports
-        .where(
-            (element) => element.vehicleInfo.routeStatus == RouteStatus.sending)
+        .where((element) => element.vehicleInfo.routeStatus == RouteStatus.sending)
         .toList();
 
     notifyListeners();
@@ -60,8 +59,7 @@ class ReportsViewModel extends BaseViewModel {
     //check user deleted all text
     if (value.isEmpty) {
       cameReports = tempReports
-          .where(
-              (element) => element.vehicleInfo.routeStatus == RouteStatus.came)
+          .where((element) => element.vehicleInfo.routeStatus == RouteStatus.came)
           .toList();
       notifyListeners();
       return;
@@ -73,9 +71,7 @@ class ReportsViewModel extends BaseViewModel {
         .where(
           (element) =>
               element.vehicleInfo.routeStatus == RouteStatus.came &&
-              element.vehicleInfo.vehicle.driverName
-                  .toLowerCase()
-                  .contains(value.toLowerCase()),
+              element.vehicleInfo.vehicle.driverName.toLowerCase().contains(value.toLowerCase()),
         )
         .toList();
     notifyListeners();

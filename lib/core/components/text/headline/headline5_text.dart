@@ -10,6 +10,8 @@ class Headline5Text extends AutoSizeText {
           text,
           overflow: TextOverflow.ellipsis,
           textScaleFactor: 1,
+          maxLines: 2,
+          textAlign: TextAlign.center,
           style: myTheme.textTheme.headlineSmall!.copyWith(
             color: color,
             fontWeight: myTheme.textTheme.headlineSmall!.fontWeight,

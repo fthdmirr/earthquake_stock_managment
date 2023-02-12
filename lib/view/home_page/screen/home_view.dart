@@ -69,12 +69,14 @@ class ReceivePageItemWidget extends StatelessWidget {
     return GestureDetector(
       onTap: () {
         AppBottomSheet().showBottomSheet(
-          context,
-          item.icon ?? 'empty_icon',
-          item.quantity,
-          item.name,
-          bottomSheetButton,
-        );
+            context,
+            item.icon ?? 'empty_icon',
+            item.quantity,
+            item.name,
+            //TODO: item type elkelecek
+            bottomSheetButton,
+            ['Koli', 'Adet'],
+            'Koli');
       },
       child: Container(
         margin: const EdgeInsets.all(8),

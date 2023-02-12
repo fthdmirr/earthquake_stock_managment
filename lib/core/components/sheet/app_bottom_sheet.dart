@@ -12,6 +12,8 @@ class AppBottomSheet {
     int currentQuantity,
     String currentItem,
     Function()? onPressed,
+    List<String> dropdownValues,
+    String dropdownValue,
   ) async {
     return showModalBottomSheet(
       backgroundColor: AppColors.white,
@@ -36,10 +38,8 @@ class AppBottomSheet {
             children: [
               const Text(
                 'Seçilen Ürünün Detayını Giriniz.',
-                style: TextStyle(
-                    fontWeight: FontWeight.w700,
-                    fontSize: 14,
-                    color: AppColors.greyapp),
+                style:
+                    TextStyle(fontWeight: FontWeight.w700, fontSize: 14, color: AppColors.greyapp),
               ),
               const SizedBox(height: 12),
               Container(
@@ -59,22 +59,23 @@ class AppBottomSheet {
                     ),
                     Text(
                       currentItem,
-                      style: const TextStyle(
-                          fontWeight: FontWeight.w400, fontSize: 18),
+                      style: const TextStyle(fontWeight: FontWeight.w400, fontSize: 18),
                     ),
                     Text(
                       '$currentQuantity',
-                      style: const TextStyle(
-                          fontWeight: FontWeight.w600, fontSize: 25),
+                      style: const TextStyle(fontWeight: FontWeight.w600, fontSize: 25),
                     ),
                   ],
                 ),
               ),
               const SizedBox(height: 12),
-              const DropdownInput(
-                dropdownValues: ['Koli'],
+              DropdownInput(
+                dropdownValues: dropdownValues,
                 title: 'Ürün Tipi',
-                firstValue: 'Koli',
+                dropDownValue: dropdownValue,
+                onChanged: (p0) {
+                  dropdownValue = p0 ?? dropdownValues.first;
+                },
               ),
               BaseInput(title: 'Miktar', controller: TextEditingController()),
               const SizedBox(height: 10),

@@ -19,19 +19,22 @@ class _StepperTruckInformation extends StatelessWidget {
           DropdownInput(
             title: 'Araç Tipi',
             dropdownValues: const ['Kamyon', 'Tır', 'Kamyonet'],
-            firstValue: model.selectedVehicle,
+            dropDownValue: model.selectedVehicleType,
+            onChanged: (p0) {
+              model.selectedVehicleType = p0 ?? 'Kamyon';
+            },
           ),
           const SizedBox(height: 20),
           BaseInput(
             title: 'Araç Plakası',
             inputType: TextInputType.name,
-            controller: model.vehicleNoController,
+            controller: model.vehiclePlateController,
           ),
           const SizedBox(height: 20),
           BaseInput(
-            title: 'Şoför Bilgisi',
+            title: 'Şoför İsim',
             inputType: TextInputType.name,
-            controller: model.driverInformationController,
+            controller: model.driverNameController,
           ),
           const SizedBox(height: 20),
           BaseInput(
@@ -50,7 +53,10 @@ class _StepperTruckInformation extends StatelessWidget {
           DropdownInput(
             title: 'Gidecek Yer',
             dropdownValues: CitiesOfTurkey.values.map((e) => e.name).toList(),
-            firstValue: model.fromTheProvience,
+            dropDownValue: model.toTheProvience,
+            onChanged: (p0) {
+              model.toTheProvience = p0 ?? 'Kamyon';
+            },
           ),
         ],
       ),

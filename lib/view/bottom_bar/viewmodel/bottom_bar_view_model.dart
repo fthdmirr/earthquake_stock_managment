@@ -12,6 +12,8 @@ class BottomBarViewModel extends BaseViewModel {
 
   get baseSelectedPage => null;
 
+  int get basketLength => super.sepet.getBasket().length;
+
   void changeBody(int index) {
     currentIndex = index;
     notifyListeners();
@@ -56,7 +58,7 @@ class BottomBarViewModel extends BaseViewModel {
                   radius: 10,
                   backgroundColor: AppColors.red,
                   child: BodyMediumText(
-                    text: basket.length.toString(),
+                    text: '$basketLength',
                     color: AppColors.white,
                   ),
                 ),
@@ -76,6 +78,5 @@ class BottomBarViewModel extends BaseViewModel {
         ),
       ];
 
-  Color getIconColor(int index) =>
-      index == currentIndex ? AppColors.black : AppColors.greyapp;
+  Color getIconColor(int index) => index == currentIndex ? AppColors.black : AppColors.greyapp;
 }

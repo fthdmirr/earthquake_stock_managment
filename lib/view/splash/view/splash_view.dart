@@ -19,7 +19,7 @@ class SplashView extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               Lottie.asset(
-                'assets/lottie/stock.json',
+                'assets/lottie/green_trucks.json',
               ),
               Column(
                 children: [

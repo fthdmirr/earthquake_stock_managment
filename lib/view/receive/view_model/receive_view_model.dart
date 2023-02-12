@@ -4,6 +4,7 @@ import 'package:earhquake_stock_managment/core/common/models/status/route_status
 import 'package:earhquake_stock_managment/core/common/models/vehicle/vehicle_model.dart';
 import 'package:earhquake_stock_managment/core/common/models/vehicle_info/vehicle_info_model.dart';
 import 'package:earhquake_stock_managment/core/common/provider/base_provider.dart';
+import 'package:earhquake_stock_managment/core/init/navigation/navigation_service.dart';
 import 'package:earhquake_stock_managment/core/utils/constants/enum/cities_of_turkey.dart';
 import 'package:earhquake_stock_managment/main.dart';
 import 'package:earhquake_stock_managment/view/bottom_bar/view/bottom_bar_view.dart';
@@ -12,11 +13,11 @@ import 'package:flutter/material.dart';
 class ReceiveViewModel extends BaseViewModel {
   ReceiveViewModel({required super.context});
 
-  final String selectedVehicle = 'Kamyon';
-  final String fromTheProvience = CitiesOfTurkey.kayseri.name;
+  String selectedVehicle = 'Kamyon';
+  String fromTheProvience = CitiesOfTurkey.kayseri.name;
 
-  final String selectedItem = 'Meyve';
-  final String selectedItemType = 'Koli';
+  String selectedItem = 'Meyve';
+  String selectedItemType = 'Koli';
   final TextEditingController vehiclePlate = TextEditingController();
   final TextEditingController quantity = TextEditingController();
   final TextEditingController name = TextEditingController();
@@ -43,23 +44,20 @@ class ReceiveViewModel extends BaseViewModel {
 
   Future<void> finishReceive() async {
     if (pickedVehicle == null) return;
-    await reportCacheManager.addValue(Report(
-        dateTime: DateTime.now().toIso8601String(),
+    await reportCacheManager.addValue(
+      Report(
+        dateTime: DateTime.now().toString(),
         vehicleInfo: VehicleInfo(
           destinationCity: fromTheProvience,
           vehicle: pickedVehicle!,
           routeStatus: RouteStatus.came,
           inventoryItems: inventoryItems,
-        )));
+        ),
+      ),
+    );
     _clearDatas();
-    Future.delayed(Duration.zero).then((value) {
-      Navigator.pushAndRemoveUntil(
-          context,
-          MaterialPageRoute(
-            builder: (context) => BottomBarView(),
-          ),
-          (route) => false);
-    });
+    Future.delayed(Duration.zero).then(
+        (value) => NavigationService.instance.navigateToPageClear(path: BottomBarView.routeName));
   }
 
   void _clearDatas() {

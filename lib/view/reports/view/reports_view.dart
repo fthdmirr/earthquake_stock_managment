@@ -1,4 +1,4 @@
-// ignore_for_file: public_member_api_docs, sort_constructors_first
+
 
 import 'package:earhquake_stock_managment/core/common/provider/view_model_provider.dart';
 import 'package:earhquake_stock_managment/core/components/multipagetabbar/multipagetabbar.dart';
@@ -27,11 +27,7 @@ class _ReportsViewState extends State<ReportsView> {
         labelColor: AppColors.textColor,
         unselectedLabelColor: AppColors.grey,
         indicatorActive: AppColors.primaryColor,
-        children: [
-          //create search bar here
-
-          ...model.reportsTabs.map((e) => e.payload!).toList(),
-        ],
+        children: model.reportsTabs.map((e) => e.payload!).toList(),
       ),
     );
   }
