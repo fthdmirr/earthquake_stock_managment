@@ -5,7 +5,6 @@ import 'package:earhquake_stock_managment/core/common/models/vehicle/vehicle_mod
 import 'package:earhquake_stock_managment/core/common/models/vehicle_info/vehicle_info_model.dart';
 import 'package:earhquake_stock_managment/core/utils/constants/app_color.dart';
 import 'package:earhquake_stock_managment/view/reports/view/inhouse_reports.dart';
-import 'package:earhquake_stock_managment/view/reports/view/reports_detail.view.dart';
 import 'package:earhquake_stock_managment/view/reports/viewmodel/reports.viewmodel.dart';
 import 'package:flutter/material.dart';
 import 'package:kartal/kartal.dart';
@@ -61,9 +60,7 @@ class WentReports extends StatelessWidget {
         Expanded(
           child: ListView.builder(
             shrinkWrap: true,
-            itemCount: viewModel.wentReports.isNotNullOrEmpty
-                ? viewModel.wentReports.length
-                : 0,
+            itemCount: viewModel.wentReports.isNotNullOrEmpty ? viewModel.wentReports.length : 0,
             itemBuilder: (context, index) => ReportsCardWidget(
               report: viewModel.wentReports.isNotNullOrEmpty
                   ? viewModel.wentReports[index]

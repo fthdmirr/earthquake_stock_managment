@@ -14,7 +14,6 @@ import 'package:flutter/services.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 
 late final InventoryItemCacheManager itemCacheManager;
-
 late final ReportCacheManager reportCacheManager;
 late final VehicleCacheManager vehicleCacheManager;
 late final VehicleInfoCacheManager vehicleInfoCacheManager;

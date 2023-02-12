@@ -1,13 +1,13 @@
 import 'package:earhquake_stock_managment/core/common/models/app_images/app_images.dart';
 import 'package:earhquake_stock_managment/core/components/inapp_notifier/inapp_notifier_service.dart';
 import 'package:earhquake_stock_managment/core/utils/constants/app_color.dart';
+import 'package:earhquake_stock_managment/view/bottom_bar/view/bottom_bar_view.dart';
 import 'package:flutter/material.dart';
 
 import 'core/init/navigation/navigation_route.dart';
 import 'core/init/navigation/navigation_service.dart';
 import 'core/utils/app_builder.dart';
 import 'core/utils/theme/theme.dart';
-import 'view/splash/view/splash_view.dart';
 
 class App extends StatelessWidget {
   const App({super.key});
@@ -37,7 +37,7 @@ class App extends StatelessWidget {
           navigatorKey: NavigationService.instance.navigatorKey,
           debugShowCheckedModeBanner: false,
           builder: AppBuilder.build,
-          home: const SplashView(),
+          home: BottomBarView(),
         );
       }),
     );

@@ -4,6 +4,7 @@ import 'package:earhquake_stock_managment/core/common/models/status/route_status
 import 'package:earhquake_stock_managment/core/common/models/vehicle/vehicle_model.dart';
 import 'package:earhquake_stock_managment/core/common/models/vehicle_info/vehicle_info_model.dart';
 import 'package:earhquake_stock_managment/core/common/provider/base_provider.dart';
+import 'package:earhquake_stock_managment/core/init/navigation/navigation_service.dart';
 import 'package:earhquake_stock_managment/core/utils/constants/enum/cities_of_turkey.dart';
 import 'package:earhquake_stock_managment/main.dart';
 import 'package:earhquake_stock_managment/view/bottom_bar/view/bottom_bar_view.dart';
@@ -36,7 +37,8 @@ class ReceiveViewModel extends BaseViewModel {
 
   void addInventoryItem() {
     inventoryItems.add(
-      InventoryItem(quantity: int.parse(quantity.text.trim()), name: selectedItem),
+      InventoryItem(
+          quantity: int.parse(quantity.text.trim()), name: selectedItem),
     );
     quantity.clear();
   }
@@ -52,14 +54,8 @@ class ReceiveViewModel extends BaseViewModel {
           inventoryItems: inventoryItems,
         )));
     _clearDatas();
-    Future.delayed(Duration.zero).then((value) {
-      Navigator.pushAndRemoveUntil(
-          context,
-          MaterialPageRoute(
-            builder: (context) => BottomBarView(),
-          ),
-          (route) => false);
-    });
+    Future.delayed(Duration.zero).then((value) => NavigationService.instance
+        .navigateToPageClear(path: BottomBarView.routeName));
   }
 
   void _clearDatas() {
