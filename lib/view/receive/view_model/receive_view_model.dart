@@ -7,6 +7,7 @@ import 'package:earhquake_stock_managment/core/common/models/vehicle_info/vehicl
 import 'package:earhquake_stock_managment/core/common/provider/base_provider.dart';
 import 'package:earhquake_stock_managment/core/init/navigation/navigation_service.dart';
 import 'package:earhquake_stock_managment/core/utils/constants/enum/cities_of_turkey.dart';
+import 'package:earhquake_stock_managment/core/utils/constants/item/item_constants.dart';
 import 'package:earhquake_stock_managment/main.dart';
 import 'package:earhquake_stock_managment/view/bottom_bar/view/bottom_bar_view.dart';
 import 'package:flutter/material.dart';
@@ -19,7 +20,7 @@ class ReceiveViewModel extends BaseViewModel {
   String selectedVehicle = 'Kamyon';
   String fromTheProvience = CitiesOfTurkey.kayseri.name;
 
-  String selectedItem = 'Meyve';
+  String selectedItem = ItemConstants().inventoryItems.first.name;
   String selectedItemType = 'Koli';
   final TextEditingController vehiclePlate = TextEditingController();
   final TextEditingController quantity = TextEditingController();
@@ -42,12 +43,7 @@ class ReceiveViewModel extends BaseViewModel {
 
   void addInventoryItem() {
     inventoryItems.add(
-      InventoryItem(
-          quantity: int.parse(quantity.text.trim()), name: selectedItem),
-    );
-    itemCacheManager.addValue(
-      InventoryItem(
-          quantity: int.parse(quantity.text.trim()), name: selectedItem),
+      InventoryItem(quantity: int.parse(quantity.text.trim()), name: selectedItem),
     );
     quantity.clear();
     notifyListeners();
@@ -68,18 +64,16 @@ class ReceiveViewModel extends BaseViewModel {
     );
 
     for (var element in inventoryItems) {
-      itemAndQuantityCacheManager.addValue(
-          ItemAndQuantites(quantity: element.quantity, itemName: element.name));
+      itemAndQuantityCacheManager
+          .addValue(ItemAndQuantites(quantity: element.quantity, itemName: element.name));
     }
 
     _clearDatas();
 
     if (context.mounted) {
-      NavigationService.instance
-          .navigateToPageClear(path: BottomBarView.routeName);
+      NavigationService.instance.navigateToPageClear(path: BottomBarView.routeName);
       showFlushbarWidget(
-              'Ürün tıra eklendi. Alttaki bardan tır detayından düzenle ve gönder.',
-              Icons.check)
+              'Ürün tıra eklendi. Alttaki bardan tır detayından düzenle ve gönder.', Icons.check)
           .show(context);
     }
   }

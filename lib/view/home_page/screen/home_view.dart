@@ -1,6 +1,7 @@
 import 'package:earhquake_stock_managment/core/common/models/app_images/app_images.dart';
 import 'package:earhquake_stock_managment/core/common/models/inventory_item/inventory_item_model.dart';
 import 'package:earhquake_stock_managment/core/common/provider/view_model_provider.dart';
+import 'package:earhquake_stock_managment/core/components/text/headline/headline5_text.dart';
 import 'package:earhquake_stock_managment/core/utils/constants/app_color.dart';
 import 'package:earhquake_stock_managment/view/home_page/view_model/home_viewmodel.dart';
 
@@ -20,6 +21,21 @@ class HomeView extends StatelessWidget {
         context: context,
       ),
       builder: (model) => Scaffold(
+        resizeToAvoidBottomInset: false,
+        floatingActionButton: Visibility(
+          child: FloatingActionButton.extended(
+            onPressed: () async {
+              model.updateWhenPop();
+            },
+            icon: const Icon(
+              Icons.add,
+            ),
+            label: Headline5Text(
+              text: 'Kategori Ekle',
+              color: AppColors.white,
+            ),
+          ),
+        ),
         body: Column(
           children: [
             Expanded(
@@ -113,54 +129,3 @@ class ReceivePageItemWidget extends StatelessWidget {
     );
   }
 }
-
-
-
-// DropdownAndTitleWidget(
-            //   title: 'Araç Tipi',
-            //   dropdownList: Vehicle.values.map((e) => e.name).toList(),
-            //   dropDownFirstValue: Vehicle.kamyon.name,
-            // ),
-            // BaseInput(
-            //   title: 'Araç Plakasi',
-            //   hint: 'Lütfen araç plakasi giriniz',
-            //   controller: model.carPlate,
-            // ),
-            // const SizedBox(height: 16),
-            // DropdownAndTitleWidget(
-            //   title: 'Gelen İl',
-            //   dropdownList:
-            //       CitiesOfTurkey.values.map((e) => e.name).toList(),
-            //   dropDownFirstValue: model.selectedCity,
-            // ),
-            // DropdownAndTitleWidget(
-            //   title: 'Ürün',
-            //   dropdownList: model.items.map((e) => e.itemName).toList(),
-            //   dropDownFirstValue: model.selectedItem.itemName,
-            // ),
-            // DropdownAndTitleWidget(
-            //   title: 'Ürün Tipi',
-            //   dropdownList:
-            //       model.itemTypes.map((e) => e.itemType).toList(),
-            //   dropDownFirstValue: model.selectedItemType.itemType,
-            // ),
-            // BaseInput(
-            //   title: 'Miktar',
-            //   hint: 'Lütfen gelen ürün miktarini giriniz',
-            //   inputType: TextInputType.number,
-            //   controller: model.quantityController,
-            //   inputFormatter: <TextInputFormatter>[
-            //     FilteringTextInputFormatter.digitsOnly,
-            //     LengthLimitingTextInputFormatter(10),
-            //   ],
-            // ),
-            // Image(
-            //   image: AppImages.manClothesIcon,
-            //   width: 300,
-            //   height: 300,
-            // ),
-            // const SizedBox(height: 50),
-            // ElevatedButton.icon(
-            //     onPressed: model.addReceiving,
-            //     icon: const Icon(Icons.done),
-            //     label: const Text('Mal Kabul Yap'))
