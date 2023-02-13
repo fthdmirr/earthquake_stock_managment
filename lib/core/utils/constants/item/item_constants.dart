@@ -1,7 +1,8 @@
 import 'package:earhquake_stock_managment/core/common/models/inventory_item/inventory_item_model.dart';
+import 'package:earhquake_stock_managment/main.dart';
 
 class ItemConstants {
-  static final List<InventoryItem> inventoryItems = [
+  final List<InventoryItem> _inventoryItems = [
     InventoryItem(
       name: 'Erkek Kıyafet',
       quantity: 0,
@@ -80,5 +81,22 @@ class ItemConstants {
       name: 'Jenaratör',
       quantity: 0,
     ),
+    InventoryItem(
+      name: 'Telefon',
+      quantity: 0,
+    ),
+    InventoryItem(
+      name: 'Battaniye',
+      quantity: 0,
+    ),
   ];
+
+  _getAllItems() {
+    _inventoryItems.addAll(itemCacheManager.getValues());
+  }
+
+  List<InventoryItem> get inventoryItems {
+    _getAllItems();
+    return _inventoryItems;
+  }
 }

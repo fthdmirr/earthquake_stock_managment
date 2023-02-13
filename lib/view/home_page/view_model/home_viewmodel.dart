@@ -5,6 +5,7 @@ import 'package:earhquake_stock_managment/core/common/models/inventory_item/inve
 import 'package:earhquake_stock_managment/core/components/dropdown/dropdown_input.dart';
 import 'package:earhquake_stock_managment/core/components/input/base_input.dart';
 import 'package:earhquake_stock_managment/core/utils/constants/app_color.dart';
+import 'package:earhquake_stock_managment/core/utils/constants/item/item_constants.dart';
 import 'package:earhquake_stock_managment/core/utils/input_field_generator.dart';
 import 'package:earhquake_stock_managment/main.dart';
 import 'package:flutter/material.dart';
@@ -16,13 +17,8 @@ class HomeViewModel extends BaseViewModel {
   final TextEditingController unitController = TextEditingController();
   HomeViewModel({
     required super.context,
-  });
-  
-  @override
-  initViewModel() async {
+  }) {
     getInventoryItemsFromHive();
-
-    super.initViewModel();
   }
 
   showModal({
@@ -157,57 +153,12 @@ class HomeViewModel extends BaseViewModel {
     notifyListeners();
   }
 
-  // update() {
-  //   inventoryItems = itemCacheManager.getValues();
-  // }
-
   setInventoryItem() {
     reportCacheManager.getValues();
     notifyListeners();
   }
 
-  List<InventoryItem> inventoryItems = [
-    InventoryItem(
-      name: 'Erkek Kıyafet',
-      quantity: 0,
-      icon: 'man_clothes_icon',
-    ),
-    InventoryItem(
-      name: 'Kadın Kıyafet',
-      quantity: 0,
-      icon: 'women_clothes_icon',
-    ),
-    InventoryItem(
-      name: 'Yiyecek',
-      quantity: 0,
-      icon: 'food_icon',
-    ),
-    InventoryItem(
-      name: 'Temel Gıda',
-      quantity: 0,
-      icon: 'staple_food_icon',
-    ),
-    InventoryItem(
-      name: 'Temizlik Malzemesi',
-      quantity: 0,
-      icon: 'cleaning_materials_icon',
-    ),
-    InventoryItem(
-      name: 'İlaç',
-      quantity: 0,
-      icon: 'medicine_icon',
-    ),
-    InventoryItem(
-      name: 'Çocuk Maması',
-      quantity: 0,
-      icon: 'child_food_icon',
-    ),
-    InventoryItem(
-      name: 'Çadır',
-      quantity: 0,
-      icon: 'tent_icon',
-    ),
-  ];
+  List<InventoryItem> inventoryItems = ItemConstants().inventoryItems;
 
   addToSepet(InventoryItem item) {
     sepet.addToBasket(item);

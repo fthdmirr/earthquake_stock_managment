@@ -3,6 +3,7 @@ import 'package:earhquake_stock_managment/core/components/input/base_input.dart'
 import 'package:earhquake_stock_managment/core/components/stepper/stepper_model.dart';
 import 'package:earhquake_stock_managment/core/components/stepper/stepper_view.dart';
 import 'package:earhquake_stock_managment/core/utils/constants/enum/cities_of_turkey.dart';
+import 'package:earhquake_stock_managment/core/utils/constants/item/item_constants.dart';
 import 'package:earhquake_stock_managment/core/utils/input_field_generator.dart';
 import 'package:earhquake_stock_managment/view/receive/view_model/receive_view_model.dart';
 import 'package:mask_text_input_formatter/mask_text_input_formatter.dart';
@@ -62,8 +63,7 @@ class _VehicleInfoPage extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.start,
             children: [
               Headline5Text(
-                text:
-                    'Kabul edeceğiniz tırın ve tır içerisindeki malzeme bilgisini giriniz.',
+                text: 'Kabul edeceğiniz tırın ve tır içerisindeki malzeme bilgisini giriniz.',
                 color: AppColors.dark,
               ),
               const SizedBox(height: 40),
@@ -84,8 +84,7 @@ class _VehicleInfoPage extends StatelessWidget {
               ),
               const SizedBox(height: 12),
               DropdownInput(
-                dropdownValues:
-                    CitiesOfTurkey.values.map((e) => e.name).toList(),
+                dropdownValues: CitiesOfTurkey.values.map((e) => e.name).toList(),
                 dropDownValue: model.fromTheProvience,
                 title: 'Gelen İl',
                 onChanged: (p0) {
@@ -133,11 +132,11 @@ class _ItemInfoPage extends StatelessWidget {
           child: Column(
             children: [
               DropdownInput(
-                dropdownValues: const ['Kadın Kıyafet', 'Kuru Gıda', 'Meyve'],
+                dropdownValues: ItemConstants().inventoryItems.map((e) => e.name).toList(),
                 dropDownValue: model.selectedItem,
                 title: 'Ürün',
                 onChanged: (p0) {
-                  model.selectedItem = p0 ?? 'Kamyon';
+                  model.selectedItem = p0 ?? ItemConstants().inventoryItems.first.name;
                 },
               ),
               const SizedBox(height: 12),
@@ -165,9 +164,8 @@ class _ItemInfoPage extends StatelessWidget {
                 child: TextButton.icon(
                   onPressed: () => model.addInventoryItem(),
                   icon: const Icon(Icons.add),
-                  label: Text(model.inventoryItems.isEmpty
-                      ? ' Ürünü Ekle'
-                      : 'Ürün Eklemeye Devam Et'),
+                  label:
+                      Text(model.inventoryItems.isEmpty ? ' Ürünü Ekle' : 'Ürün Eklemeye Devam Et'),
                 ),
               )
             ],
