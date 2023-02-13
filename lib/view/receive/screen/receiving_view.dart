@@ -167,7 +167,23 @@ class _ItemInfoPage extends StatelessWidget {
                   label:
                       Text(model.inventoryItems.isEmpty ? ' Ürünü Ekle' : 'Ürün Eklemeye Devam Et'),
                 ),
-              )
+              ),
+              const SizedBox(height: 12),
+              if (model.inventoryItems.isNotEmpty)
+                Align(
+                  alignment: Alignment.bottomLeft,
+                  child: Container(
+                    height: 42,
+                    padding: const EdgeInsets.all(8),
+                    decoration: BoxDecoration(
+                      color: AppColors.green,
+                      borderRadius: BorderRadius.circular(8),
+                    ),
+                    child: Text(
+                        'Eklenen son ürün ${model.inventoryItems.last.quantity} ${model.selectedItemType} ${model.inventoryItems.last.name}',
+                        style: const TextStyle(color: Colors.white)),
+                  ),
+                )
             ],
           ),
         ),
