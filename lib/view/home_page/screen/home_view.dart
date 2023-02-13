@@ -73,9 +73,9 @@ class ReceivePageItemWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    int quantity = 0;
     return GestureDetector(
       onTap: () {
+        if (item.quantity == 0) return;
         model.showModal(
           dropdownValue: 'Koli',
           dropdownValues: ['Koli'],
