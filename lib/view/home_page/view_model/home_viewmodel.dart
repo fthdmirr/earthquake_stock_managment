@@ -4,10 +4,12 @@ import 'package:earhquake_stock_managment/core/common/models/app_images/app_imag
 import 'package:earhquake_stock_managment/core/common/models/inventory_item/inventory_item_model.dart';
 import 'package:earhquake_stock_managment/core/components/dropdown/dropdown_input.dart';
 import 'package:earhquake_stock_managment/core/components/input/base_input.dart';
+import 'package:earhquake_stock_managment/core/init/navigation/navigation_service.dart';
 import 'package:earhquake_stock_managment/core/utils/constants/app_color.dart';
 import 'package:earhquake_stock_managment/core/utils/constants/item/item_constants.dart';
 import 'package:earhquake_stock_managment/core/utils/input_field_generator.dart';
 import 'package:earhquake_stock_managment/main.dart';
+import 'package:earhquake_stock_managment/view/add_item_type/add_category_view.dart';
 import 'package:flutter/material.dart';
 import 'package:kartal/kartal.dart';
 
@@ -17,7 +19,11 @@ class HomeViewModel extends BaseViewModel {
   final TextEditingController unitController = TextEditingController();
   HomeViewModel({
     required super.context,
-  }) {
+  });
+
+  @override
+  initViewModel() async {
+    super.initViewModel();
     getInventoryItemsFromHive();
   }
 
@@ -170,5 +176,11 @@ class HomeViewModel extends BaseViewModel {
 
   getSepet() {
     inspect(sepet.getBasket());
+  }
+
+  updateWhenPop() async {
+    await NavigationService.instance.navigateToPage(AddCategoryView.routeName);
+    
+    notifyListeners();
   }
 }
