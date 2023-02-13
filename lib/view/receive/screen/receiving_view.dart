@@ -208,6 +208,12 @@ class _OverViewPage extends StatelessWidget {
               keyText: 'Gelen İl',
               valueText: model.fromTheProvience,
             ),
+            ...model.inventoryItems
+                .map((e) => ReportsDetailTextPart(
+                      keyText: 'Ürün',
+                      valueText: '${e.name} - ${e.quantity}',
+                    ))
+                .toList(),
             const SizedBox(height: 12),
           ],
         ),
