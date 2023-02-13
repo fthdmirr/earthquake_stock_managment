@@ -141,7 +141,7 @@ class _ItemInfoPage extends StatelessWidget {
               ),
               const SizedBox(height: 12),
               DropdownInput(
-                dropdownValues: const ['Koli', 'Adet'],
+                dropdownValues: const ['Koli'],
                 dropDownValue: model.selectedItemType,
                 title: 'Ürün Tipi',
                 onChanged: (p0) {
@@ -150,7 +150,7 @@ class _ItemInfoPage extends StatelessWidget {
               ),
               const SizedBox(height: 12),
               BaseInput(
-                  title: 'Adet',
+                  title: 'Koli',
                   controller: model.quantity,
                   inputType: TextInputType.number,
                   inputFormatter: getTextInputFormatters(

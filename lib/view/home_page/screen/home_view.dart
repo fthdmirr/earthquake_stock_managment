@@ -78,7 +78,7 @@ class ReceivePageItemWidget extends StatelessWidget {
       onTap: () {
         model.showModal(
           dropdownValue: 'Koli',
-          dropdownValues: ['Koli', 'Adet'],
+          dropdownValues: ['Koli'],
           item: item,
         );
       },
