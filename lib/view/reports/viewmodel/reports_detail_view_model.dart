@@ -26,18 +26,23 @@ class ReportsDetailViewModel extends BaseViewModel {
 
   Future<void> printReport(Report report) async {
     final afadLogo = await imageFromAssetBundle('assets/images/afad_logo.png');
+    List<pw.Column> items1 = [];
+    List<pw.Column> items2 = [];
 
-    getItems() {
-      List items = [];
-      for (var i = 0; i < report.vehicleInfo.inventoryItems.length; i++) {
-        items.addAll([
-          _dataRow(dataKey: 'MALZEME CINSI', dataValue: ''),
+    for (var i = 0; i < report.vehicleInfo.inventoryItems.length; i++) {
+      if (i < 6) {
+        items1.addAll([
+          _dataRow(
+              dataKey: report.vehicleInfo.inventoryItems[i].name,
+              dataValue: report.vehicleInfo.inventoryItems[i].quantity.toString()),
+        ]);
+      } else {
+        items2.addAll([
           _dataRow(
               dataKey: report.vehicleInfo.inventoryItems[i].name,
               dataValue: report.vehicleInfo.inventoryItems[i].quantity.toString()),
         ]);
       }
-      return items;
     }
 
     doc.addPage(
@@ -48,19 +53,19 @@ class ReportsDetailViewModel extends BaseViewModel {
             padding: const pw.EdgeInsets.all(24),
             child: pw.Column(
               children: [
-                pw.SizedBox(height: 16),
+                pw.SizedBox(height: 8),
                 pw.Row(
                   mainAxisAlignment: pw.MainAxisAlignment.spaceEvenly,
                   children: [
-                    pw.Image(afadLogo, height: 42),
+                    pw.Image(afadLogo, height: 40),
                   ],
                 ),
-                pw.SizedBox(height: 12),
+                pw.SizedBox(height: 8),
                 pw.Expanded(
                   child: pw.Container(
                     decoration: pw.BoxDecoration(
                         border: pw.Border.all(
-                      width: 5,
+                      width: 4,
                       color: PdfColor.fromHex('#000000'),
                     )),
                     child: pw.Column(
@@ -68,20 +73,18 @@ class ReportsDetailViewModel extends BaseViewModel {
                         _dataRow(dataKey: 'Tarih', dataValue: currentTime(report.dateTime)),
                         _dataRow(
                             dataKey: 'Gittigi Yer', dataValue: report.vehicleInfo.destinationCity),
-                        _dataRow(dataKey: 'Gittigi Yer Kisi', dataValue: report.vehicleInfo.destinationCity),
-                        _dataRow(dataKey: 'GÖREV DURUMU', dataValue: 'Gonullu'),
                         _dataRow(dataKey: 'PLAKA', dataValue: report.vehicleInfo.vehicle.plate),
                         _dataRow(
                             dataKey: 'SOFOR ADI', dataValue: report.vehicleInfo.vehicle.driverName),
                         _dataRow(
                             dataKey: 'SOFOR ILETISIM',
                             dataValue: report.vehicleInfo.vehicle.driverPhone),
-                        ...getItems()
+                        ...items1
                       ],
                     ),
                   ),
                 ),
-                pw.SizedBox(height: 12),
+                pw.SizedBox(height: 8),
                 pw.Text(
                   'MALZEME CIKIS FORMU',
                   style: _style,
@@ -93,7 +96,7 @@ class ReportsDetailViewModel extends BaseViewModel {
                     pw.Text('Teslim Alan', style: _style)
                   ],
                 ),
-                pw.SizedBox(height: 42),
+                pw.SizedBox(height: 38),
                 pw.Text(
                   'Yukarida detay bilgileri yer alan araç belirtilen ile yardim amaciyla gitmesine izin verilmistir',
                   style: _style,
@@ -105,10 +108,62 @@ class ReportsDetailViewModel extends BaseViewModel {
         },
       ),
     );
+    if (items2.isNotEmpty) {
+      doc.addPage(
+        pw.Page(
+          pageFormat: PdfPageFormat.a4,
+          build: (pw.Context context) {
+            return pw.Padding(
+              padding: const pw.EdgeInsets.all(24),
+              child: pw.Column(
+                children: [
+                  pw.SizedBox(height: 8),
+                  pw.Row(
+                    mainAxisAlignment: pw.MainAxisAlignment.spaceEvenly,
+                    children: [pw.Image(afadLogo, height: 40)],
+                  ),
+                  pw.SizedBox(height: 8),
+                  pw.Expanded(
+                    child: pw.Container(
+                      decoration: pw.BoxDecoration(
+                          border: pw.Border.all(
+                        width: 4,
+                        color: PdfColor.fromHex('#000000'),
+                      )),
+                      child: pw.Column(
+                        children: items2,
+                      ),
+                    ),
+                  ),
+                  pw.SizedBox(height: 8),
+                  pw.Text(
+                    'MALZEME CIKIS FORMU',
+                    style: _style,
+                  ),
+                  pw.Row(
+                    mainAxisAlignment: pw.MainAxisAlignment.spaceBetween,
+                    children: [
+                      pw.Text('Teslim Eden', style: _style),
+                      pw.Text('Teslim Alan', style: _style)
+                    ],
+                  ),
+                  pw.SizedBox(height: 38),
+                  pw.Text(
+                    'Yukarida detay bilgileri yer alan araç belirtilen ile yardim amaciyla gitmesine izin verilmistir',
+                    style: _style,
+                    textAlign: pw.TextAlign.center,
+                  ),
+                ],
+              ),
+            ); // Center
+          },
+        ),
+      );
+    }
     await Printing.layoutPdf(onLayout: (PdfPageFormat format) async => doc.save());
   }
 
-  _dataRow({required String dataKey, required String dataValue}) => pw.Column(
+  pw.Column _dataRow({required String dataKey, required String dataValue}) => pw.Column(
         children: [
           pw.Column(children: [
             pw.Padding(

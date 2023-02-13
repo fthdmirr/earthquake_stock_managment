@@ -1,8 +1,8 @@
 class HiveConstants {
   static const inventoryItemId = 0;
-  static const vehicleInfoId = 1;
-  static const reportId = 2;
-  static const vehicleId = 3;
+  static const reportId = 1;
+  static const vehicleId = 2;
+  static const vehicleInfoId = 3;
   static const routeStatusId = 4;
   static const itemsAndQuantityId = 5;
 

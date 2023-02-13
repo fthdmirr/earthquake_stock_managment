@@ -26,7 +26,6 @@ class ReceiveViewModel extends BaseViewModel {
   final TextEditingController quantity = TextEditingController();
   final TextEditingController name = TextEditingController();
   final TextEditingController telNo = TextEditingController();
-  final TextEditingController plate = TextEditingController();
   //create formkey
   final GlobalKey<FormState> formKey = GlobalKey<FormState>();
 
@@ -38,7 +37,7 @@ class ReceiveViewModel extends BaseViewModel {
         vehicleType: selectedVehicle,
         driverName: name.text.trim().toUpperCase(),
         driverPhone: telNo.text.trim(),
-        plate: plate.text.trim().toUpperCase());
+        plate: vehiclePlate.text.trim().toUpperCase());
   }
 
   void addInventoryItem() {
@@ -73,7 +72,7 @@ class ReceiveViewModel extends BaseViewModel {
     if (context.mounted) {
       NavigationService.instance.navigateToPageClear(path: BottomBarView.routeName);
       showFlushbarWidget(
-              'Ürün tıra eklendi. Alttaki bardan tır detayından düzenle ve gönder.', Icons.check)
+              'Ürün stoklara eklendi. Alttaki bardan stoklarını düzenle ve gönder.', Icons.check)
           .show(context);
     }
   }
@@ -82,7 +81,7 @@ class ReceiveViewModel extends BaseViewModel {
     quantity.clear();
     name.clear();
     telNo.clear();
-    plate.clear();
+    vehiclePlate.clear();
     vehiclePlate.clear();
     inventoryItems.clear();
     pickedVehicle = null;
